@@ -183,11 +183,11 @@ def update_readme(game_state, winner):
     for tile in range(9):
         if game_state["tiles"][f"Tile {tile}"] is None:
             tile_content[f"Tile {tile}"] = (
-                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/{game_state['tiles'][f'Tile {tile}']}.png)]({LINKS[f'Tile {tile}']})"
+                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/{game_state['tiles'][f'Tile {tile}']}.png)]({LINKS[f'Tile {tile}']})"
             )
         else:
             tile_content[f"Tile {tile}"] = (
-                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/{game_state['tiles'][f'Tile {tile}']}.png)](https://github.com/Fused-Gaming)"
+                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/{game_state['tiles'][f'Tile {tile}']}.png)](https://github.com/Fused-Gaming)"
             )
 
     README = f"""# Welcome to Fused Gaming! 🎮
