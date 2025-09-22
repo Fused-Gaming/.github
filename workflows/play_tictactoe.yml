@@ -1,11 +1,13 @@
 name: Play_TicTacToe
+
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   schedule:
     - cron: '0 * * * *'
+
+permissions:
+  contents: write
 
 jobs:
   play:
@@ -22,24 +24,28 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/profile/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        if: hashFiles('.github/profile/requirements.txt') != ''
+        run: pip install -r .github/profile/requirements.txt
 
       - name: Update game
-        run: python tictactoe.py
+        if: hashFiles('.github/profile/tictactoe.py') != ''
+        run: python .github/profile/tictactoe.py
         env:
           API_KEY: ${{ secrets.API_KEY }}
 
-      - name: Commit and push
+      - name: Commit and push changes
         run: |
           git diff
           git add .
           git config --global user.email "github-action-bot@example.com"
           git config --global user.name "GitHub Action Bot"
-          git commit -m "Updated game" -a
+          git diff --cached --quiet || git commit -m "Updated game"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
