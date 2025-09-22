@@ -25,44 +25,39 @@ def extract_alias(url):
     return url.split("/")[-1]
 
 def get_tile_count():
-    headers = {"User-Agent": "Mozilla/5.0"}
-    api_key = os.getenv("API_KEY")
-    
-    if not api_key:
-        raise ValueError("API_KEY not found in environment variables")
-    
+    import datetime
+
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Authorization": f"Bearer {os.getenv('API_KEY')}"
+    }
+
     tile_click_count_new = {}
     tile_click_count_difference = {}
-    
-    # Get analytics for each tile
+
+    # Example: last 7 days of analytics
+    now = datetime.datetime.utcnow()
+    week_ago = now - datetime.timedelta(days=7)
+    from_time = week_ago.strftime("%Y-%m-%dT%H:%M:%SZ")
+    to_time = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
     for tile_name, url in LINKS.items():
         alias = extract_alias(url)
-        analytics_url = f"http://api.tinyurl.com/analytics/raw/json"
-        
+        analytics_url = "https://api.tinyurl.com/analytics/raw/json"
         params = {
-            "api_key": api_key,
-            "alias": alias
+            "alias": alias,
+            "from": from_time,
+            "to": to_time
         }
-        
+
         try:
             response = requests.get(url=analytics_url, headers=headers, params=params)
             response.raise_for_status()
-            
             data = response.json()
-            
-            # TinyURL analytics structure - adjust based on actual API response
-            # This assumes the response has a 'clicks' or similar field
-            # You may need to adjust this based on the actual TinyURL API response structure
-            if isinstance(data, dict):
-                clicks = data.get('clicks', 0) or data.get('total_clicks', 0) or 0
-            elif isinstance(data, list) and len(data) > 0:
-                # If it's a list, sum all clicks
-                clicks = sum(item.get('clicks', 0) for item in data)
-            else:
-                clicks = 0
-                
+
+            # TinyURL analytics logs: each entry in 'data' is a click event
+            clicks = len(data.get('data', []))
             tile_click_count_new[tile_name] = clicks
-            
         except requests.exceptions.RequestException as e:
             print(f"Error fetching data for {tile_name}: {e}")
             tile_click_count_new[tile_name] = 0
@@ -87,7 +82,6 @@ def get_tile_count():
 
     print(f"Click since last run: {tile_click_count_difference}")
     return tile_click_count_difference
-
 
 def tictactoe(tile_click_count):
     if not os.path.exists("game_state.json"):
