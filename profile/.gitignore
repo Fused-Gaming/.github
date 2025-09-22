@@ -1,5 +1,5 @@
-# python env
-/venv/
+# Ignore Python virtual environment folder
+.venv/
 
 # env
 .env
