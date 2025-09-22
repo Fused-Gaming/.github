@@ -183,11 +183,11 @@ def update_readme(game_state, winner):
     for tile in range(9):
         if game_state["tiles"][f"Tile {tile}"] is None:
             tile_content[f"Tile {tile}"] = (
-                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/{game_state['tiles'][f'Tile {tile}']}.png)]({LINKS[f'Tile {tile}']})"
+                f"[![Tile {tile}](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/{game_state['tiles'][f'Tile {tile}']}.png)]({LINKS[f'Tile {tile}']})"
             )
         else:
             tile_content[f"Tile {tile}"] = (
-                f"[![Tile {tile}](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/{game_state['tiles'][f'Tile {tile}']}.png)](https://github.com/Fused-Gaming)"
+                f"[![Tile {tile}](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/{game_state['tiles'][f'Tile {tile}']}.png)](https://github.com/Fused-Gaming)"
             )
 
     README = f"""# Welcome to Fused Gaming! 🎮
@@ -205,9 +205,9 @@ Click on a tile to play
 The most picked move is chosen every hour
 
 {
-        f'Current turn: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/{not game_state["last_played"]}.png" alt="Current Turn" width="32"/>'
+        f'Current turn: <img src= "https://github.com/Fused-Gaming/.github/blob/main/profile/assets/{not game_state["last_played"]}.png" alt="Current Turn" width="32"/>'
         if winner is None
-        else f'Winner: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/{winner}.png" alt="Winner" width="32"/>'
+        else f'Winner: <img src= "https://github.com/Fused-Gaming/.github/blob/main/profile/assets/{winner}.png" alt="Winner" width="32"/>'
     }
 
 | Tic | Tac | Toe |
