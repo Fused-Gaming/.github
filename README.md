@@ -12,13 +12,13 @@
 Click on a tile to play  
 The most picked move is chosen every hour
 
-Winner: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/True.png" alt="Winner" width="32"/>
+Current turn: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/False.png" alt="Current Turn" width="32"/>
 
 | Tic | Tac | Toe |
 |--|--|--|
-| [![Tile 0](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 1](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 2](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) |
-| [![Tile 3](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 4](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 5](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) |
-| [![Tile 6](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 7](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t8) | [![Tile 8](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t9) |
+| [![Tile 0](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 1](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t2) | [![Tile 2](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t3) |
+| [![Tile 3](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t4) | [![Tile 4](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t5) | [![Tile 5](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t6) |
+| [![Tile 6](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t7) | [![Tile 7](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t8) | [![Tile 8](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t9) |
 
 ## How it works
 
