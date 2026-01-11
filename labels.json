@@ -1,0 +1,164 @@
+{
+  "labels": [
+    {
+      "phase": "Phase 1: Core Transparency",
+      "items": [
+        {
+          "name": "📢ANNOUNCEMENT",
+          "color": "0e8a16",
+          "description": "Public stakeholder announcements"
+        },
+        {
+          "name": "📝CHANGELOG",
+          "color": "1d76db",
+          "description": "Should appear in public changelog"
+        },
+        {
+          "name": "🎮PLAYER-IMPACT",
+          "color": "e99695",
+          "description": "Directly impacts players"
+        },
+        {
+          "name": "💥BREAKING-CHANGE",
+          "color": "b60205",
+          "description": "Breaking changes"
+        }
+      ]
+    },
+    {
+      "phase": "Phase 2: Deployment Visibility",
+      "items": [
+        {
+          "name": "🚀READY-FOR-DEPLOY",
+          "color": "0e8a16",
+          "description": "Ready for deployment"
+        },
+        {
+          "name": "✅PRODUCTION",
+          "color": "0e8a16",
+          "description": "Live in production"
+        },
+        {
+          "name": "🔄STAGING",
+          "color": "fbca04",
+          "description": "In staging environment"
+        }
+      ]
+    },
+    {
+      "phase": "Phase 3: Security & Trust",
+      "items": [
+        {
+          "name": "🔒SECURITY",
+          "color": "d93f0b",
+          "description": "Security-related issues/changes"
+        },
+        {
+          "name": "🛡️AUDIT",
+          "color": "5319e7",
+          "description": "Needs security/compliance audit"
+        },
+        {
+          "name": "🔐COMPLIANCE",
+          "color": "b60205",
+          "description": "Regulatory compliance matters"
+        }
+      ]
+    },
+    {
+      "phase": "Phase 4: Process Enhancement",
+      "items": [
+        {
+          "name": "🎯IN-PROGRESS",
+          "color": "c2e0c6",
+          "description": "Currently being worked on"
+        },
+        {
+          "name": "⏳WAITING",
+          "color": "fef2c0",
+          "description": "Waiting on external response"
+        },
+        {
+          "name": "💬DISCUSSION",
+          "color": "cc317c",
+          "description": "Open for community/stakeholder discussion"
+        },
+        {
+          "name": "🔥HOTFIX",
+          "color": "d93f0b",
+          "description": "Urgent production fix"
+        }
+      ]
+    },
+    {
+      "phase": "Additional Quality & Workflow Labels",
+      "items": [
+        {
+          "name": "🔍INVESTIGATING",
+          "color": "d4c5f9",
+          "description": "Under investigation"
+        },
+        {
+          "name": "✨FEATURE",
+          "color": "a2eeef",
+          "description": "New feature development"
+        },
+        {
+          "name": "♻️REFACTOR",
+          "color": "c5def5",
+          "description": "Code refactoring"
+        },
+        {
+          "name": "📈IMPROVEMENT",
+          "color": "84b6eb",
+          "description": "Performance/quality improvement"
+        },
+        {
+          "name": "💼BUSINESS-DECISION",
+          "color": "d4c5f9",
+          "description": "Requires business decision"
+        },
+        {
+          "name": "📊REPORTING",
+          "color": "bfdadc",
+          "description": "For stakeholder reports"
+        },
+        {
+          "name": "💡NEEDS-SPEC",
+          "color": "f9d0c4",
+          "description": "Needs detailed specification"
+        },
+        {
+          "name": "🧪TESTING",
+          "color": "d4c5f9",
+          "description": "Testing-related"
+        },
+        {
+          "name": "✅VERIFIED",
+          "color": "0e8a16",
+          "description": "Tested and verified"
+        },
+        {
+          "name": "🐛REGRESSION",
+          "color": "ee0701",
+          "description": "Regression bug"
+        },
+        {
+          "name": "🟢Priority:LOW",
+          "color": "0e8a16",
+          "description": "P3 - LOW"
+        },
+        {
+          "name": "👀NEEDS-REVIEW",
+          "color": "fbca04",
+          "description": "Requires stakeholder review"
+        },
+        {
+          "name": "🏷️RELEASE",
+          "color": "5319e7",
+          "description": "Release-related items"
+        }
+      ]
+    }
+  ]
+}
