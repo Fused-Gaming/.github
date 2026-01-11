@@ -1,0 +1,199 @@
+name: 🚀 Project Proposal
+description: Propose a new project for the Fused Gaming organization
+title: "[PROJECT] "
+labels: ["type: project-proposal", "status: needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Propose a New Project
+        Thank you for proposing a new project! New projects help expand our gaming ecosystem and community impact.
+
+        Review [GOVERNANCE.md](../GOVERNANCE.md) for the project approval process.
+
+  - type: input
+    id: project-name
+    attributes:
+      label: Project Name
+      description: What is the name of the proposed project?
+      placeholder: "e.g., FusedBot Discord Integration"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Project Type
+      description: What type of project is this?
+      options:
+        - Discord Bot
+        - Web Application
+        - Game Tool/Utility
+        - Mobile App
+        - API/Service
+        - Library/Package
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this project solve?
+      placeholder: Describe the current gap or need in the gaming community
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How will this project solve the problem?
+      placeholder: Describe the key features and functionality
+    validations:
+      required: true
+
+  - type: textarea
+    id: target-audience
+    attributes:
+      label: Target Audience
+      description: Who will use this project?
+      placeholder: e.g., Discord server admins, gamers, developers, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tech-stack
+    attributes:
+      label: Proposed Tech Stack
+      description: What technologies will be used?
+      placeholder: |
+        - Language: (e.g., Python, JavaScript, Rust)
+        - Framework: (e.g., Discord.py, Next.js, Express)
+        - Database: (e.g., PostgreSQL, MongoDB, Redis)
+        - Other tools: (e.g., Docker, GitHub Actions)
+    validations:
+      required: true
+
+  - type: textarea
+    id: features
+    attributes:
+      label: Core Features
+      description: List the key features (prioritized if possible)
+      placeholder: |
+        **MVP Features:**
+        - Feature 1
+        - Feature 2
+
+        **Future Features:**
+        - Feature 3
+        - Feature 4
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Are there existing solutions? Why create a new project?
+      placeholder: Explain why existing solutions don't meet the need
+    validations:
+      required: false
+
+  - type: input
+    id: maintainer
+    attributes:
+      label: Proposed Maintainer(s)
+      description: Who will maintain this project?
+      placeholder: "@username or Team Name"
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources Required
+      description: What resources are needed to build and maintain this?
+      placeholder: |
+        - Development time estimate
+        - Infrastructure/hosting needs
+        - Budget (if applicable)
+        - Other resources
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: How will you measure if this project is successful?
+      placeholder: |
+        - Adoption metrics
+        - Usage metrics
+        - Community feedback
+        - Technical metrics
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license
+    attributes:
+      label: Proposed License
+      description: What open source license should this use?
+      options:
+        - MIT License
+        - Apache 2.0
+        - GPL v3
+        - BSD 3-Clause
+        - Other (specify in additional context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Development Timeline
+      description: What is the estimated timeline for development?
+      placeholder: |
+        - Phase 1 (MVP): [timeframe]
+        - Phase 2 (Features): [timeframe]
+        - Phase 3 (Polish): [timeframe]
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Challenges
+      description: What are the potential risks or challenges?
+      placeholder: List any concerns about feasibility, maintenance, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any mockups, diagrams, or additional information?
+      placeholder: Add links to designs, similar projects, or other references
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for similar existing projects
+          required: true
+        - label: I have reviewed the governance process in GOVERNANCE.md
+          required: true
+        - label: I am willing to be the maintainer or help find one
+          required: true
+        - label: This project aligns with Fused Gaming's mission
+          required: true

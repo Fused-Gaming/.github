@@ -1,0 +1,178 @@
+name: 📋 Governance Proposal
+description: Propose changes to governance, processes, or organizational structure
+title: "[GOVERNANCE] "
+labels: ["type: governance", "status: needs-triage", "priority: high"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Propose Governance Changes
+        Thank you for helping improve Fused Gaming's governance! Changes to governance require community input and core team approval.
+
+        Please review [GOVERNANCE.md](../GOVERNANCE.md) for the change process.
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of Change
+      description: What aspect of governance does this address?
+      options:
+        - Organizational Structure
+        - Decision-Making Process
+        - Roles and Responsibilities
+        - Communication Channels
+        - Project Lifecycle
+        - Accountability Measures
+        - Community Guidelines
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change-scope
+    attributes:
+      label: Scope of Change
+      description: How significant is this change?
+      options:
+        - Minor (clarification/correction)
+        - Major (structural change)
+        - Critical (fundamental change)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: Current State
+      description: What is the current governance policy or practice?
+      placeholder: Describe what exists today and any relevant context
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem or gap does this change address?
+      placeholder: Explain why the current approach isn't working
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed Change
+      description: What specific changes are you proposing?
+      placeholder: Be as specific as possible about what should change
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this change beneficial?
+      placeholder: Explain the benefits and expected outcomes
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider?
+      placeholder: Describe alternative solutions and why this is preferred
+    validations:
+      required: false
+
+  - type: textarea
+    id: impact-assessment
+    attributes:
+      label: Impact Assessment
+      description: Who and what will be affected by this change?
+      placeholder: |
+        **Affected parties:**
+        - Core team
+        - Contributors
+        - Community members
+        - Projects
+
+        **Expected impact:**
+        - Positive impacts
+        - Potential challenges
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Plan
+      description: How would this change be implemented?
+      placeholder: |
+        - Document updates needed
+        - Communication plan
+        - Timeline
+        - Transition plan
+    validations:
+      required: false
+
+  - type: textarea
+    id: success-metrics
+    attributes:
+      label: Success Metrics
+      description: How will we know if this change is successful?
+      placeholder: Define measurable outcomes
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Mitigation
+      description: What could go wrong? How do we mitigate?
+      placeholder: List potential risks and mitigation strategies
+    validations:
+      required: false
+
+  - type: textarea
+    id: community-input
+    attributes:
+      label: Community Input Needed
+      description: What specific feedback are you seeking from the community?
+      placeholder: List specific questions or areas where input is needed
+    validations:
+      required: false
+
+  - type: input
+    id: feedback-period
+    attributes:
+      label: Proposed Feedback Period
+      description: How long should the community have to provide input?
+      placeholder: "e.g., 14 days, 21 days"
+      value: "14 days"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful?
+      placeholder: Add references, examples from other organizations, etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have reviewed the current GOVERNANCE.md document
+          required: true
+        - label: I understand this requires community input and core team approval
+          required: true
+        - label: I am willing to help implement this change if approved
+          required: false
