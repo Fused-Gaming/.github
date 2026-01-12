@@ -12,13 +12,13 @@
 Click on a tile to play  
 The most picked move is chosen every hour
 
-Current turn: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/False.png" alt="Current Turn" width="32"/>
+Winner: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/False.png" alt="Winner" width="32"/>
 
 | Tic | Tac | Toe |
 |--|--|--|
 | [![Tile 0](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 1](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 2](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) |
 | [![Tile 3](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 4](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 5](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) |
-| [![Tile 6](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t7) | [![Tile 7](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t8) | [![Tile 8](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t9) |
+| [![Tile 6](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 7](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t8) | [![Tile 8](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t9) |
 
 ## How it works
 
@@ -38,62 +38,3 @@ Our community spans across multiple platforms and games 🎮, bringing together 
 We believe in the power of technology to transform gaming 🔮, and we're constantly exploring new ways to innovate and improve the gaming experience. From Discord bots 🤖 and web applications 🌐 to game modifications and community tools 🔨, our projects are designed to bring gamers together and enhance their gameplay.
 
 Join our growing community and be part of the future of gaming! Connect with us on our social platforms 📱, contribute to our open-source projects 💻, or simply follow along as we continue to build amazing gaming experiences. Let's level up together! 🎊
-
----
-
-## 📚 Organization & Governance
-
-We believe in transparency, community-driven development, and clear processes. Here's how we operate:
-
-### 📋 Key Documents
-
-| Document | Purpose |
-|----------|---------|
-| **[GOVERNANCE.md](GOVERNANCE.md)** | Our governance framework, decision-making processes, and organizational structure |
-| **[GOALS.md](GOALS.md)** | Strategic goals, OKRs, and what we're working toward |
-| **[CONTRIBUTING.md](CONTRIBUTING.md)** | How to contribute to Fused Gaming projects |
-| **[SECURITY.md](SECURITY.md)** | Security policies and vulnerability reporting |
-| **[PROJECT_BOARD_GUIDE.md](PROJECT_BOARD_GUIDE.md)** | How we use GitHub Projects to track work |
-
-### 🎯 Get Involved
-
-- **[View Our Goals](GOALS.md)** - See our strategic objectives and progress
-- **[Track Progress](https://github.com/orgs/Fused-Gaming/projects/10)** - GitHub Project board
-- **[Propose Ideas](https://github.com/Fused-Gaming/.github/issues/new/choose)** - Submit proposals for goals, projects, or governance
-- **[Start Contributing](CONTRIBUTING.md)** - Learn how to contribute
-
-### 🤝 How We Work
-
-- **Transparent**: All decisions documented publicly
-- **Community-Driven**: Your voice matters in our direction
-- **Open Source**: All projects are open and collaborative
-- **Quality-Focused**: We maintain high standards across all work
-- **Inclusive**: Everyone is welcome to participate
-
----
-
-## 🚀 Current Focus (2026 Q1)
-
-We're currently focused on:
-
-1. **Establishing operational foundation** - Governance, processes, and documentation
-2. **Building community infrastructure** - Onboarding, recognition, engagement
-3. **Improving project quality** - Testing, security, documentation
-
-See [GOALS.md](GOALS.md) for detailed objectives and key results.
-
----
-
-## 💬 Connect With Us
-
-Have questions? Want to get involved? Reach out!
-
-- **💼 For business inquiries**: [LinkedIn](https://www.linkedin.com/company/fusedgg/)
-- **💬 For community chat**: [Telegram](https://t.me/fusedgg)
-- **🐦 For updates**: [Twitter](https://x.com/fuseddotgg)
-- **🔒 For security issues**: See [SECURITY.md](SECURITY.md)
-- **💡 For ideas and discussions**: [GitHub Discussions](https://github.com/orgs/Fused-Gaming/discussions)
-
----
-
-**Ready to contribute?** Check out our [contribution guide](CONTRIBUTING.md) and find a [good first issue](https://github.com/search?q=org%3AFused-Gaming+label%3A%22good+first+issue%22+state%3Aopen&type=issues)!
