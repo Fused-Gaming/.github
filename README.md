@@ -1,40 +1,89 @@
-# Welcome to Fused Gaming! 🎮
-### Your ultimate <img src="https://img.icons8.com/color/96/000000/github--v1.png" height="24"/>Gaming Community Hub
+# Fused Gaming - Organization Repository
 
-<p align="center">
-  <a href="https://github.com/Fused-Gaming"><img src="https://img.icons8.com/color/96/000000/internet.png" height="16"/>Our Projects</a> •
-  <a href="https://x.com/fuseddotgg"><img src="https://img.icons8.com/color/96/000000/twitter-circled.png" height="16"/>Twitter</a> •
-  <a href="https://www.linkedin.com/company/fusedgg/"><img src="https://img.icons8.com/color/96/000000/linkedin-circled.png" height="16"/>LinkedIn</a> •
-  <a href="https://t.me/fusedgg"><img src="https://img.icons8.com/color/96/000000/telegram.png" height="16"/>Telegram</a>
-</p>
+Welcome to the Fused Gaming organization repository! This repository serves as the central hub for coordinating projects, managing organizational documentation, and maintaining governance policies for the Fused Gaming community.
 
-#### Why not play a game of Tic-Tac-Toe<img src="https://img.icons8.com/material-outlined/96/000000/delete-sign.png" height="16"/><img src="https://img.icons8.com/material-outlined/96/000000/unchecked-circle.png" height="16"/> while you're here
-Click on a tile to play  
-The most picked move is chosen every hour
+## Repository Structure
 
-Current turn: <img src= "https://github.com/Fused-Gaming/Fused-Gaming/blob/master/assets/False.png" alt="Current Turn" width="32"/>
+```
+.
+├── .github/              # GitHub-specific configuration
+│   ├── ISSUE_TEMPLATE/  # Issue templates for different types of requests
+│   ├── profile/         # Organization profile README
+│   ├── workflows/       # GitHub Actions workflows
+│   └── *.md            # Governance, contributing, and other docs
+├── .vscode/             # VS Code workspace configuration
+├── .editorconfig        # Editor configuration
+└── .prettierrc.json     # Code formatting configuration
+```
 
-| Tic | Tac | Toe |
-|--|--|--|
-| [![Tile 0](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/False.png)](https://github.com/Fused-Gaming) | [![Tile 1](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/True.png)](https://github.com/Fused-Gaming) | [![Tile 2](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t3) |
-| [![Tile 3](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t4) | [![Tile 4](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t5) | [![Tile 5](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t6) |
-| [![Tile 6](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t7) | [![Tile 7](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t8) | [![Tile 8](https://github.com/Fused-Gaming/Fused-Gaming/blob/main/assets/None.png)](https://tinyurl.com/Fused-t9) |
+## Purpose
 
-## How it works
+This repository manages:
 
-Each open tile is a hyperlink embedded in an image which tracks the number of clicks and redirects you back to our profile.
-Every time the program is run it plays the move with maximum number of clicks.
-It uses GitHub Actions to run every hour using a cron job.
-The rest is just a regular game of Tic-Tac-Toe
-    
-## About Fused Gaming
+- **Project Coordination**: Templates and workflows for organizing projects
+- **Issue Templates**: Standardized forms for bugs, features, goals, and governance proposals
+- **Documentation**: Guidelines for contributing, governance, security policies
+- **Community Engagement**: Interactive elements like the tic-tac-toe game
+- **Organization Profile**: Public-facing information about Fused Gaming
 
-Welcome to Fused Gaming! 🚀 We're a passionate gaming organization 🎯 that brings together innovation 💡, creativity 🎨, and cutting-edge technology 💻 to create exceptional gaming experiences. Our team is dedicated to pushing the boundaries of what's possible in the gaming world 🌟.
+## Getting Started
 
-At Fused Gaming, we specialize in developing innovative gaming solutions 🛠️, building engaging community experiences 👥, and creating tools that enhance the gaming ecosystem 🔧. From competitive esports 🏆 to casual gaming experiences 🎲, we're committed to delivering quality and excitement in everything we do.
+### Prerequisites
 
-Our community spans across multiple platforms and games 🎮, bringing together players, developers, and gaming enthusiasts from around the world 🌍. Whether you're interested in strategy games ♟️, action-packed adventures ⚔️, or competitive tournaments 🥇, there's something for everyone in the Fused Gaming universe.
+- VS Code (recommended)
+- Git
 
-We believe in the power of technology to transform gaming 🔮, and we're constantly exploring new ways to innovate and improve the gaming experience. From Discord bots 🤖 and web applications 🌐 to game modifications and community tools 🔨, our projects are designed to bring gamers together and enhance their gameplay.
+### Local Setup
 
-Join our growing community and be part of the future of gaming! Connect with us on our social platforms 📱, contribute to our open-source projects 💻, or simply follow along as we continue to build amazing gaming experiences. Let's level up together! 🎊
+1. Clone this repository
+2. Open the workspace file: `Fused Gaming.code-workspace`
+3. Install recommended extensions when prompted
+4. You're ready to contribute!
+
+### Recommended VS Code Extensions
+
+The workspace includes recommendations for:
+- Markdown editing and preview
+- YAML validation
+- GitHub integration
+- Git management (GitLens)
+- Spell checking
+- Code formatting
+
+## Key Documentation
+
+- [Contributing Guidelines](.github/CONTRIBUTING.md)
+- [Governance](.github/GOVERNANCE.md)
+- [Goals](.github/GOALS.md)
+- [Security Policy](.github/SECURITY.md)
+- [Project Board Guide](.github/PROJECT_BOARD_GUIDE.md)
+- [Labels Documentation](.github/LABELS_README.md)
+
+## Issue Templates
+
+We provide several issue templates:
+- **Bug Report**: Report issues or problems
+- **Feature Request**: Suggest new features
+- **Goal Proposal**: Propose organizational goals
+- **Governance Proposal**: Suggest governance changes
+- **Project Proposal**: Propose new projects
+
+## Contributing
+
+We welcome contributions! Please read our [Contributing Guidelines](.github/CONTRIBUTING.md) before submitting pull requests.
+
+## Community
+
+Connect with us:
+- [Twitter](https://x.com/fuseddotgg)
+- [LinkedIn](https://www.linkedin.com/company/fusedgg/)
+- [Telegram](https://t.me/fusedgg)
+- [Our Projects](https://github.com/Fused-Gaming)
+
+## License
+
+This repository contains organizational documentation and templates. Individual projects may have their own licenses.
+
+---
+
+Built with ❤️ by the Fused Gaming community

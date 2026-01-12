@@ -1,0 +1,120 @@
+{
+    // GitHub Issues Integration
+    "githubIssues.queries": [
+        {
+            "label": "My Issues",
+            "query": "is:open assignee:${user} repo:${owner}/${repository}",
+            "groupBy": [
+                "milestone"
+            ]
+        },
+        {
+            "label": "Created Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+        },
+        {
+            "label": "Recent Issues",
+            "query": "state:open repo:${owner}/${repository} sort:updated-desc"
+        },
+        {
+            "label": "All Open Issues",
+            "query": "is:open repo:${owner}/${repository}"
+        },
+        {
+            "label": "Bug Reports",
+            "query": "is:open label:bug repo:${owner}/${repository}"
+        },
+        {
+            "label": "Feature Requests",
+            "query": "is:open label:enhancement repo:${owner}/${repository}"
+        }
+    ],
+
+    // File associations
+    "files.associations": {
+        "*.md": "markdown",
+        ".prettierrc": "json",
+        ".editorconfig": "properties"
+    },
+
+    // TODO Tree configuration
+    "todo-tree.general.tags": [
+        "TODO",
+        "FIXME",
+        "BUG",
+        "HACK",
+        "NOTE",
+        "INFO"
+    ],
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "alert",
+        "type": "text",
+        "foreground": "#fff",
+        "opacity": 50
+    },
+
+    // GitLens
+    "gitlens.codeLens.enabled": true,
+    "gitlens.currentLine.enabled": true,
+
+    // Markdown
+    "markdown.extension.toc.levels": "2..6",
+    "markdown.extension.preview.autoShowPreviewToSide": false,
+
+    // Spell checker
+    "cSpell.words": [
+        "Fused",
+        "fusedgg",
+        "esports",
+        "gameplay"
+    ],
+
+    // Better Comments
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        }
+    ]
+}
