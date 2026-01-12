@@ -1,0 +1,230 @@
+name: Quarterly OKR Tracker
+
+on:
+  schedule:
+    # Run on the 1st day of each month at 10:00 UTC
+    - cron: '0 10 1 * *'
+  workflow_dispatch:
+    inputs:
+      create_review_issue:
+        description: 'Create quarterly review issue'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  track-okrs:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine current quarter
+        id: quarter
+        run: |
+          month=$(date +%-m)
+          year=$(date +%Y)
+
+          if [ $month -ge 1 ] && [ $month -le 3 ]; then
+            quarter="Q1"
+            quarter_start="$year-01-01"
+            quarter_end="$year-03-31"
+          elif [ $month -ge 4 ] && [ $month -le 6 ]; then
+            quarter="Q2"
+            quarter_start="$year-04-01"
+            quarter_end="$year-06-30"
+          elif [ $month -ge 7 ] && [ $month -le 9 ]; then
+            quarter="Q3"
+            quarter_start="$year-07-01"
+            quarter_end="$year-09-30"
+          else
+            quarter="Q4"
+            quarter_start="$year-10-01"
+            quarter_end="$year-12-31"
+          fi
+
+          echo "quarter=$quarter" >> $GITHUB_OUTPUT
+          echo "year=$year" >> $GITHUB_OUTPUT
+          echo "quarter_label=$year $quarter" >> $GITHUB_OUTPUT
+          echo "quarter_start=$quarter_start" >> $GITHUB_OUTPUT
+          echo "quarter_end=$quarter_end" >> $GITHUB_OUTPUT
+
+          echo "Current Quarter: $year $quarter"
+
+      - name: Fetch OKR progress
+        id: fetch-okrs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const quarter = '${{ steps.quarter.outputs.quarter }}';
+            const year = '${{ steps.quarter.outputs.year }}';
+            const quarterLabel = `quarter: ${quarter}`;
+
+            // Search for issues with current quarter label
+            const searchQuery = `org:Fused-Gaming label:"${quarterLabel}" label:"2026"`;
+            const results = await github.rest.search.issuesAndPullRequests({
+              q: searchQuery,
+              per_page: 100,
+              sort: 'created',
+              order: 'desc'
+            });
+
+            const items = results.data.items;
+            const totalItems = items.length;
+            const closedItems = items.filter(i => i.state === 'closed').length;
+            const openItems = totalItems - closedItems;
+            const completionRate = totalItems > 0 ? Math.round((closedItems / totalItems) * 100) : 0;
+
+            // Categorize by type
+            const byType = {};
+            items.forEach(item => {
+              const typeLabel = item.labels.find(l => l.name.startsWith('type:'));
+              const type = typeLabel ? typeLabel.name : 'uncategorized';
+              if (!byType[type]) {
+                byType[type] = { total: 0, closed: 0 };
+              }
+              byType[type].total++;
+              if (item.state === 'closed') {
+                byType[type].closed++;
+              }
+            });
+
+            const stats = {
+              quarter: `${year} ${quarter}`,
+              totalItems,
+              closedItems,
+              openItems,
+              completionRate,
+              byType
+            };
+
+            core.setOutput('stats', JSON.stringify(stats));
+            console.log('OKR Stats:', stats);
+
+            return stats;
+
+      - name: Create monthly progress report
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const stats = JSON.parse('${{ steps.fetch-okrs.outputs.stats }}');
+            const month = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            let report = `# 📊 Monthly Progress Report - ${month}\n\n`;
+            report += `**Quarter**: ${stats.quarter}\n\n`;
+
+            report += `## Overall Progress\n`;
+            report += `- **Total Items**: ${stats.totalItems}\n`;
+            report += `- **Completed**: ${stats.closedItems} ✅\n`;
+            report += `- **In Progress**: ${stats.openItems} 🚧\n`;
+            report += `- **Completion Rate**: ${stats.completionRate}%\n\n`;
+
+            report += `## Progress by Type\n\n`;
+            report += `| Type | Total | Completed | Rate |\n`;
+            report += `|------|-------|-----------|------|\n`;
+
+            for (const [type, data] of Object.entries(stats.byType)) {
+              const rate = data.total > 0 ? Math.round((data.closed / data.total) * 100) : 0;
+              const typeName = type.replace('type:', '').replace(/-/g, ' ');
+              report += `| ${typeName} | ${data.total} | ${data.closed} | ${rate}% |\n`;
+            }
+
+            report += `\n## Recommendations\n\n`;
+
+            if (stats.completionRate < 30) {
+              report += `⚠️ **Low completion rate** - Consider reviewing priorities and capacity\n`;
+            } else if (stats.completionRate >= 70) {
+              report += `✅ **Great progress!** - On track to meet quarterly objectives\n`;
+            } else {
+              report += `🎯 **Moderate progress** - Focus on high-priority items to improve rate\n`;
+            }
+
+            report += `\n---\n\n`;
+            report += `View detailed progress:\n`;
+            report += `- [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/GOALS.md)\n`;
+            report += `- [Project Board](https://github.com/orgs/Fused-Gaming/projects/10)\n`;
+
+            core.summary.addRaw(report).write();
+
+            // Post to organization discussions if it's the end of quarter
+            const today = new Date();
+            const month = today.getMonth() + 1;
+            const isEndOfQuarter = [3, 6, 9, 12].includes(month);
+
+            if (isEndOfQuarter || '${{ inputs.create_review_issue }}' === 'true') {
+              console.log('End of quarter - creating review issue');
+              // Create a review issue
+              const issue = await github.rest.issues.create({
+                owner: 'Fused-Gaming',
+                repo: '.github',
+                title: `${stats.quarter} - Quarterly OKR Review`,
+                body: report + `\n\n## Action Items\n\n- [ ] Review all completed objectives\n- [ ] Assess incomplete objectives\n- [ ] Document learnings and blockers\n- [ ] Plan next quarter's OKRs\n- [ ] Update GOALS.md\n- [ ] Communicate results to community\n\n**Review Due**: End of ${month}`,
+                labels: ['type: governance', 'priority: high', 'quarter: ' + '${{ steps.quarter.outputs.quarter }}']
+              });
+
+              console.log('Created review issue:', issue.data.html_url);
+            }
+
+      - name: Check for at-risk OKRs
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const quarter = '${{ steps.quarter.outputs.quarter }}';
+            const quarterLabel = `quarter: ${quarter}`;
+
+            // Find high-priority items that are blocked or stale
+            const blockedQuery = `org:Fused-Gaming label:"${quarterLabel}" label:"status: blocked" state:open`;
+            const blockedResults = await github.rest.search.issuesAndPullRequests({
+              q: blockedQuery,
+              per_page: 50
+            });
+
+            // Find items without updates in 14+ days
+            const twoWeeksAgo = new Date();
+            twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+            const staleDate = twoWeeksAgo.toISOString().split('T')[0];
+
+            const staleQuery = `org:Fused-Gaming label:"${quarterLabel}" label:"priority: high" updated:<${staleDate} state:open`;
+            const staleResults = await github.rest.search.issuesAndPullRequests({
+              q: staleQuery,
+              per_page: 50
+            });
+
+            if (blockedResults.data.total_count > 0 || staleResults.data.total_count > 0) {
+              let alert = `## ⚠️ At-Risk OKRs Alert\n\n`;
+
+              if (blockedResults.data.total_count > 0) {
+                alert += `### Blocked Items (${blockedResults.data.total_count})\n\n`;
+                blockedResults.data.items.slice(0, 5).forEach(item => {
+                  alert += `- [#${item.number}](${item.html_url}) - ${item.title}\n`;
+                });
+                if (blockedResults.data.total_count > 5) {
+                  alert += `- ... and ${blockedResults.data.total_count - 5} more\n`;
+                }
+                alert += `\n`;
+              }
+
+              if (staleResults.data.total_count > 0) {
+                alert += `### Stale High-Priority Items (${staleResults.data.total_count})\n\n`;
+                staleResults.data.items.slice(0, 5).forEach(item => {
+                  alert += `- [#${item.number}](${item.html_url}) - ${item.title} (last updated: ${item.updated_at.split('T')[0]})\n`;
+                });
+                if (staleResults.data.total_count > 5) {
+                  alert += `- ... and ${staleResults.data.total_count - 5} more\n`;
+                }
+              }
+
+              alert += `\n**Action needed**: Review these items to unblock or re-prioritize\n`;
+
+              core.summary.addRaw(alert).write();
+              console.log(alert);
+            } else {
+              console.log('✅ No at-risk OKRs found');
+            }
