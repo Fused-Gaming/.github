@@ -29,38 +29,49 @@ jobs:
             const body = (issue.body || '').toLowerCase();
             const labels = [];
 
-            // Priority detection
-            if (title.includes('[critical]') || title.includes('[urgent]') || body.includes('priority: critical')) {
-              labels.push('priority: critical');
-            } else if (title.includes('[high]') || body.includes('priority: high')) {
-              labels.push('priority: high');
-            } else if (title.includes('[low]') || body.includes('priority: low')) {
-              labels.push('priority: low');
-            } else if (!title.includes('[p0]') && !title.includes('[p1]') && !title.includes('[p2]') && !title.includes('[p3]')) {
-              labels.push('priority: medium');
+            // Priority detection (using emoji-based system)
+            if (title.includes('[critical]') || title.includes('[urgent]') || title.includes('🚨') || body.includes('priority: critical') || body.includes('p0')) {
+              labels.push('🚨Priority:CRITICAL');
+            } else if (title.includes('[high]') || title.includes('🔴') || body.includes('priority: high') || body.includes('p1')) {
+              labels.push('🔴Priority:HIGH');
+            } else if (title.includes('[low]') || title.includes('ℹ️') || body.includes('priority: low') || body.includes('p4')) {
+              labels.push('ℹ️Priority:INFO');
+            } else if (title.includes('[medium]') || title.includes('🟠') || body.includes('priority: medium') || body.includes('p2')) {
+              labels.push('🟠Priority:MEDIUM');
             }
 
-            // Type detection
+            // Type detection (using both systems)
             if (title.includes('[goal]') || title.includes('goal:') || body.includes('type: goal-proposal')) {
               labels.push('type: goal-proposal');
             } else if (title.includes('[project]') || body.includes('type: project-proposal')) {
               labels.push('type: project-proposal');
-            } else if (title.includes('[governance]') || body.includes('type: governance')) {
-              labels.push('type: governance');
+            } else if (title.includes('[governance]') || title.includes('❎') || body.includes('type: governance') || body.includes('governance')) {
+              labels.push('❎GOVERNANCE');
             } else if (title.includes('bug') || title.includes('fix') || title.includes('error') || title.includes('issue')) {
-              labels.push('type: bug');
-            } else if (title.includes('feature') || title.includes('add') || title.includes('implement')) {
-              labels.push('type: feature');
+              labels.push('bug');
             } else if (title.includes('docs') || title.includes('documentation') || title.includes('readme')) {
-              labels.push('type: documentation');
+              labels.push('documentation');
             } else if (title.includes('enhance') || title.includes('improve') || title.includes('update')) {
-              labels.push('type: enhancement');
-            } else if (title.includes('refactor') || title.includes('cleanup')) {
-              labels.push('type: refactoring');
-            } else if (title.includes('security') || title.includes('vulnerability') || title.includes('cve')) {
-              labels.push('type: security');
-            } else if (title.includes('infrastructure') || title.includes('ci/cd') || title.includes('deployment')) {
-              labels.push('type: infrastructure');
+              labels.push('enhancement');
+            } else if (title.includes('question') || title.includes('help') || title.includes('how to')) {
+              labels.push('question');
+            }
+
+            // Project detection (specific Fused Gaming projects)
+            if (body.includes('drift') || title.includes('drift')) {
+              labels.push('☕DRIFT');
+            }
+            if (body.includes('gambarewards') || title.includes('gambarewards')) {
+              labels.push('💎GAMBAREWARDS');
+            }
+            if (body.includes('gambareload') || title.includes('gambareload')) {
+              labels.push('🔫GAMBARELOAD');
+            }
+            if (body.includes('vln') || title.includes('vln')) {
+              labels.push('🔬VLN');
+            }
+            if (body.includes('leaderboard') || title.includes('leaderboard')) {
+              labels.push('🏆LEADERBOARDS');
             }
 
             // Area/Component detection
@@ -77,12 +88,23 @@ jobs:
               labels.push('area: api');
             }
 
-            // Status detection
+            // Team/Role detection
+            if (body.includes('devops') || body.includes('ci/cd') || body.includes('deployment')) {
+              labels.push('💉DEVOPS');
+            }
+            if (body.includes('design') || body.includes('ui/ux')) {
+              labels.push('🎨DESIGN');
+            }
+
+            // Status detection (using emoji-based system)
             if (isIssue && !issue.assignee && !issue.assignees.length) {
               labels.push('status: needs-triage');
             }
-            if (body.includes('blocked') || title.includes('[blocked]')) {
-              labels.push('status: blocked');
+            if (body.includes('blocked') || title.includes('[blocked]') || title.includes('🐌')) {
+              labels.push('🐌BLOCKED');
+            }
+            if (body.includes('planned') || title.includes('planned') || title.includes('🗺️')) {
+              labels.push('🗺️PLANNED');
             }
 
             // Good first issue detection

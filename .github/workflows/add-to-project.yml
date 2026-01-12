@@ -21,7 +21,7 @@ jobs:
         with:
           project-url: https://github.com/orgs/Fused-Gaming/projects/10
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          labeled: priority: critical, priority: high, type: goal-proposal, type: project-proposal, type: governance
+          labeled: 🚨Priority:CRITICAL, 🔴Priority:HIGH, type: goal-proposal, type: project-proposal, ❎GOVERNANCE
           label-operator: OR
 
       - name: Add strategic items
@@ -45,9 +45,9 @@ jobs:
             const isStrategic = labels.some(l =>
               l.includes('goal-proposal') ||
               l.includes('project-proposal') ||
-              l.includes('governance') ||
-              l.includes('priority: critical') ||
-              l.includes('priority: high')
+              l.includes('GOVERNANCE') ||
+              l.includes('Priority:CRITICAL') ||
+              l.includes('Priority:HIGH')
             );
 
             if (isStrategic) {
