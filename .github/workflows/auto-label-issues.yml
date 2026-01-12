@@ -1,0 +1,201 @@
+name: Auto Label Issues and PRs
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  auto-label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Auto-label based on title and content
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue || context.payload.pull_request;
+            const isIssue = !!context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            const labels = [];
+
+            // Priority detection (using emoji-based system)
+            if (title.includes('[critical]') || title.includes('[urgent]') || title.includes('🚨') || body.includes('priority: critical') || body.includes('p0')) {
+              labels.push('🚨Priority:CRITICAL');
+            } else if (title.includes('[high]') || title.includes('🔴') || body.includes('priority: high') || body.includes('p1')) {
+              labels.push('🔴Priority:HIGH');
+            } else if (title.includes('[low]') || title.includes('ℹ️') || body.includes('priority: low') || body.includes('p4')) {
+              labels.push('ℹ️Priority:INFO');
+            } else if (title.includes('[medium]') || title.includes('🟠') || body.includes('priority: medium') || body.includes('p2')) {
+              labels.push('🟠Priority:MEDIUM');
+            }
+
+            // Type detection (using both systems)
+            if (title.includes('[goal]') || title.includes('goal:') || body.includes('type: goal-proposal')) {
+              labels.push('type: goal-proposal');
+            } else if (title.includes('[project]') || body.includes('type: project-proposal')) {
+              labels.push('type: project-proposal');
+            } else if (title.includes('[governance]') || title.includes('❎') || body.includes('type: governance') || body.includes('governance')) {
+              labels.push('❎GOVERNANCE');
+            } else if (title.includes('bug') || title.includes('fix') || title.includes('error') || title.includes('issue')) {
+              labels.push('bug');
+            } else if (title.includes('docs') || title.includes('documentation') || title.includes('readme')) {
+              labels.push('documentation');
+            } else if (title.includes('enhance') || title.includes('improve') || title.includes('update')) {
+              labels.push('enhancement');
+            } else if (title.includes('question') || title.includes('help') || title.includes('how to')) {
+              labels.push('question');
+            }
+
+            // Project detection (specific Fused Gaming projects)
+            if (body.includes('drift') || title.includes('drift')) {
+              labels.push('☕DRIFT');
+            }
+            if (body.includes('gambarewards') || title.includes('gambarewards')) {
+              labels.push('💎GAMBAREWARDS');
+            }
+            if (body.includes('gambareload') || title.includes('gambareload')) {
+              labels.push('🔫GAMBARELOAD');
+            }
+            if (body.includes('vln') || title.includes('vln')) {
+              labels.push('🔬VLN');
+            }
+            if (body.includes('leaderboard') || title.includes('leaderboard')) {
+              labels.push('🏆LEADERBOARDS');
+            }
+
+            // Area/Component detection
+            if (body.includes('discord') || title.includes('discord')) {
+              labels.push('area: discord');
+            }
+            if (body.includes('web') || title.includes('web') || title.includes('website')) {
+              labels.push('area: web');
+            }
+            if (body.includes('bot') || title.includes('bot')) {
+              labels.push('area: bot');
+            }
+            if (body.includes('api') || title.includes('api')) {
+              labels.push('area: api');
+            }
+
+            // Team/Role detection
+            if (body.includes('devops') || body.includes('ci/cd') || body.includes('deployment')) {
+              labels.push('💉DEVOPS');
+            }
+            if (body.includes('design') || body.includes('ui/ux')) {
+              labels.push('🎨DESIGN');
+            }
+
+            // Status detection (using emoji-based system)
+            if (isIssue && !issue.assignee && !issue.assignees.length) {
+              labels.push('status: needs-triage');
+            }
+            if (body.includes('blocked') || title.includes('[blocked]') || title.includes('🐌')) {
+              labels.push('🐌BLOCKED');
+            }
+            if (body.includes('planned') || title.includes('planned') || title.includes('🗺️')) {
+              labels.push('🗺️PLANNED');
+            }
+
+            // Good first issue detection
+            if (title.includes('good first issue') || body.includes('good first issue') ||
+                (title.includes('simple') || title.includes('easy')) && (title.includes('fix') || title.includes('update'))) {
+              labels.push('good first issue');
+            }
+
+            // Size estimation based on description
+            if (body.includes('size: xs') || body.length < 200) {
+              labels.push('size: XS');
+            } else if (body.includes('size: s') || body.length < 500) {
+              labels.push('size: S');
+            } else if (body.includes('size: m') || body.length < 1000) {
+              labels.push('size: M');
+            } else if (body.includes('size: l') || body.length < 2000) {
+              labels.push('size: L');
+            } else if (body.includes('size: xl') || body.length >= 2000) {
+              labels.push('size: XL');
+            }
+
+            // Apply labels if any were detected
+            if (labels.length > 0) {
+              const uniqueLabels = [...new Set(labels)];
+              console.log(`Adding labels: ${uniqueLabels.join(', ')}`);
+
+              if (isIssue) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: uniqueLabels
+                });
+              } else {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: uniqueLabels
+                });
+              }
+
+              core.summary
+                .addHeading('Auto-labeling Summary')
+                .addRaw(`Applied ${uniqueLabels.length} label(s) to ${isIssue ? 'issue' : 'PR'} #${issue.number}`)
+                .addList(uniqueLabels)
+                .write();
+            } else {
+              console.log('No automatic labels applied');
+            }
+
+      - name: Label based on files changed (PRs only)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const files = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number
+            });
+
+            const labels = [];
+            const filenames = files.data.map(f => f.filename);
+
+            // Detect changes by file type
+            if (filenames.some(f => f.includes('.md') || f.includes('README'))) {
+              labels.push('type: documentation');
+            }
+            if (filenames.some(f => f.includes('.yml') || f.includes('.yaml') || f.includes('.github/workflows'))) {
+              labels.push('type: infrastructure');
+            }
+            if (filenames.some(f => f.includes('test') || f.includes('spec'))) {
+              labels.push('type: test');
+            }
+            if (filenames.some(f => f.includes('GOVERNANCE') || f.includes('CONTRIBUTING'))) {
+              labels.push('type: governance');
+            }
+            if (filenames.some(f => f.includes('SECURITY'))) {
+              labels.push('type: security');
+            }
+
+            // Apply labels
+            if (labels.length > 0) {
+              const uniqueLabels = [...new Set(labels)];
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: uniqueLabels
+              });
+            }

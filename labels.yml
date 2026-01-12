@@ -1,0 +1,273 @@
+# Fused Gaming Organization-wide Labels
+# This file defines standard labels to be synced across all repositories
+
+# ==============================================================================
+# PRIORITY LABELS (Emoji-based system)
+# ==============================================================================
+
+- name: "🚨Priority:CRITICAL"
+  description: "P0 - Critical priority, must be addressed immediately"
+  color: "ed0e6e"
+
+- name: "🔴Priority:HIGH"
+  description: "P1 - High priority, should complete this quarter"
+  color: "76020c"
+
+- name: "🟠Priority:MEDIUM"
+  description: "P2 - Medium priority, complete when possible"
+  color: "d8bb2f"
+
+- name: "ℹ️Priority:INFO"
+  description: "P4 - Informational, low priority"
+  color: "3e0aae"
+
+# ==============================================================================
+# PROJECT LABELS (Specific Fused Gaming projects)
+# ==============================================================================
+
+- name: "☕DRIFT"
+  description: "DRIFT project"
+  color: "6f4e37"
+
+- name: "💎GAMBAREWARDS"
+  description: "GAMBAREWARDS project"
+  color: "b9f2ff"
+
+- name: "🔫GAMBARELOAD"
+  description: "GAMBARELOAD project"
+  color: "ff6b6b"
+
+- name: "🔬VLN"
+  description: "VLN project"
+  color: "00d2ff"
+
+- name: "🏆LEADERBOARDS"
+  description: "LEADERBOARDS project"
+  color: "ffd700"
+
+# ==============================================================================
+# TEAM / ROLE LABELS
+# ==============================================================================
+
+- name: "👷DEV"
+  description: "Development team"
+  color: "1f77b4"
+
+- name: "💉DEVOPS"
+  description: "DevOps team"
+  color: "ff7f0e"
+
+- name: "🎨DESIGN"
+  description: "Design team"
+  color: "e377c2"
+
+- name: "🌐DOMAIN"
+  description: "Domain expertise needed"
+  color: "8c564b"
+
+- name: "⚖️LEGAL"
+  description: "Legal review required"
+  color: "7f7f7f"
+
+- name: "💰STAKE-HOLDERS"
+  description: "Stakeholder involvement"
+  color: "bcbd22"
+
+# ==============================================================================
+# STATUS LABELS (Emoji-based system)
+# ==============================================================================
+
+- name: "✅COMPLETED"
+  description: "Work completed"
+  color: "0e8a16"
+
+- name: "🗺️PLANNED"
+  description: "Planned for future implementation"
+  color: "c5def5"
+
+- name: "🐌BLOCKED"
+  description: "Blocked by dependencies or issues"
+  color: "b60205"
+
+# ==============================================================================
+# GOVERNANCE LABELS
+# ==============================================================================
+
+- name: "❎GOVERNANCE"
+  description: "Governance and organizational matters"
+  color: "5319e7"
+
+- name: "🙋‍♂️VOTE = YEA"
+  description: "Vote in favor"
+  color: "0e8a16"
+
+- name: "🙅‍♂️VOTE = NAY"
+  description: "Vote against"
+  color: "d73a4a"
+
+# ==============================================================================
+# INSTRUCTION LABELS
+# ==============================================================================
+
+- name: "✔️ALWAYS"
+  description: "Always required"
+  color: "0e8a16"
+
+- name: "❌NEVER"
+  description: "Never allowed"
+  color: "d73a4a"
+
+# ==============================================================================
+# STANDARD GITHUB LABELS
+# ==============================================================================
+
+- name: "bug"
+  description: "Something isn't working"
+  color: "d73a4a"
+
+- name: "documentation"
+  description: "Improvements or additions to documentation"
+  color: "0075ca"
+
+- name: "enhancement"
+  description: "New feature or request"
+  color: "a2eeef"
+
+- name: "question"
+  description: "Further information is requested"
+  color: "d876e3"
+
+- name: "duplicate"
+  description: "This issue or pull request already exists"
+  color: "cfd3d7"
+
+# ==============================================================================
+# ORGANIZATIONAL TRACKING LABELS (for goal/OKR tracking)
+# ==============================================================================
+
+# Type Labels for Proposals
+- name: "type: goal-proposal"
+  description: "Strategic goal proposal for organizational planning"
+  color: "7057ff"
+
+- name: "type: project-proposal"
+  description: "New project proposal"
+  color: "8b5cf6"
+
+# Status Labels for Tracking
+- name: "status: needs-triage"
+  description: "Needs review by core team"
+  color: "ededed"
+
+- name: "status: in-review"
+  description: "Under active review"
+  color: "fbca04"
+
+- name: "status: approved"
+  description: "Approved and ready to start"
+  color: "0e8a16"
+
+# Size Labels for Estimation
+- name: "size: XS"
+  description: "Extra small - less than 1 day"
+  color: "c2e0c6"
+
+- name: "size: S"
+  description: "Small - 1-3 days"
+  color: "bfdadc"
+
+- name: "size: M"
+  description: "Medium - 1 week"
+  color: "fef2c0"
+
+- name: "size: L"
+  description: "Large - 2-4 weeks"
+  color: "fad8c7"
+
+- name: "size: XL"
+  description: "Extra large - 1+ months"
+  color: "f7c6c7"
+
+# ==============================================================================
+# QUARTERLY TRACKING LABELS (for OKR tracking)
+# ==============================================================================
+
+- name: "quarter: Q1"
+  description: "Q1 (Jan-Mar) objectives"
+  color: "c5def5"
+
+- name: "quarter: Q2"
+  description: "Q2 (Apr-Jun) objectives"
+  color: "bfd4f2"
+
+- name: "quarter: Q3"
+  description: "Q3 (Jul-Sep) objectives"
+  color: "d4c5f9"
+
+- name: "quarter: Q4"
+  description: "Q4 (Oct-Dec) objectives"
+  color: "e99695"
+
+- name: "2026"
+  description: "2026 goals and initiatives"
+  color: "0e8a16"
+
+- name: "2027"
+  description: "2027 goals and initiatives"
+  color: "2ea44f"
+
+# ==============================================================================
+# AREA / COMPONENT LABELS (optional for specific repos)
+# ==============================================================================
+
+- name: "area: discord"
+  description: "Discord-related functionality"
+  color: "5865F2"
+
+- name: "area: web"
+  description: "Web applications and websites"
+  color: "006b75"
+
+- name: "area: bot"
+  description: "Bot development"
+  color: "1f6feb"
+
+- name: "area: api"
+  description: "API development and changes"
+  color: "0969da"
+
+- name: "area: database"
+  description: "Database-related changes"
+  color: "bf4b8a"
+
+# ==============================================================================
+# SPECIAL / UTILITY LABELS
+# ==============================================================================
+
+- name: "🔧TOOLING"
+  description: "Shared resources and tooling"
+  color: "fbca04"
+
+- name: "good first issue"
+  description: "Good for newcomers"
+  color: "7057ff"
+
+- name: "help wanted"
+  description: "Extra attention is needed"
+  color: "008672"
+
+- name: "breaking change"
+  description: "Introduces breaking changes"
+  color: "d73a4a"
+
+- name: "dependencies"
+  description: "Pull requests that update a dependency file"
+  color: "0366d6"
+
+- name: "wontfix"
+  description: "This will not be worked on"
+  color: "ffffff"
+
+- name: "invalid"
+  description: "This doesn't seem right"
+  color: "e4e669"
