@@ -1,0 +1,143 @@
+name: 🎯 Goal Proposal
+description: Propose a new strategic goal or objective for Fused Gaming
+title: "[GOAL] "
+labels: ["type: goal-proposal", "status: needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Propose a New Goal
+        Thank you for proposing a new goal for Fused Gaming! Strategic goals help align our organization and guide our efforts.
+
+        Please review [GOALS.md](../GOALS.md) and [GOVERNANCE.md](../GOVERNANCE.md) before submitting.
+
+  - type: input
+    id: goal-title
+    attributes:
+      label: Goal Title
+      description: A clear, concise title for this goal
+      placeholder: "e.g., Expand Discord Bot Ecosystem"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How critical is this goal?
+      options:
+        - P0 - Critical (must complete)
+        - P1 - High (should complete)
+        - P2 - Medium (nice to have)
+        - P3 - Low (future consideration)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: timeline
+    attributes:
+      label: Proposed Timeline
+      description: When should this goal be completed?
+      options:
+        - Current Quarter
+        - Next Quarter
+        - This Year (2026)
+        - Multi-Year
+        - Ongoing
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this goal solve? Why is it important now?
+      placeholder: Describe the current gap or opportunity this goal addresses
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: What specifically will we do to achieve this goal?
+      placeholder: Outline the key activities and deliverables
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-metrics
+    attributes:
+      label: Success Metrics
+      description: How will we measure success?
+      placeholder: |
+        - Metric 1: [target value]
+        - Metric 2: [target value]
+        - Metric 3: [target value]
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Resources Needed
+      description: What resources (time, people, tools, budget) are required?
+      placeholder: List the resources and commitments needed
+    validations:
+      required: true
+
+  - type: textarea
+    id: alignment
+    attributes:
+      label: Mission Alignment
+      description: How does this goal align with Fused Gaming's vision and mission?
+      placeholder: Explain how this supports our broader objectives
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Mitigation
+      description: What could go wrong? How would we mitigate those risks?
+      placeholder: |
+        **Risk 1**: [description]
+        - Mitigation: [strategy]
+
+        **Risk 2**: [description]
+        - Mitigation: [strategy]
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Does this goal depend on other goals or initiatives?
+      placeholder: List any dependencies or prerequisites
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that would be helpful?
+      placeholder: Add any additional context, examples, or references
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have reviewed existing goals in GOALS.md to avoid duplication
+          required: true
+        - label: I have reviewed the governance process in GOVERNANCE.md
+          required: true
+        - label: I am willing to help champion or contribute to this goal
+          required: false
