@@ -21,7 +21,7 @@ jobs:
         with:
           project-url: https://github.com/orgs/Fused-Gaming/projects/10
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          labeled: 🚨Priority:CRITICAL, 🔴Priority:HIGH, type: goal-proposal, type: project-proposal, ❎GOVERNANCE
+          labeled: "🚨Priority:CRITICAL, 🔴Priority:HIGH, type: goal-proposal, type: project-proposal, ❎GOVERNANCE"
           label-operator: OR
 
       - name: Add strategic items
@@ -29,7 +29,7 @@ jobs:
         with:
           project-url: https://github.com/orgs/Fused-Gaming/projects/10
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          labeled: 2026, quarter: Q1, quarter: Q2, quarter: Q3, quarter: Q4
+          labeled: "2026, quarter: Q1, quarter: Q2, quarter: Q3, quarter: Q4"
           label-operator: OR
 
       - name: Comment on issue
