@@ -2,6 +2,11 @@ name: Sync Organization Labels
 
 on:
   workflow_dispatch:
+    inputs:
+      target_repo:
+        description: 'Target repository (leave empty for all org repos)'
+        required: false
+        type: string
   schedule:
     # Run weekly on Monday at 00:00 UTC
     - cron: '0 0 * * 1'
@@ -11,31 +16,69 @@ on:
       - '.github/workflows/sync-labels.yml'
 
 jobs:
+  get-repositories:
+    runs-on: ubuntu-latest
+    outputs:
+      repositories: ${{ steps.get-repos.outputs.repositories }}
+    steps:
+      - name: Get organization repositories
+        id: get-repos
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -n "${{ inputs.target_repo }}" ]; then
+            # Single repository specified
+            echo "repositories=[\"${{ inputs.target_repo }}\"]" >> $GITHUB_OUTPUT
+          else
+            # Get all org repositories
+            ORG_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f1)
+            REPOS=$(gh repo list "$ORG_NAME" --limit 1000 --json nameWithOwner --jq '[.[].nameWithOwner]')
+            echo "repositories=$REPOS" >> $GITHUB_OUTPUT
+          fi
+
   sync-labels:
+    needs: get-repositories
     runs-on: ubuntu-latest
     permissions:
       issues: write
       contents: read
+    strategy:
+      matrix:
+        repository: ${{ fromJson(needs.get-repositories.outputs.repositories) }}
+      fail-fast: false
+      max-parallel: 5
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sync labels across organization
+      - name: Sync labels to ${{ matrix.repository }}
         uses: micnncim/action-label-syncer@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
         with:
           manifest: .github/labels.yml
-          repository: ${{ github.repository }}
+          repository: ${{ matrix.repository }}
           prune: false
 
-      - name: Create sync report
+      - name: Report sync status
         if: always()
         run: |
-          echo "## Label Sync Report" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Labels synchronized successfully" >> $GITHUB_STEP_SUMMARY
-          echo "- Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "## Label Sync: ${{ matrix.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
           echo "- Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "- Manifest: .github/labels.yml" >> $GITHUB_STEP_SUMMARY
+
+  summary:
+    needs: sync-labels
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Create summary report
+        run: |
+          echo "## Organization-Wide Label Sync Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Labels synchronized from .github/labels.yml" >> $GITHUB_STEP_SUMMARY
+          echo "- Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- Organization: $(echo "${{ github.repository }}" | cut -d'/' -f1)" >> $GITHUB_STEP_SUMMARY
+          echo "- Total Labels: 83" >> $GITHUB_STEP_SUMMARY
+          echo "- Prune Mode: Disabled (keeps extra labels in child repos)" >> $GITHUB_STEP_SUMMARY

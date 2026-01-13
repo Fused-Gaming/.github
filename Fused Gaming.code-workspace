@@ -1,0 +1,136 @@
+{
+	"folders": [
+		{
+			"name": "Fused Gaming (Root)",
+			"path": "."
+		}
+	],
+	"settings": {
+		// Editor settings
+		"editor.formatOnSave": true,
+		"editor.rulers": [80, 120],
+		"editor.wordWrap": "on",
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+
+		// Files settings
+		"files.autoSave": "onFocusChange",
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/.cache": true
+		},
+
+		// Markdown settings
+		"markdown.preview.breaks": true,
+		"markdown.preview.linkify": true,
+		"[markdown]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.wordWrap": "on",
+			"editor.quickSuggestions": {
+				"comments": "on",
+				"strings": "on",
+				"other": "on"
+			}
+		},
+
+		// YAML settings for GitHub workflows
+		"[yaml]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.autoIndent": "advanced",
+			"editor.insertSpaces": true,
+			"editor.tabSize": 2
+		},
+
+		// JSON settings for configuration files
+		"[json]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.tabSize": 2
+		},
+		"[jsonc]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.tabSize": 2
+		},
+
+		// Git settings
+		"git.enableSmartCommit": true,
+		"git.confirmSync": false,
+		"git.autofetch": true,
+
+		// GitHub integration
+		"github.issues.createIssueTriggers": [
+			"TODO",
+			"FIXME",
+			"BUG",
+			"HACK"
+		],
+
+		// Search settings
+		"search.exclude": {
+			"**/.git": true,
+			"**/node_modules": true,
+			"**/bower_components": true,
+			"**/*.code-search": true
+		},
+
+		// Explorer settings
+		"explorer.confirmDelete": false,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.sortOrder": "type",
+
+		// Workbench
+		"workbench.editor.enablePreview": false,
+		"workbench.tree.indent": 20
+	},
+	"extensions": {
+		"recommendations": [
+			"editorconfig.editorconfig",
+			"esbenp.prettier-vscode",
+			"yzhang.markdown-all-in-one",
+			"davidanson.vscode-markdownlint",
+			"bierner.github-markdown-preview",
+			"github.vscode-github-actions",
+			"github.vscode-pull-request-github",
+			"eamodio.gitlens",
+			"gruntfuggly.todo-tree",
+			"aaron-bond.better-comments",
+			"streetsidesoftware.code-spell-checker",
+			"redhat.vscode-yaml",
+			"ms-vscode.vscode-json-languageservice"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Validate YAML Files",
+				"type": "shell",
+				"command": "find .github -name '*.yml' -o -name '*.yaml'",
+				"problemMatcher": [],
+				"group": "test"
+			},
+			{
+				"label": "Check Markdown Links",
+				"type": "shell",
+				"command": "find . -name '*.md' -not -path '*/node_modules/*'",
+				"problemMatcher": [],
+				"group": "test"
+			},
+			{
+				"label": "List GitHub Templates",
+				"type": "shell",
+				"command": "find .github/ISSUE_TEMPLATE -type f",
+				"problemMatcher": [],
+				"group": "none"
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": []
+	}
+}

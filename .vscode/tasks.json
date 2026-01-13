@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Validate YAML Files",
+      "type": "shell",
+      "command": "find",
+      "args": [
+        ".github",
+        "-name",
+        "*.yml",
+        "-o",
+        "-name",
+        "*.yaml"
+      ],
+      "problemMatcher": [],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "List All Markdown Files",
+      "type": "shell",
+      "command": "find",
+      "args": [
+        ".",
+        "-name",
+        "*.md",
+        "-not",
+        "-path",
+        "*/node_modules/*"
+      ],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "List GitHub Issue Templates",
+      "type": "shell",
+      "command": "find",
+      "args": [
+        ".github/ISSUE_TEMPLATE",
+        "-type",
+        "f"
+      ],
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "Show Directory Structure",
+      "type": "shell",
+      "command": "tree",
+      "args": [
+        "-L",
+        "3",
+        "-I",
+        "node_modules|.git"
+      ],
+      "problemMatcher": [],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

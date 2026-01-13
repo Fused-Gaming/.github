@@ -271,3 +271,131 @@
 - name: "invalid"
   description: "This doesn't seem right"
   color: "e4e669"
+
+# ==============================================================================
+# PHASE 1: CORE TRANSPARENCY (from labels.json)
+# ==============================================================================
+
+- name: "📢ANNOUNCEMENT"
+  description: "Public stakeholder announcements"
+  color: "0e8a16"
+
+- name: "📝CHANGELOG"
+  description: "Should appear in public changelog"
+  color: "1d76db"
+
+- name: "🎮PLAYER-IMPACT"
+  description: "Directly impacts players"
+  color: "e99695"
+
+- name: "💥BREAKING-CHANGE"
+  description: "Breaking changes"
+  color: "b60205"
+
+# ==============================================================================
+# PHASE 2: DEPLOYMENT VISIBILITY (from labels.json)
+# ==============================================================================
+
+- name: "🚀READY-FOR-DEPLOY"
+  description: "Ready for deployment"
+  color: "0e8a16"
+
+- name: "✅PRODUCTION"
+  description: "Live in production"
+  color: "0e8a16"
+
+- name: "🔄STAGING"
+  description: "In staging environment"
+  color: "fbca04"
+
+# ==============================================================================
+# PHASE 3: SECURITY & TRUST (from labels.json)
+# ==============================================================================
+
+- name: "🔒SECURITY"
+  description: "Security-related issues/changes"
+  color: "d93f0b"
+
+- name: "🛡️AUDIT"
+  description: "Needs security/compliance audit"
+  color: "5319e7"
+
+- name: "🔐COMPLIANCE"
+  description: "Regulatory compliance matters"
+  color: "b60205"
+
+# ==============================================================================
+# PHASE 4: PROCESS ENHANCEMENT (from labels.json)
+# ==============================================================================
+
+- name: "🎯IN-PROGRESS"
+  description: "Currently being worked on"
+  color: "c2e0c6"
+
+- name: "⏳WAITING"
+  description: "Waiting on external response"
+  color: "fef2c0"
+
+- name: "💬DISCUSSION"
+  description: "Open for community/stakeholder discussion"
+  color: "cc317c"
+
+- name: "🔥HOTFIX"
+  description: "Urgent production fix"
+  color: "d93f0b"
+
+# ==============================================================================
+# ADDITIONAL QUALITY & WORKFLOW LABELS (from labels.json)
+# ==============================================================================
+
+- name: "🔍INVESTIGATING"
+  description: "Under investigation"
+  color: "d4c5f9"
+
+- name: "✨FEATURE"
+  description: "New feature development"
+  color: "a2eeef"
+
+- name: "♻️REFACTOR"
+  description: "Code refactoring"
+  color: "c5def5"
+
+- name: "📈IMPROVEMENT"
+  description: "Performance/quality improvement"
+  color: "84b6eb"
+
+- name: "💼BUSINESS-DECISION"
+  description: "Requires business decision"
+  color: "d4c5f9"
+
+- name: "📊REPORTING"
+  description: "For stakeholder reports"
+  color: "bfdadc"
+
+- name: "💡NEEDS-SPEC"
+  description: "Needs detailed specification"
+  color: "f9d0c4"
+
+- name: "🧪TESTING"
+  description: "Testing-related"
+  color: "d4c5f9"
+
+- name: "✅VERIFIED"
+  description: "Tested and verified"
+  color: "0e8a16"
+
+- name: "🐛REGRESSION"
+  description: "Regression bug"
+  color: "ee0701"
+
+- name: "🟢Priority:LOW"
+  description: "P3 - Low priority, complete when resources available"
+  color: "0e8a16"
+
+- name: "👀NEEDS-REVIEW"
+  description: "Requires stakeholder review"
+  color: "fbca04"
+
+- name: "🏷️RELEASE"
+  description: "Release-related items"
+  color: "5319e7"
