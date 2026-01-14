@@ -12,15 +12,16 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
-      repository-projects: write
       contents: read
+      # Organization projects require org-level token
+      # Using GH_PAT secret for org-wide access
 
     steps:
       - name: Add to project board
         uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/Fused-Gaming/projects/10
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           labeled: "🚨Priority:CRITICAL, 🔴Priority:HIGH, type: goal-proposal, type: project-proposal, ❎GOVERNANCE"
           label-operator: OR
 
@@ -28,7 +29,7 @@ jobs:
         uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/Fused-Gaming/projects/10
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           labeled: "2026, quarter: Q1, quarter: Q2, quarter: Q3, quarter: Q4"
           label-operator: OR
 
