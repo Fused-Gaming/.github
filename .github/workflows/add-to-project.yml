@@ -13,8 +13,9 @@ jobs:
       issues: write
       pull-requests: write
       contents: read
-      # Organization projects require org-level token
-      # Using GH_PAT secret for org-wide access
+      # Organization projects (ProjectsV2) require org-level token with 'project' scope
+      # GH_PAT secret must have: repo, read:org, read:project, write:project
+      # See: https://github.com/Fused-Gaming/.github/issues/2
 
     steps:
       - name: Add to project board
