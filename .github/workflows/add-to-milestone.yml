@@ -1,0 +1,115 @@
+name: Auto-Organize with Milestones
+
+on:
+  issues:
+    types: [opened, reopened, labeled]
+  pull_request:
+    types: [opened, reopened, labeled]
+
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Assign to Backlog milestone
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const itemNumber = context.issue?.number || context.payload.pull_request?.number;
+            const labels = (context.payload.issue || context.payload.pull_request).labels.map(l => l.name);
+
+            // Check if this is a strategic item
+            const isStrategic = labels.some(l =>
+              l.includes('goal-proposal') ||
+              l.includes('project-proposal') ||
+              l.includes('GOVERNANCE') ||
+              l.includes('Priority:CRITICAL') ||
+              l.includes('Priority:HIGH') ||
+              l.includes('quarter:') ||
+              l.includes('2026')
+            );
+
+            if (!isStrategic) {
+              console.log('Not a strategic item, skipping');
+              return;
+            }
+
+            // Find "Strategic Backlog" milestone
+            const milestones = await github.rest.issues.listMilestones({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+
+            let backlog = milestones.data.find(m => m.title === 'Strategic Backlog');
+
+            // Create milestone if it doesn't exist
+            if (!backlog) {
+              const created = await github.rest.issues.createMilestone({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Strategic Backlog',
+                description: 'Strategic items awaiting triage and planning'
+              });
+              backlog = created.data;
+              console.log('Created Strategic Backlog milestone');
+            }
+
+            // Assign to milestone
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: itemNumber,
+              milestone: backlog.number
+            });
+
+            console.log(`Added #${itemNumber} to Strategic Backlog milestone`);
+
+      - name: Comment on strategic issues
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+            const labels = issue.labels.map(l => l.name);
+
+            const isStrategic = labels.some(l =>
+              l.includes('goal-proposal') ||
+              l.includes('project-proposal') ||
+              l.includes('GOVERNANCE') ||
+              l.includes('Priority:CRITICAL') ||
+              l.includes('Priority:HIGH')
+            );
+
+            if (isStrategic) {
+              const type = labels.includes('type: goal-proposal') ? 'goal' :
+                          labels.includes('type: project-proposal') ? 'project' : 'issue';
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `👋 Thank you for your contribution!
+
+This ${type} has been added to our **Strategic Backlog** for review by the core team.
+
+**Next steps:**
+- Core team will review within 3-5 business days
+- You'll be notified of any questions or feedback
+- See our [GOVERNANCE.md](https://github.com/Fused-Gaming/.github/blob/main/GOVERNANCE.md) for the decision-making process
+
+**Resources:**
+- [Current Goals](https://github.com/Fused-Gaming/.github/blob/main/GOALS.md)
+- [Contributing Guidelines](https://github.com/Fused-Gaming/.github/blob/main/CONTRIBUTING.md)
+
+**Track Progress:**
+- [Strategic Backlog](https://github.com/Fused-Gaming/.github/milestone/1)
+- [All Strategic Items](https://github.com/Fused-Gaming/.github/labels/💰STAKE-HOLDERS)`
+              });
+            }
