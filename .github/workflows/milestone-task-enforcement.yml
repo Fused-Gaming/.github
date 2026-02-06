@@ -1,0 +1,193 @@
+name: Milestone & Task Label Enforcement
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  pull_request:
+    types: [opened, edited, labeled, synchronize]
+    branches: [main, master]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  enforce-labels:
+    name: Enforce Milestone & Task Labels
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check and enforce milestone/task labeling
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const item = context.payload.issue || context.payload.pull_request;
+            const isIssue = !!context.payload.issue;
+            const isPR = !!context.payload.pull_request;
+            const labels = item.labels.map(l => l.name);
+            const title = item.title.toLowerCase();
+            const body = (item.body || '').toLowerCase();
+
+            const milestoneLabels = labels.filter(l => l.startsWith('milestone: M'));
+            const taskLabels = labels.filter(l => l.startsWith('task: T'));
+            const hasStrategicLabel = labels.some(l =>
+              l.includes('goal-proposal') ||
+              l.includes('project-proposal') ||
+              l.includes('GOVERNANCE') ||
+              l.includes('Priority:CRITICAL') ||
+              l.includes('Priority:HIGH') ||
+              l.includes('quarter:')
+            );
+
+            // Auto-detect milestone from title/body patterns
+            const newLabels = [];
+
+            // Milestone detection from content
+            const milestonePatterns = [
+              { pattern: /\b(?:m0|milestone[:\s]*0|investor\s*readiness)\b/i, label: 'milestone: M0' },
+              { pattern: /\b(?:m1|milestone[:\s]*1|project\s*visibility|documentation\s*milestone)\b/i, label: 'milestone: M1' },
+              { pattern: /\b(?:m2|milestone[:\s]*2|onboarding)\b/i, label: 'milestone: M2' },
+              { pattern: /\b(?:m3|milestone[:\s]*3|community\s*activation)\b/i, label: 'milestone: M3' },
+              { pattern: /\b(?:m4|milestone[:\s]*4|technical\s*foundation)\b/i, label: 'milestone: M4' },
+              { pattern: /\b(?:m5|milestone[:\s]*5|community\s*growth)\b/i, label: 'milestone: M5' },
+              { pattern: /\b(?:m6|milestone[:\s]*6|product\s*milestones?)\b/i, label: 'milestone: M6' }
+            ];
+
+            // Task detection from content
+            const taskPatterns = [
+              { pattern: /\b(?:t1|task[:\s]*1)\b/i, label: 'task: T1' },
+              { pattern: /\b(?:t2|task[:\s]*2)\b/i, label: 'task: T2' },
+              { pattern: /\b(?:t3|task[:\s]*3)\b/i, label: 'task: T3' },
+              { pattern: /\b(?:t4|task[:\s]*4)\b/i, label: 'task: T4' },
+              { pattern: /\b(?:t5|task[:\s]*5)\b/i, label: 'task: T5' },
+              { pattern: /\b(?:t6|task[:\s]*6)\b/i, label: 'task: T6' },
+              { pattern: /\b(?:t7|task[:\s]*7)\b/i, label: 'task: T7' },
+              { pattern: /\b(?:t8|task[:\s]*8)\b/i, label: 'task: T8' },
+              { pattern: /\b(?:t9|task[:\s]*9)\b/i, label: 'task: T9' }
+            ];
+
+            const fullText = `${item.title} ${item.body || ''}`;
+
+            for (const { pattern, label } of milestonePatterns) {
+              if (pattern.test(fullText) && !labels.includes(label)) {
+                newLabels.push(label);
+              }
+            }
+
+            for (const { pattern, label } of taskPatterns) {
+              if (pattern.test(fullText) && !labels.includes(label)) {
+                newLabels.push(label);
+              }
+            }
+
+            // Apply auto-detected labels
+            if (newLabels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: item.number,
+                labels: newLabels
+              });
+              console.log(`Auto-applied labels: ${newLabels.join(', ')}`);
+            }
+
+            // Check: strategic items should have milestone labels
+            const allMilestones = [...milestoneLabels, ...newLabels.filter(l => l.startsWith('milestone:'))];
+            const allTasks = [...taskLabels, ...newLabels.filter(l => l.startsWith('task:'))];
+
+            if (hasStrategicLabel && allMilestones.length === 0) {
+              // Check for existing enforcement comment to avoid duplicates
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: item.number,
+                per_page: 20
+              });
+
+              const hasEnforcementComment = comments.data.some(c =>
+                c.body.includes('Milestone & Task Label Check')
+              );
+
+              if (!hasEnforcementComment) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: item.number,
+                  body: `## 🏷️ Milestone & Task Label Check\n\nThis ${isIssue ? 'issue' : 'PR'} has strategic labels but no **milestone label** (e.g., \`milestone: M1\`, \`milestone: M2\`).\n\n**Available milestones:**\n| Label | Milestone |\n|---|---|\n| \`milestone: M0\` | Investor Readiness |\n| \`milestone: M1\` | Project Visibility & Documentation |\n| \`milestone: M2\` | Onboarding Infrastructure |\n| \`milestone: M3\` | Community Activation |\n| \`milestone: M4\` | Technical Foundation |\n| \`milestone: M5\` | Community Growth |\n| \`milestone: M6\` | Product Milestones |\n\nPlease add a milestone label and optionally a task label (\`task: T1\` through \`task: T9\`) to track this item's position in the roadmap.\n\nSee [MILESTONES_OVERVIEW.md](https://github.com/Fused-Gaming/.github/blob/main/MILESTONES_OVERVIEW.md) for milestone details.\n\n*This check is enforced by the milestone-task-enforcement workflow.*`
+                });
+              }
+            }
+
+            // Generate summary
+            const summary = [];
+            if (newLabels.length > 0) {
+              summary.push(`Auto-applied: ${newLabels.join(', ')}`);
+            }
+            if (allMilestones.length > 0) {
+              summary.push(`Milestone: ${allMilestones.join(', ')}`);
+            }
+            if (allTasks.length > 0) {
+              summary.push(`Tasks: ${allTasks.join(', ')}`);
+            }
+
+            if (summary.length > 0) {
+              core.summary
+                .addHeading('Milestone & Task Enforcement')
+                .addList(summary)
+                .write();
+            }
+
+  check-pr-milestone:
+    name: Check PR Milestone Coverage
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR has milestone context
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const labels = pr.labels.map(l => l.name);
+            const body = (pr.body || '').toLowerCase();
+
+            const hasMilestone = labels.some(l => l.startsWith('milestone: M'));
+            const hasTask = labels.some(l => l.startsWith('task: T'));
+
+            // Check if PR references issues with milestone labels
+            const issueRefs = (pr.body || '').match(/#(\d+)/g) || [];
+            let linkedMilestones = [];
+
+            for (const ref of issueRefs.slice(0, 10)) {
+              const issueNum = parseInt(ref.replace('#', ''));
+              try {
+                const issue = await github.rest.issues.get({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNum
+                });
+                const issueMilestones = issue.data.labels
+                  .filter(l => l.name.startsWith('milestone: M'))
+                  .map(l => l.name);
+                linkedMilestones.push(...issueMilestones);
+              } catch (e) {
+                // Issue may not exist in this repo
+              }
+            }
+
+            const allMilestones = [...new Set([
+              ...labels.filter(l => l.startsWith('milestone: M')),
+              ...linkedMilestones
+            ])];
+
+            let summary = `## PR Milestone Coverage\n\n`;
+            summary += `- **Direct milestone labels**: ${hasMilestone ? labels.filter(l => l.startsWith('milestone:')).join(', ') : 'None'}\n`;
+            summary += `- **Direct task labels**: ${hasTask ? labels.filter(l => l.startsWith('task:')).join(', ') : 'None'}\n`;
+            summary += `- **Linked issue milestones**: ${linkedMilestones.length > 0 ? [...new Set(linkedMilestones)].join(', ') : 'None'}\n`;
+
+            if (allMilestones.length > 0) {
+              summary += `\n✅ This PR is tracked under: ${allMilestones.join(', ')}\n`;
+            } else {
+              summary += `\nℹ️ This PR has no milestone tracking. If this contributes to a strategic milestone, consider adding a \`milestone: M*\` label.\n`;
+            }
+
+            core.summary.addRaw(summary).write();

@@ -80,5 +80,6 @@ jobs:
           echo "✅ Labels synchronized from .github/labels.yml" >> $GITHUB_STEP_SUMMARY
           echo "- Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
           echo "- Organization: $(echo "${{ github.repository }}" | cut -d'/' -f1)" >> $GITHUB_STEP_SUMMARY
-          echo "- Total Labels: 83" >> $GITHUB_STEP_SUMMARY
+          echo "- Total Labels: 104 (includes milestone M0-M6, task T1-T9, type labels)" >> $GITHUB_STEP_SUMMARY
           echo "- Prune Mode: Disabled (keeps extra labels in child repos)" >> $GITHUB_STEP_SUMMARY
+          echo "- Label categories: priority, project, team, status, governance, type, size, quarter, milestone, task, area, special" >> $GITHUB_STEP_SUMMARY

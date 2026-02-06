@@ -128,6 +128,50 @@ This directory contains automated workflows that help maintain Fused Gaming's or
 
 ---
 
+#### `milestone-task-enforcement.yml`
+**Purpose**: Enforces milestone (M0-M6) and task (T1-T9) labeling across all issues and PRs
+
+**Triggers**:
+- When issues are opened, edited, or labeled
+- When PRs are opened, edited, labeled, or synchronized
+
+**What it does**:
+- Auto-detects milestone references in title/body (e.g., "M1", "onboarding", "technical foundation")
+- Auto-detects task references (e.g., "T1", "task 3")
+- Applies corresponding `milestone: M*` and `task: T*` labels
+- Comments on strategic items that lack milestone labels
+- For PRs: checks linked issues for milestone context and reports coverage
+
+**Labels applied**:
+- Milestone: `milestone: M0` through `milestone: M6`
+- Task: `task: T1` through `task: T9`
+
+**Enforcement**: Strategic items (priority: critical/high, goal-proposal, project-proposal, governance) receive a comment requesting milestone labeling if none is present.
+
+**Reference**: See [LABELS_README.md](../../LABELS_README.md) for complete milestone-to-deliverable mapping and [MILESTONES_OVERVIEW.md](../../MILESTONES_OVERVIEW.md) for milestone details.
+
+---
+
+#### `cross-repo-milestone-sync.yml`
+**Purpose**: Scans all organization repositories daily and enforces milestone/task labeling
+
+**Triggers**:
+- Daily at 8:00 UTC (automatic)
+- Manual trigger with optional target repo and dry-run mode
+
+**What it does**:
+- Fetches all repositories in the Fused-Gaming organization (public + private with GH_PAT)
+- Scans open issues and PRs in each repo for milestone/task references
+- Auto-applies `milestone: M*` and `task: T*` labels based on content
+- Generates per-repo sync report
+- Supports dry-run mode for testing
+
+**Permissions**: Requires `GH_PAT` secret for cross-repo access (especially private repos)
+
+**Scope**: All org repos - both public and private
+
+---
+
 ### 📄 Document Governance
 
 #### `doc-freshness-check.yml`
@@ -333,6 +377,6 @@ Questions about workflows?
 
 **Last Updated**: February 6, 2026
 **Maintained by**: Fused Gaming Core Team
-**Version**: 1.1
+**Version**: 1.2
 
 For workflow proposals or improvements, use the [Governance Proposal](https://github.com/Fused-Gaming/.github/issues/new?template=governance-proposal.yml) template.

@@ -26,7 +26,7 @@ This document is the authoritative reference for all labels across the Fused Gam
 ### How Labels Flow
 
 ```
-labels.yml (83 definitions)
+labels.yml (104 definitions)
        |
        v
 sync-labels.yml ──> Creates/syncs labels across all org repos (weekly Monday 00:00 UTC)
@@ -35,6 +35,9 @@ Issue/PR Created or Edited
        |
        v
 auto-label-issues.yml ──> Applies labels based on title/body keywords + PR file types
+       |
+       v
+milestone-task-enforcement.yml ──> Auto-applies M*/T* labels, enforces on strategic items
        |
        v
 add-to-milestone.yml ──> Strategic items → "Strategic Backlog" milestone + welcome comment
@@ -50,9 +53,9 @@ quarterly-okr-tracker.yml ──> Quarter-labeled items → OKR progress reports
 
 | Source | Count | Purpose | Used By |
 |---|---|---|---|
-| `.github/labels.yml` | 83 | **Primary** - org-wide label definitions | `sync-labels.yml` (weekly sync to all repos) |
+| `.github/labels.yml` | 104 | **Primary** - org-wide label definitions | `sync-labels.yml` (weekly sync to all repos) |
 | `labels.json` | 27 | **Legacy** - shell script application | `apply-labels.sh`, `apply-labels-gh.sh` |
-| `auto-label-issues.yml` | 5 | **Implicit** - labels applied but not defined | Workflow applies labels not in `labels.yml` |
+| `auto-label-issues.yml` | 0 | All previously implicit labels now added to `labels.yml` | N/A |
 
 > **Note**: All 27 labels in `labels.json` are duplicated in `labels.yml`. The `labels.json` file and its shell scripts are a legacy mechanism predating the `sync-labels.yml` workflow.
 
@@ -68,17 +71,9 @@ Synced to all org repos by `sync-labels.yml` every Monday at 00:00 UTC, when `la
 
 Applied via `apply-labels.sh` (GitHub API with token) or `apply-labels-gh.sh` (GitHub CLI). These scripts are manual, one-time application tools. All labels in `labels.json` are already included in `labels.yml`.
 
-### Implicit: Workflow-Created Labels
+### ~~Implicit: Workflow-Created Labels~~ - RESOLVED
 
-These labels are applied by workflows but **not defined** in `labels.yml`. They will only work if previously created manually or by another workflow:
-
-| Label | Applied By | Issue |
-|---|---|---|
-| `type: documentation` | `auto-label-issues.yml` (PR files), `doc-staleness-audit.yml` | **Not in `labels.yml`** |
-| `type: infrastructure` | `auto-label-issues.yml` (PR files) | **Not in `labels.yml`** |
-| `type: test` | `auto-label-issues.yml` (PR files) | **Not in `labels.yml`** |
-| `type: governance` | `auto-label-issues.yml` (PR files), `quarterly-okr-tracker.yml` | **Not in `labels.yml`** |
-| `type: security` | `auto-label-issues.yml` (PR files) | **Not in `labels.yml`** |
+Previously, five `type:` labels were applied by workflows but not defined in `labels.yml`. These have now been added to `labels.yml` and will sync org-wide. See "Type Labels (Workflow-Applied)" in Section 3.
 
 ---
 
@@ -178,6 +173,48 @@ All auto-applied based on body content or body length.
 | `size: M` | `#fef2c0` | Yes | Body contains `size: m` **OR** body.length 500-999 |
 | `size: L` | `#fad8c7` | Yes | Body contains `size: l` **OR** body.length 1000-1999 |
 | `size: XL` | `#f7c6c7` | Yes | Body contains `size: xl` **OR** body.length >= 2000 |
+
+### Milestone Labels (Roadmap Tracking)
+
+Maps to the organizational milestones defined in [MILESTONES_OVERVIEW.md](MILESTONES_OVERVIEW.md). Auto-applied by `milestone-task-enforcement.yml` when title/body contains milestone references.
+
+| Label | Color | Auto-Applied | Trigger Keywords | Downstream Effects |
+|---|---|---|---|---|
+| `milestone: M0` | `#6f42c1` | Yes | `M0`, `milestone 0`, `investor readiness` | Enforcement comment if strategic but missing |
+| `milestone: M1` | `#7c3aed` | Yes | `M1`, `milestone 1`, `project visibility`, `documentation milestone` | Enforcement comment if strategic but missing |
+| `milestone: M2` | `#8b5cf6` | Yes | `M2`, `milestone 2`, `onboarding` | Enforcement comment if strategic but missing |
+| `milestone: M3` | `#a78bfa` | Yes | `M3`, `milestone 3`, `community activation` | Enforcement comment if strategic but missing |
+| `milestone: M4` | `#c4b5fd` | Yes | `M4`, `milestone 4`, `technical foundation` | Enforcement comment if strategic but missing |
+| `milestone: M5` | `#ddd6fe` | Yes | `M5`, `milestone 5`, `community growth` | Enforcement comment if strategic but missing |
+| `milestone: M6` | `#ede9fe` | Yes | `M6`, `milestone 6`, `product milestones` | Enforcement comment if strategic but missing |
+
+### Task Sequence Labels
+
+Track task order within milestones. Auto-applied by `milestone-task-enforcement.yml` when title/body contains task references (e.g., `T1`, `task 3`).
+
+| Label | Color | Auto-Applied | Trigger Keywords |
+|---|---|---|---|
+| `task: T1` | `#0d419d` | Yes | `T1`, `task 1` |
+| `task: T2` | `#1d5cbf` | Yes | `T2`, `task 2` |
+| `task: T3` | `#2e77e0` | Yes | `T3`, `task 3` |
+| `task: T4` | `#4f91f5` | Yes | `T4`, `task 4` |
+| `task: T5` | `#6ba5f7` | Yes | `T5`, `task 5` |
+| `task: T6` | `#89bbf9` | Yes | `T6`, `task 6` |
+| `task: T7` | `#a6d0fb` | Yes | `T7`, `task 7` |
+| `task: T8` | `#c3e0fd` | Yes | `T8`, `task 8` |
+| `task: T9` | `#dfeffe` | Yes | `T9`, `task 9` |
+
+### Type Labels (Workflow-Applied)
+
+Previously missing from `labels.yml` (Conflict 2 resolved). Now synced org-wide.
+
+| Label | Color | Auto-Applied | Trigger (Source) |
+|---|---|---|---|
+| `type: documentation` | `#0075ca` | Yes | PR files: `.md`, `README`; `doc-staleness-audit.yml` |
+| `type: infrastructure` | `#006b75` | Yes | PR files: `.yml`, `.yaml`, `.github/workflows` |
+| `type: test` | `#d4c5f9` | Yes | PR files: `test`, `spec` |
+| `type: governance` | `#5319e7` | Yes | PR files: `GOVERNANCE`, `CONTRIBUTING`; `quarterly-okr-tracker.yml` |
+| `type: security` | `#d93f0b` | Yes | PR files: `SECURITY` |
 
 ### Quarter / Year Labels
 
@@ -391,6 +428,31 @@ Labels that trigger alignment check (uses `.includes()` matching):
 | `status: blocked` | Flags items as "at-risk" in monthly report |
 | `priority: high` | Combined with stale detection (>14 days) for at-risk alerts |
 
+### `milestone-task-enforcement.yml` - Milestone & Task Tracking
+
+**Triggers**: Issues/PRs opened, edited, labeled; PRs to main/master
+
+| Label Pattern | Effect |
+|---|---|
+| `milestone: M0` through `milestone: M6` | Auto-applied from title/body keywords; strategic items without milestone get enforcement comment |
+| `task: T1` through `task: T9` | Auto-applied from title/body keywords |
+| Strategic labels without milestone | Comment prompting author to add milestone label |
+
+**PR-specific**: Checks linked issues for milestone labels and reports milestone coverage in workflow summary.
+
+### `cross-repo-milestone-sync.yml` - Organization-Wide Enforcement
+
+**Triggers**: Daily at 8:00 UTC; manual with optional target repo and dry-run
+
+| Action | Effect |
+|---|---|
+| Fetches all org repos (public + private) | Enumerates via `gh repo list` with `GH_PAT` |
+| Scans all open issues/PRs per repo | Checks title/body for M*/T* patterns |
+| Auto-applies milestone/task labels | Adds `milestone: M0`-`M6`, `task: T1`-`T9` |
+| Generates per-repo report | Summary with items checked, labels applied |
+
+This workflow ensures milestone/task labels are enforced across **all** org repos, not just `.github`.
+
 ### `doc-staleness-audit.yml` - Document Review
 
 **Triggers**: Weekly Monday at 9:00 UTC
@@ -409,18 +471,9 @@ Labels that trigger alignment check (uses `.includes()` matching):
 
 **Resolution needed**: Decide which label represents P3/P4 and update either `labels.yml` or the auto-labeling rules for consistency.
 
-### CONFLICT 2: Missing Type Labels in `labels.yml`
+### ~~CONFLICT 2: Missing Type Labels in `labels.yml`~~ - RESOLVED
 
-Five `type:` labels are applied by workflows but not defined in `labels.yml`:
-- `type: documentation`
-- `type: infrastructure`
-- `type: test`
-- `type: governance`
-- `type: security`
-
-These labels will fail to apply on newly created repos until someone manually creates them or they are added to `labels.yml`.
-
-**Resolution needed**: Add these five labels to `labels.yml` so `sync-labels.yml` creates them across all repos.
+Five `type:` labels were applied by workflows but not defined in `labels.yml`. **Fixed**: All five labels (`type: documentation`, `type: infrastructure`, `type: test`, `type: governance`, `type: security`) have been added to `labels.yml` and will sync org-wide on next Monday or manual trigger.
 
 ### CONFLICT 3: Blocked Status Name Mismatch
 
@@ -499,6 +552,8 @@ gh workflow run sync-labels.yml --repo Fused-Gaming/.github
 - [`labels.json`](labels.json) - Legacy label definitions (27 labels)
 - [`.github/workflows/auto-label-issues.yml`](.github/workflows/auto-label-issues.yml) - Auto-labeling workflow
 - [`.github/workflows/sync-labels.yml`](.github/workflows/sync-labels.yml) - Label sync workflow
+- [`.github/workflows/milestone-task-enforcement.yml`](.github/workflows/milestone-task-enforcement.yml) - Milestone/task enforcement
+- [`.github/workflows/cross-repo-milestone-sync.yml`](.github/workflows/cross-repo-milestone-sync.yml) - Cross-repo milestone sync
 - [`.github/workflows/add-to-milestone.yml`](.github/workflows/add-to-milestone.yml) - Milestone assignment
 - [`.github/workflows/goal-alignment-check.yml`](.github/workflows/goal-alignment-check.yml) - Goal alignment
 - [`.github/workflows/quarterly-okr-tracker.yml`](.github/workflows/quarterly-okr-tracker.yml) - OKR tracking
