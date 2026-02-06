@@ -311,17 +311,55 @@ SECURITY.md references `security@fusedgaming.org` with a note "(create this emai
 
 ---
 
+## 5.5. Document Governance (NEW - Added Feb 6, 2026)
+
+### Problem Statement
+
+Living documents (PROJECT_BOARD_GUIDE.md, GOALS.md, MILESTONES_OVERVIEW.md, etc.) go stale within weeks because there is no enforcement mechanism tying document updates to code changes. Additionally, `MILESTONES_OVERVIEW.md` contains confidential business information (investor readiness, revenue models, funding status) in a public repository, violating the org's own GOVERNANCE_PROTOCOL.md Protocol 9.3.
+
+### What Was Implemented
+
+1. **[DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md)** - Establishes PUBLIC/INTERNAL/CONFIDENTIAL tiers, update triggers per document, ownership matrix, and enforcement mechanisms
+
+2. **doc-freshness-check.yml** (workflow) - PR merge gate that:
+   - Flags stale docs (>90 days = error, >60 days = warning)
+   - Requires workflow changes to include workflow README updates
+   - Requires label changes to include PROJECT_BOARD_GUIDE updates
+   - Scans PR diffs for sensitive content (emails, financials, API keys, investor terms)
+
+3. **doc-staleness-audit.yml** (workflow) - Weekly Monday audit that:
+   - Checks all living docs for past `Next Review` dates
+   - Checks `Last Updated` vs cadence thresholds
+   - Auto-creates issues for stale docs (with dedup)
+
+4. **PR Template update** - Added Documentation Impact checklist section
+
+5. **PROJECT_BOARD_GUIDE.md fixes** - Corrected phantom Project #10 reference, updated external tool links, added classification header
+
+### Still Required (Manual Actions)
+
+- [ ] Move MILESTONES_OVERVIEW.md Sections 409-422 (Funding/Business Model) to a private repo
+- [ ] Review MILESTONES_OVERVIEW.md Sections 309-336 (Key Metrics) for internal-only content
+- [ ] Create the private repo for internal/confidential docs
+- [ ] Assign document owners per the ownership matrix in DOCUMENT_CLASSIFICATION_POLICY.md
+
+---
+
 ## 6. Implementation Roadmap
 
 ### Phase 1: Immediate Fixes (Week 1)
 - [ ] Fix SECURITY.md dates
 - [ ] Create CODE_OF_CONDUCT.md
 - [ ] Fix quarterly-okr-tracker variable shadowing
-- [ ] Update phantom project board references in workflows
+- [x] Update phantom project board references (done: PROJECT_BOARD_GUIDE.md)
 - [ ] Update GOALS.md with accurate status for completed items
 - [ ] Delete already-merged branch: `.github/fix/add-project-scope-docs`
 - [ ] Delete 6 automation artifact branches in DevOps
 - [ ] Review and clean up 8 stale Claude-generated branches
+- [ ] **Move confidential content from MILESTONES_OVERVIEW.md to private repo**
+- [x] Deploy doc-freshness-check and doc-staleness-audit workflows
+- [x] Create DOCUMENT_CLASSIFICATION_POLICY.md
+- [x] Add Documentation Impact section to PR template
 
 ### Phase 2: Repository Hygiene (Weeks 2-3)
 - [ ] Standardize all repos to `main` default branch
@@ -367,6 +405,9 @@ This audit was conducted by:
 
 **Next Steps**: Review these recommendations with the core team, prioritize based on available capacity, and create GitHub issues for each accepted item using the existing issue templates.
 
-**Document Version**: 1.1
+**Document Version**: 1.2
 **Last Updated**: February 6, 2026
-**Changelog**: v1.1 - Added branch audit across all 13 public repos, private repo coverage gap, cleanup procedures
+**Changelog**:
+- v1.2 - Added document governance protocol, classification policy, enforcement workflows, trade secret remediation plan, PR template update, PROJECT_BOARD_GUIDE fixes
+- v1.1 - Added branch audit across all 13 public repos, private repo coverage gap, cleanup procedures
+- v1.0 - Initial audit of 21 public repositories and 1 project board

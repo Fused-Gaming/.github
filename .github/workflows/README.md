@@ -128,6 +128,42 @@ This directory contains automated workflows that help maintain Fused Gaming's or
 
 ---
 
+### 📄 Document Governance
+
+#### `doc-freshness-check.yml`
+**Purpose**: Enforces document freshness and sensitive content scanning on every PR
+
+**Triggers**:
+- When PRs are opened, synchronized, or edited against main/master
+
+**What it does**:
+- Checks all living documents for stale `Last Updated` dates (>90 days = error, >60 days = warning)
+- Verifies that PRs changing workflows also update workflow docs
+- Verifies that PRs changing labels also update PROJECT_BOARD_GUIDE.md
+- Scans PR diffs for sensitive content (emails, phone numbers, financial data, API keys, investor references)
+- Comments findings on the PR for review
+
+**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md)
+
+---
+
+#### `doc-staleness-audit.yml`
+**Purpose**: Weekly audit of all living documents for staleness
+
+**Triggers**:
+- Weekly on Mondays at 9:00 UTC (automatic)
+- Manual trigger via workflow_dispatch
+
+**What it does**:
+- Checks all living documents for past `Next Review` dates
+- Checks `Last Updated` dates against cadence thresholds (monthly, quarterly, semi-annual)
+- Creates GitHub issues for stale documents (with deduplication)
+- Generates audit summary report
+
+**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md)
+
+---
+
 ### 🎮 Existing Workflows
 
 #### `play_tictactoe.yml`
@@ -293,8 +329,8 @@ Questions about workflows?
 
 ---
 
-**Last Updated**: January 2026
+**Last Updated**: February 6, 2026
 **Maintained by**: Fused Gaming Core Team
-**Version**: 1.0
+**Version**: 1.1
 
 For workflow proposals or improvements, use the [Governance Proposal](https://github.com/Fused-Gaming/.github/issues/new?template=governance-proposal.yml) template.
