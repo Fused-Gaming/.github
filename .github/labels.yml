@@ -189,6 +189,102 @@
   color: "f7c6c7"
 
 # ==============================================================================
+# MILESTONE LABELS (organizational milestone tracking)
+# ==============================================================================
+
+- name: "milestone: M0"
+  description: "M0 - Investor Readiness (Continuous)"
+  color: "6f42c1"
+
+- name: "milestone: M1"
+  description: "M1 - Project Visibility & Documentation"
+  color: "7c3aed"
+
+- name: "milestone: M2"
+  description: "M2 - Onboarding Infrastructure"
+  color: "8b5cf6"
+
+- name: "milestone: M3"
+  description: "M3 - Community Activation"
+  color: "a78bfa"
+
+- name: "milestone: M4"
+  description: "M4 - Technical Foundation"
+  color: "c4b5fd"
+
+- name: "milestone: M5"
+  description: "M5 - Community Growth"
+  color: "ddd6fe"
+
+- name: "milestone: M6"
+  description: "M6 - Product Milestones"
+  color: "ede9fe"
+
+# ==============================================================================
+# TASK SEQUENCE LABELS (task tracking within milestones)
+# ==============================================================================
+
+- name: "task: T1"
+  description: "T1 - First task/deliverable in sequence"
+  color: "0d419d"
+
+- name: "task: T2"
+  description: "T2 - Second task/deliverable in sequence"
+  color: "1d5cbf"
+
+- name: "task: T3"
+  description: "T3 - Third task/deliverable in sequence"
+  color: "2e77e0"
+
+- name: "task: T4"
+  description: "T4 - Fourth task/deliverable in sequence"
+  color: "4f91f5"
+
+- name: "task: T5"
+  description: "T5 - Fifth task/deliverable in sequence"
+  color: "6ba5f7"
+
+- name: "task: T6"
+  description: "T6 - Sixth task/deliverable in sequence"
+  color: "89bbf9"
+
+- name: "task: T7"
+  description: "T7 - Seventh task/deliverable in sequence"
+  color: "a6d0fb"
+
+- name: "task: T8"
+  description: "T8 - Eighth task/deliverable in sequence"
+  color: "c3e0fd"
+
+- name: "task: T9"
+  description: "T9 - Ninth task/deliverable in sequence"
+  color: "dfeffe"
+
+# ==============================================================================
+# TYPE LABELS (applied by workflows - previously missing from labels.yml)
+# ==============================================================================
+
+- name: "type: documentation"
+  description: "Documentation changes"
+  color: "0075ca"
+
+- name: "type: infrastructure"
+  description: "CI/CD and workflow infrastructure changes"
+  color: "006b75"
+
+- name: "type: test"
+  description: "Test-related changes"
+  color: "d4c5f9"
+
+- name: "type: governance"
+  description: "Governance and organizational changes"
+  color: "5319e7"
+
+- name: "type: security"
+  description: "Security-related changes"
+  color: "d93f0b"
+
+# ==============================================================================
 # QUARTERLY TRACKING LABELS (for OKR tracking)
 # ==============================================================================
 

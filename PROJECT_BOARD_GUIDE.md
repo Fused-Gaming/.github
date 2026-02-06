@@ -4,7 +4,9 @@
 
 This guide explains how Fused Gaming uses GitHub Projects to track goals, initiatives, and work items in alignment with our governance framework.
 
-**Primary Project Board**: [Fused Gaming Goals & Initiatives](https://github.com/orgs/Fused-Gaming/projects/10)
+**Active Project Boards**:
+- [V.I.S.E. VLN-Certifications](https://github.com/orgs/Fused-Gaming/projects/5) - Currently active
+- Fused Gaming Goals & Initiatives - Planned (see [ORG_AUDIT_RECOMMENDATIONS.md](ORG_AUDIT_RECOMMENDATIONS.md) Section 4.1)
 
 ---
 
@@ -245,9 +247,9 @@ Shows all items across all statuses
 - Automated security scanning
 
 ### External Tools
-- **Telegram**: Quick updates and notifications
-- **Twitter**: Public announcements
-- **LinkedIn**: Professional milestones
+- **Telegram**: [@fusedgg](https://t.me/fusedgg) - Quick updates and notifications
+- **Twitter/X**: [@fuseddotgg](https://x.com/fuseddotgg) - Public announcements
+- **LinkedIn**: [Fused Gaming](https://www.linkedin.com/company/fusedgg/) - Professional milestones
 
 ---
 
@@ -325,6 +327,18 @@ Generated from project board data:
 
 ---
 
+## Document Classification
+
+This document is classified **PUBLIC** per [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md).
+
+**Update triggers**: This document MUST be updated when:
+- Project board structure changes (columns, views, fields)
+- Label definitions are modified (`labels.yml`)
+- Workflow automation affecting the board is changed
+- New project boards are created or retired
+
+---
+
 ## Continuous Improvement
 
 This project board system is iterative:
@@ -337,7 +351,7 @@ This project board system is iterative:
 
 ---
 
-**Last Updated**: January 2026
-**Next Review**: April 2026
+**Last Updated**: February 6, 2026
+**Next Review**: May 2026
 
-Questions? Open a discussion or ask in our Telegram channel!
+Questions? Open a discussion or ask in our [Telegram channel](https://t.me/fusedgg)!

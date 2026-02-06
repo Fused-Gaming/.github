@@ -1,0 +1,219 @@
+name: Document Freshness & Sensitivity Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-doc-freshness:
+    name: Check Document Freshness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for stale documents
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const STALE_THRESHOLD_DAYS = 90;
+            const today = new Date();
+            const warnings = [];
+            const errors = [];
+
+            // Documents that must stay current
+            const livingDocs = [
+              'PROJECT_BOARD_GUIDE.md',
+              'GOALS.md',
+              'MILESTONES_OVERVIEW.md',
+              'SECURITY.md',
+              'CONTRIBUTING.md',
+              'GOVERNANCE.md',
+              'GOVERNANCE_PROTOCOL.md',
+              'DOCUMENT_CLASSIFICATION_POLICY.md',
+              'LABELS_README.md'
+            ];
+
+            // Check each living doc for Last Updated date
+            for (const doc of livingDocs) {
+              const filePath = path.join(process.env.GITHUB_WORKSPACE, doc);
+              if (!fs.existsSync(filePath)) continue;
+
+              const content = fs.readFileSync(filePath, 'utf8');
+              const dateMatch = content.match(/\*\*Last Updated\*\*:\s*(.+)/i)
+                || content.match(/Last Updated:\s*(.+)/i);
+
+              if (!dateMatch) {
+                warnings.push(`- **${doc}**: No "Last Updated" date found`);
+                continue;
+              }
+
+              const dateStr = dateMatch[1].trim();
+              const docDate = new Date(dateStr);
+              if (isNaN(docDate.getTime())) {
+                warnings.push(`- **${doc}**: Could not parse date "${dateStr}"`);
+                continue;
+              }
+
+              const daysSinceUpdate = Math.floor((today - docDate) / (1000 * 60 * 60 * 24));
+              if (daysSinceUpdate > STALE_THRESHOLD_DAYS) {
+                errors.push(`- **${doc}**: Last updated ${daysSinceUpdate} days ago (${dateStr}) - exceeds ${STALE_THRESHOLD_DAYS}-day threshold`);
+              } else if (daysSinceUpdate > 60) {
+                warnings.push(`- **${doc}**: Last updated ${daysSinceUpdate} days ago (${dateStr}) - approaching staleness`);
+              }
+            }
+
+            // Check if PR changes workflows but not workflow docs
+            const changedFiles = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100
+            });
+
+            const files = changedFiles.data.map(f => f.filename);
+            const changesWorkflows = files.some(f => f.includes('.github/workflows/') && f.endsWith('.yml'));
+            const changesWorkflowDocs = files.includes('.github/workflows/README.md');
+            const changesLabels = files.includes('.github/labels.yml') || files.includes('labels.yml');
+            const changesAutoLabeling = files.includes('.github/workflows/auto-label-issues.yml');
+            const changesLabelDocs = files.includes('LABELS_README.md');
+            const changesBoardDocs = files.includes('PROJECT_BOARD_GUIDE.md');
+            const changesTemplates = files.some(f => f.includes('ISSUE_TEMPLATE'));
+            const missingUpdates = [];
+
+            if (changesWorkflows && !changesWorkflowDocs) {
+              missingUpdates.push('- Workflows changed but `.github/workflows/README.md` not updated');
+            }
+            if (changesLabels && !changesLabelDocs) {
+              missingUpdates.push('- Label definitions changed but `LABELS_README.md` not updated');
+            }
+            if (changesAutoLabeling && !changesLabelDocs) {
+              missingUpdates.push('- Auto-labeling rules changed but `LABELS_README.md` not updated');
+            }
+            if (changesLabels && !changesBoardDocs) {
+              missingUpdates.push('- Labels changed but `PROJECT_BOARD_GUIDE.md` not updated');
+            }
+            if (changesTemplates && !changesBoardDocs) {
+              missingUpdates.push('- Issue templates changed but `PROJECT_BOARD_GUIDE.md` not updated');
+            }
+
+            // Build comment
+            let body = '';
+            if (errors.length > 0) {
+              body += '### Stale Documents\n\n';
+              body += errors.join('\n') + '\n\n';
+            }
+            if (missingUpdates.length > 0) {
+              body += '### Missing Documentation Updates\n\n';
+              body += 'Per [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md), the following docs should be updated in this PR:\n\n';
+              body += missingUpdates.join('\n') + '\n\n';
+            }
+            if (warnings.length > 0) {
+              body += '### Documentation Warnings\n\n';
+              body += warnings.join('\n') + '\n\n';
+            }
+
+            if (body) {
+              body = '## Documentation Freshness Check\n\n' + body;
+              body += '\n---\n*This check is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.1*';
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: body
+              });
+            }
+
+  check-sensitive-content:
+    name: Scan for Sensitive Content
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan PR diff for sensitive content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changedFiles = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100
+            });
+
+            const sensitivePatterns = [
+              { pattern: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, label: 'Email address', severity: 'warning' },
+              { pattern: /\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/g, label: 'Phone number', severity: 'error' },
+              { pattern: /\$\d+[,\d]*(\.\d{2})?\s*(million|thousand|k|m|funding|revenue|burn|budget|investment)/gi, label: 'Financial figure', severity: 'error' },
+              { pattern: /\b(api[_-]?key|secret[_-]?key|private[_-]?key|access[_-]?token)\s*[:=]\s*['"][^'"]+['"]/gi, label: 'API key/secret', severity: 'error' },
+              { pattern: /\b0x[a-fA-F0-9]{40}\b/g, label: 'Ethereum address', severity: 'warning' },
+              { pattern: /\b(NDA|non-disclosure|confidential agreement|under NDA)\b/gi, label: 'NDA reference', severity: 'warning' },
+              { pattern: /\b(valuation|cap table|equity|shares|vesting)\b/gi, label: 'Financial/equity term', severity: 'warning' },
+              { pattern: /\b(investor pitch|pitch deck|funding round|series [a-d]|seed round|pre-seed)\b/gi, label: 'Investor/funding reference', severity: 'error' }
+            ];
+
+            const findings = [];
+
+            for (const file of changedFiles.data) {
+              if (!file.patch) continue;
+              const addedLines = file.patch.split('\n').filter(l => l.startsWith('+') && !l.startsWith('+++'));
+
+              for (const line of addedLines) {
+                for (const { pattern, label, severity } of sensitivePatterns) {
+                  pattern.lastIndex = 0;
+                  const matches = line.match(pattern);
+                  if (matches) {
+                    findings.push({
+                      file: file.filename,
+                      label,
+                      severity,
+                      preview: line.substring(1, 80) + (line.length > 81 ? '...' : '')
+                    });
+                  }
+                }
+              }
+            }
+
+            if (findings.length > 0) {
+              const errors = findings.filter(f => f.severity === 'error');
+              const warns = findings.filter(f => f.severity === 'warning');
+
+              let body = '## Sensitive Content Scan\n\n';
+
+              if (errors.length > 0) {
+                body += '### Blocked - Potential Confidential Content\n\n';
+                body += 'The following additions may contain confidential information per [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md):\n\n';
+                for (const e of errors) {
+                  body += `- **${e.file}**: ${e.label} detected\n  \`${e.preview}\`\n`;
+                }
+                body += '\nA core team member must review and approve before merge.\n\n';
+              }
+
+              if (warns.length > 0) {
+                body += '### Warnings - Review Recommended\n\n';
+                for (const w of warns) {
+                  body += `- **${w.file}**: ${w.label} detected\n  \`${w.preview}\`\n`;
+                }
+              }
+
+              body += '\n---\n*This scan is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.3*';
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: body
+              });
+            }

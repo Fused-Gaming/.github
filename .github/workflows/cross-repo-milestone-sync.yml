@@ -1,0 +1,230 @@
+name: Cross-Repo Milestone & Goal Sync
+
+on:
+  schedule:
+    # Run daily at 8:00 UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      target_repo:
+        description: 'Target specific repo (leave empty for all)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run - report only, no changes'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  scan-repos:
+    name: Scan Organization Repositories
+    runs-on: ubuntu-latest
+    outputs:
+      repositories: ${{ steps.get-repos.outputs.repositories }}
+    steps:
+      - name: Get organization repositories
+        id: get-repos
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -n "${{ inputs.target_repo }}" ]; then
+            echo "repositories=[\"${{ inputs.target_repo }}\"]" >> $GITHUB_OUTPUT
+          else
+            ORG_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f1)
+            REPOS=$(gh repo list "$ORG_NAME" --limit 1000 --json nameWithOwner --jq '[.[].nameWithOwner]')
+            echo "repositories=$REPOS" >> $GITHUB_OUTPUT
+            echo "Found repos: $REPOS"
+          fi
+
+  enforce-milestones:
+    name: Enforce on ${{ matrix.repository }}
+    needs: scan-repos
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repository: ${{ fromJson(needs.scan-repos.outputs.repositories) }}
+      fail-fast: false
+      max-parallel: 5
+
+    steps:
+      - name: Check and enforce milestone labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          script: |
+            const [owner, repo] = '${{ matrix.repository }}'.split('/');
+            const dryRun = '${{ inputs.dry_run }}' === 'true';
+
+            // Milestone pattern detection
+            const milestonePatterns = [
+              { pattern: /\b(?:m0|milestone[:\s]*0|investor\s*readiness)\b/i, label: 'milestone: M0' },
+              { pattern: /\b(?:m1|milestone[:\s]*1|project\s*visibility)\b/i, label: 'milestone: M1' },
+              { pattern: /\b(?:m2|milestone[:\s]*2|onboarding)\b/i, label: 'milestone: M2' },
+              { pattern: /\b(?:m3|milestone[:\s]*3|community\s*activation)\b/i, label: 'milestone: M3' },
+              { pattern: /\b(?:m4|milestone[:\s]*4|technical\s*foundation)\b/i, label: 'milestone: M4' },
+              { pattern: /\b(?:m5|milestone[:\s]*5|community\s*growth)\b/i, label: 'milestone: M5' },
+              { pattern: /\b(?:m6|milestone[:\s]*6|product\s*milestones?)\b/i, label: 'milestone: M6' }
+            ];
+
+            const taskPatterns = [
+              { pattern: /\b(?:t1|task[:\s]*1)\b/i, label: 'task: T1' },
+              { pattern: /\b(?:t2|task[:\s]*2)\b/i, label: 'task: T2' },
+              { pattern: /\b(?:t3|task[:\s]*3)\b/i, label: 'task: T3' },
+              { pattern: /\b(?:t4|task[:\s]*4)\b/i, label: 'task: T4' },
+              { pattern: /\b(?:t5|task[:\s]*5)\b/i, label: 'task: T5' },
+              { pattern: /\b(?:t6|task[:\s]*6)\b/i, label: 'task: T6' },
+              { pattern: /\b(?:t7|task[:\s]*7)\b/i, label: 'task: T7' },
+              { pattern: /\b(?:t8|task[:\s]*8)\b/i, label: 'task: T8' },
+              { pattern: /\b(?:t9|task[:\s]*9)\b/i, label: 'task: T9' }
+            ];
+
+            const stats = { checked: 0, labeled: 0, skipped: 0 };
+
+            // Get recent open issues (last 30 days or all open)
+            let issues = [];
+            try {
+              const result = await github.rest.issues.listForRepo({
+                owner, repo,
+                state: 'open',
+                per_page: 100,
+                sort: 'updated',
+                direction: 'desc'
+              });
+              issues = result.data;
+            } catch (e) {
+              console.log(`Could not access ${owner}/${repo}: ${e.message}`);
+              return;
+            }
+
+            for (const issue of issues) {
+              stats.checked++;
+              const existingLabels = issue.labels.map(l => l.name);
+              const fullText = `${issue.title} ${issue.body || ''}`;
+              const newLabels = [];
+
+              // Check milestone patterns
+              for (const { pattern, label } of milestonePatterns) {
+                if (pattern.test(fullText) && !existingLabels.includes(label)) {
+                  newLabels.push(label);
+                }
+              }
+
+              // Check task patterns
+              for (const { pattern, label } of taskPatterns) {
+                if (pattern.test(fullText) && !existingLabels.includes(label)) {
+                  newLabels.push(label);
+                }
+              }
+
+              if (newLabels.length > 0) {
+                if (dryRun) {
+                  console.log(`[DRY RUN] Would label ${owner}/${repo}#${issue.number}: ${newLabels.join(', ')}`);
+                } else {
+                  try {
+                    await github.rest.issues.addLabels({
+                      owner, repo,
+                      issue_number: issue.number,
+                      labels: newLabels
+                    });
+                    console.log(`Labeled ${owner}/${repo}#${issue.number}: ${newLabels.join(', ')}`);
+                  } catch (e) {
+                    console.log(`Failed to label ${owner}/${repo}#${issue.number}: ${e.message}`);
+                  }
+                }
+                stats.labeled++;
+              } else {
+                stats.skipped++;
+              }
+            }
+
+            // Also check open PRs
+            let prs = [];
+            try {
+              const result = await github.rest.pulls.list({
+                owner, repo,
+                state: 'open',
+                per_page: 50,
+                sort: 'updated',
+                direction: 'desc'
+              });
+              prs = result.data;
+            } catch (e) {
+              console.log(`Could not fetch PRs for ${owner}/${repo}: ${e.message}`);
+            }
+
+            for (const pr of prs) {
+              stats.checked++;
+              const existingLabels = pr.labels.map(l => l.name);
+              const fullText = `${pr.title} ${pr.body || ''}`;
+              const newLabels = [];
+
+              for (const { pattern, label } of milestonePatterns) {
+                if (pattern.test(fullText) && !existingLabels.includes(label)) {
+                  newLabels.push(label);
+                }
+              }
+
+              for (const { pattern, label } of taskPatterns) {
+                if (pattern.test(fullText) && !existingLabels.includes(label)) {
+                  newLabels.push(label);
+                }
+              }
+
+              if (newLabels.length > 0) {
+                if (dryRun) {
+                  console.log(`[DRY RUN] Would label PR ${owner}/${repo}#${pr.number}: ${newLabels.join(', ')}`);
+                } else {
+                  try {
+                    await github.rest.issues.addLabels({
+                      owner, repo,
+                      issue_number: pr.number,
+                      labels: newLabels
+                    });
+                    console.log(`Labeled PR ${owner}/${repo}#${pr.number}: ${newLabels.join(', ')}`);
+                  } catch (e) {
+                    console.log(`Failed to label PR ${owner}/${repo}#${pr.number}: ${e.message}`);
+                  }
+                }
+                stats.labeled++;
+              }
+            }
+
+            // Report
+            let report = `## ${owner}/${repo}\n`;
+            report += `- Items checked: ${stats.checked}\n`;
+            report += `- Labels applied: ${stats.labeled}\n`;
+            report += `- Already labeled: ${stats.skipped}\n`;
+            if (dryRun) report += `- **DRY RUN** - no changes made\n`;
+
+            core.summary.addRaw(report).write();
+
+  generate-report:
+    name: Generate Sync Report
+    needs: enforce-milestones
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Create summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = `## Cross-Repo Milestone & Goal Sync Complete\n\n`;
+            const timestamp = new Date().toISOString();
+
+            let summary = report;
+            summary += `- **Timestamp**: ${timestamp}\n`;
+            summary += `- **Organization**: Fused-Gaming\n`;
+            summary += `- **Labels enforced**: milestone: M0-M6, task: T1-T9\n`;
+            summary += `- **Mode**: ${('${{ inputs.dry_run }}' === 'true') ? 'DRY RUN' : 'LIVE'}\n\n`;
+            summary += `### Label Definitions\n`;
+            summary += `Labels are synced from \`.github/labels.yml\` via \`sync-labels.yml\`.\n`;
+            summary += `Enforcement rules are defined in \`milestone-task-enforcement.yml\` and \`cross-repo-milestone-sync.yml\`.\n`;
+            summary += `See [LABELS_README.md](https://github.com/Fused-Gaming/.github/blob/main/LABELS_README.md) for full reference.\n`;
+
+            core.summary.addRaw(summary).write();

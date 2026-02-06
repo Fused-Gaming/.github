@@ -64,6 +64,15 @@ Relates to #
 - [ ] I have checked for security vulnerabilities (XSS, SQL injection, etc.)
 - [ ] I have updated the CHANGELOG (if applicable)
 
+## Documentation Impact
+<!-- Per DOCUMENT_CLASSIFICATION_POLICY.md, check all that apply -->
+
+- [ ] No documentation updates needed
+- [ ] Updated relevant docs (list below):
+  -
+- [ ] Verified no confidential/internal information in public changes
+- [ ] Updated `Last Updated` date on all modified docs
+
 ## Breaking Changes
 <!-- If this is a breaking change, describe what breaks and the migration path -->
 
