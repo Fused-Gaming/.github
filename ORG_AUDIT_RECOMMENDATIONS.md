@@ -1,8 +1,9 @@
 # Fused Gaming Organization Audit & Recommendations
 
 **Audit Date**: February 6, 2026
-**Scope**: All 21 repositories, 1 project board, org-level configuration
+**Scope**: 21 public repositories, 1 project board, org-level configuration
 **Auditor**: Claude (automated organizational review)
+**Known Limitation**: This audit covers only the 21 publicly visible repositories. The organization reports 40+ total repositories, meaning ~19+ private repos were not assessed. A follow-up audit with authenticated API access is recommended to cover the full inventory.
 
 ---
 
@@ -65,6 +66,92 @@ The Fused-Gaming organization has a strong governance foundation in the `.github
 | V.I.S.E. VLN-Certifications (#5) | Open | Unknown | 2026-01-12 |
 
 **Note**: Workflows reference Project #10 ("Strategic Goals & Initiatives Board") which does not appear to exist publicly.
+
+### Private Repositories (~19+ not audited)
+
+This audit could only access publicly visible repositories. The organization reports 40+ total repos. Private repos require authenticated GitHub API access to enumerate and assess. Key concerns about the unaudited private repos:
+
+- **Security posture unknown** - Private repos may contain secrets, credentials, or sensitive infrastructure code without proper scanning
+- **Branch hygiene unknown** - If public repos are any indicator (88% stale branch rate), private repos likely have similar issues
+- **Governance gap** - Org-level policies (labels, templates, workflows) may not be applied to private repos
+- **Recommendation**: Run this audit again with a `GH_PAT` that has `repo` scope to cover the full inventory
+
+---
+
+## 1.5. Branch Audit (All Public Repositories)
+
+### Summary Statistics
+
+| Metric | Count |
+|---|---|
+| Total repos scanned | 13 |
+| Total branches found | 46 |
+| Non-default branches | 33 |
+| Stale branches (30+ days) | 29 / 33 (88%) |
+| Repos with zero stale branches | 2 (blackjack-premium, .github) |
+| Repos entirely stale (incl. default) | 8 |
+
+### Already-Merged Branches (Safe to Delete)
+
+| Repo | Branch | Evidence |
+|---|---|---|
+| `.github` | `fix/add-project-scope-docs` | Merged via PR #34, commit `bd7fa41` is ancestor of `master` |
+
+### Stale Claude-Generated Branches (8 total, all unmerged)
+
+These were created by Claude Code sessions but never merged. Review for any salvageable work, then delete:
+
+| Repo | Branch | Age (days) |
+|---|---|---|
+| `GambaReload` | `claude/inventory-project-files-...` | 88 |
+| `vise` | `claude/complete-course-curriculum-...` | 77 |
+| `vise` | `claude/module-2-lesson-breakdown-...` | 76 |
+| `vise` | `claude/curriculum-demos-and-docs-...` | 75 |
+| `DevOps` | `claude/fix-merge-regressions-...` | 70 |
+| `vln` | `claude/merge-branches-safely-...` | 56 |
+| `FUCKIN-DANS-ASS` | `claude/add-bug-template-Izml7` | 49 |
+| `forums` | `claude/forum-infrastructure-docs-Qrw0E` | 44 |
+
+### Automation Artifact Branches (6 total, all in DevOps)
+
+Merge queue leftovers and bot-generated branches that should have been auto-cleaned:
+
+| Repo | Branch | Age (days) |
+|---|---|---|
+| `DevOps` | `gh-readonly-queue/main/pr-52-...` | 76 |
+| `DevOps` | `gh-readonly-queue/main/pr-54-...` | 73 |
+| `DevOps` | `gh-readonly-queue/main/pr-55-...` | 73 |
+| `DevOps` | `alert-autofix-8` | 73 |
+| `DevOps` | `wizardly-morse` | 72 |
+| `DevOps` | `gh-readonly-queue/main/pr-57-...` | 72 |
+
+### Stale Feature/Fix Branches (6 total, review before deleting)
+
+These may contain work that should be merged or documented before deletion:
+
+| Repo | Branch | Age (days) | Notes |
+|---|---|---|---|
+| `stablecoin-aggregators` | `develop` | 43 | May contain active work |
+| `stablecoin-aggregators` | `admin-dashboard` | 43 | Feature branch |
+| `stablecoin-aggregators` | `testnet-deployment` | 43 | Deployment config |
+| `FUCKIN-DANS-ASS` | `fix/workflow-yaml-syntax` | 52 | Fix - check if still needed |
+| `vln` | `fix/workflow-slack-bypass` | 56 | Fix - check if still needed |
+| `blackjack-premium` | `dependabot/npm_and_yarn/multi-...` | 12 | Dependabot PR - merge or close |
+
+### Active Branches (healthy)
+
+| Repo | Branch | Notes |
+|---|---|---|
+| `blackjack-premium` | 13 `feat/M2-T*` branches + `staging` + `development` | All active (Jan 25), Milestone 2 work |
+| `.github` | `claude/migrate-to-correct-repos-QyhYb` | Current session |
+
+### Recommended Branch Cleanup Procedure
+
+1. **Already merged** (1 branch): Delete immediately - `fix/add-project-scope-docs` in `.github`
+2. **Automation artifacts** (6 branches): Delete immediately - no human work to preserve
+3. **Claude-generated stale** (8 branches): Review diffs for any useful work, then delete. Create issues to track any unfinished work worth preserving
+4. **Feature/fix branches** (6 branches): Have the author review each one. Either merge, rebase onto current default, or close with a note explaining why
+5. **Dependabot** (1 branch): Merge the dependency update or close the PR if outdated
 
 ---
 
@@ -232,6 +319,9 @@ SECURITY.md references `security@fusedgaming.org` with a note "(create this emai
 - [ ] Fix quarterly-okr-tracker variable shadowing
 - [ ] Update phantom project board references in workflows
 - [ ] Update GOALS.md with accurate status for completed items
+- [ ] Delete already-merged branch: `.github/fix/add-project-scope-docs`
+- [ ] Delete 6 automation artifact branches in DevOps
+- [ ] Review and clean up 8 stale Claude-generated branches
 
 ### Phase 2: Repository Hygiene (Weeks 2-3)
 - [ ] Standardize all repos to `main` default branch
@@ -239,6 +329,9 @@ SECURITY.md references `security@fusedgaming.org` with a note "(create this emai
 - [ ] Add LICENSE/CONTRIBUTING/SECURITY to all repos missing them
 - [ ] Configure Dependabot org-wide
 - [ ] Fix profile README image paths
+- [ ] Review 6 stale feature/fix branches (stablecoin-aggregators, vln, FUCKIN-DANS-ASS)
+- [ ] Merge or close lingering Dependabot PR in blackjack-premium
+- [ ] Run full audit of ~19+ private repos with authenticated API access
 
 ### Phase 3: Process Activation (Weeks 3-4)
 - [ ] Create the Strategic Goals & Initiatives project board
@@ -274,5 +367,6 @@ This audit was conducted by:
 
 **Next Steps**: Review these recommendations with the core team, prioritize based on available capacity, and create GitHub issues for each accepted item using the existing issue templates.
 
-**Document Version**: 1.0
+**Document Version**: 1.1
 **Last Updated**: February 6, 2026
+**Changelog**: v1.1 - Added branch audit across all 13 public repos, private repo coverage gap, cleanup procedures
