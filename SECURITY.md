@@ -117,7 +117,7 @@ We believe in recognizing security researchers who help keep our community safe:
 
 ---
 
-**Last Updated**: September 2025  
-**Next Review**: July 2025
+**Last Updated**: February 2026
+**Next Review**: August 2026
 
 *This security policy is a living document and may be updated as our organization and projects evolve. Check back regularly for the latest version.*
