@@ -35,6 +35,7 @@ Documents visible to anyone. Must NOT contain trade secrets, financials, investo
 | `GOALS.md` | Strategic | Monthly progress update, quarterly revision |
 | `CODE_OF_CONDUCT.md` | Policy | Annually |
 | `WORKSPACE_GUIDE.md` | Reference | On tooling changes |
+| `LABELS_README.md` | Reference | On label definition or auto-labeling rule changes |
 | `.github/workflows/README.md` | Reference | On workflow changes |
 
 **Rule**: Any PR that modifies workflows, labels, templates, or board configuration MUST include corresponding doc updates as part of the PR checklist.
@@ -185,6 +186,7 @@ Every living document MUST have a designated owner responsible for freshness.
 | `CONTRIBUTING.md` | Any maintainer | On process changes | PR gate |
 | `SECURITY.md` | Security lead | Semi-annually | Scheduled audit |
 | `ORG_AUDIT_RECOMMENDATIONS.md` | Core Team | Per audit cycle | Manual |
+| `LABELS_README.md` | Core Team / DevOps lead | On label or workflow changes | PR gate |
 | `.github/workflows/README.md` | DevOps lead | On workflow changes | PR gate |
 
 ---

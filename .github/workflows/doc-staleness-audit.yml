@@ -35,7 +35,8 @@ jobs:
               { file: 'CONTRIBUTING.md', cadence: 'quarterly' },
               { file: 'GOVERNANCE.md', cadence: 'quarterly' },
               { file: 'GOVERNANCE_PROTOCOL.md', cadence: 'quarterly' },
-              { file: 'DOCUMENT_CLASSIFICATION_POLICY.md', cadence: 'quarterly' }
+              { file: 'DOCUMENT_CLASSIFICATION_POLICY.md', cadence: 'quarterly' },
+              { file: 'LABELS_README.md', cadence: 'quarterly' }
             ];
 
             for (const doc of docs) {

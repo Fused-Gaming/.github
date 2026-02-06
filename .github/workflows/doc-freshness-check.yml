@@ -39,7 +39,8 @@ jobs:
               'CONTRIBUTING.md',
               'GOVERNANCE.md',
               'GOVERNANCE_PROTOCOL.md',
-              'DOCUMENT_CLASSIFICATION_POLICY.md'
+              'DOCUMENT_CLASSIFICATION_POLICY.md',
+              'LABELS_README.md'
             ];
 
             // Check each living doc for Last Updated date
@@ -83,12 +84,20 @@ jobs:
             const changesWorkflows = files.some(f => f.includes('.github/workflows/') && f.endsWith('.yml'));
             const changesWorkflowDocs = files.includes('.github/workflows/README.md');
             const changesLabels = files.includes('.github/labels.yml') || files.includes('labels.yml');
+            const changesAutoLabeling = files.includes('.github/workflows/auto-label-issues.yml');
+            const changesLabelDocs = files.includes('LABELS_README.md');
             const changesBoardDocs = files.includes('PROJECT_BOARD_GUIDE.md');
             const changesTemplates = files.some(f => f.includes('ISSUE_TEMPLATE'));
             const missingUpdates = [];
 
             if (changesWorkflows && !changesWorkflowDocs) {
               missingUpdates.push('- Workflows changed but `.github/workflows/README.md` not updated');
+            }
+            if (changesLabels && !changesLabelDocs) {
+              missingUpdates.push('- Label definitions changed but `LABELS_README.md` not updated');
+            }
+            if (changesAutoLabeling && !changesLabelDocs) {
+              missingUpdates.push('- Auto-labeling rules changed but `LABELS_README.md` not updated');
             }
             if (changesLabels && !changesBoardDocs) {
               missingUpdates.push('- Labels changed but `PROJECT_BOARD_GUIDE.md` not updated');

@@ -311,11 +311,54 @@ SECURITY.md references `security@fusedgaming.org` with a note "(create this emai
 
 ---
 
-## 5.5. Document Governance (NEW - Added Feb 6, 2026)
+## 5.6 Label Governance (NEW - Added Feb 6, 2026)
+
+### Problem Statement
+
+Three separate label definition sources (`labels.json`, `.github/labels.yml`, `auto-label-issues.yml`) existed with no unified reference, no mapping between labels and their triggering rules, and no documentation of downstream workflow effects. Multiple name conflicts between label definitions and consuming workflows mean some automation silently fails.
+
+### What Was Implemented
+
+1. **[LABELS_README.md](LABELS_README.md)** - Comprehensive label governance reference (v2.0) that:
+   - Maps all 83+ labels to their definition source, auto-labeling rules, and trigger keywords
+   - Distinguishes auto-applied (30 labels) vs manual-only (53 labels)
+   - Documents downstream effects per label (milestone assignment, goal alignment, OKR tracking)
+   - Cross-references all consuming workflows
+   - Includes maintenance checklists for adding/modifying labels
+
+2. **doc-freshness-check.yml** updated to enforce `LABELS_README.md` updates when labels or auto-labeling rules change
+
+3. **doc-staleness-audit.yml** updated to track `LABELS_README.md` freshness (quarterly cadence)
+
+4. **DOCUMENT_CLASSIFICATION_POLICY.md** updated to include `LABELS_README.md` in PUBLIC docs table and ownership matrix
+
+### Critical Conflicts Found
+
+| Issue | Impact | Resolution |
+|---|---|---|
+| Priority LOW vs INFO mismatch | `[low]` keywords map to `ℹ️Priority:INFO` not `🟢Priority:LOW` | Decide on P3/P4 label standard |
+| 5 type labels missing from `labels.yml` | `type: documentation/infrastructure/test/governance/security` fail on new repos | Add to `labels.yml` |
+| Blocked status name mismatch | OKR tracker searches `status: blocked` but label is `🐌BLOCKED` | Align names |
+| Goal alignment case mismatch | Checks `priority: critical` but label is `🚨Priority:CRITICAL` | Fix comparison logic |
+
+### Still Required
+
+- [ ] Resolve Priority LOW vs INFO conflict
+- [ ] Add 5 missing `type:` labels to `labels.yml`
+- [ ] Fix `quarterly-okr-tracker.yml` to reference `🐌BLOCKED` instead of `status: blocked`
+- [ ] Fix `goal-alignment-check.yml` label matching to use correct case/format
+- [ ] Deprecate or document `labels.json` + shell scripts as legacy
+- [ ] Add auto-labeling for `area: database` keywords
+- [ ] Consider template-driven auto-application of quarter/year labels
+
+---
+
+## 5.7 Document Governance (Added Feb 6, 2026)
 
 ### Problem Statement
 
 Living documents (PROJECT_BOARD_GUIDE.md, GOALS.md, MILESTONES_OVERVIEW.md, etc.) go stale within weeks because there is no enforcement mechanism tying document updates to code changes. Additionally, `MILESTONES_OVERVIEW.md` contains confidential business information (investor readiness, revenue models, funding status) in a public repository, violating the org's own GOVERNANCE_PROTOCOL.md Protocol 9.3.
+
 
 ### What Was Implemented
 
@@ -381,7 +424,9 @@ Living documents (PROJECT_BOARD_GUIDE.md, GOALS.md, MILESTONES_OVERVIEW.md, etc.
 - [ ] Create reusable CI/CD workflow templates
 - [ ] Set up org-wide CODEOWNERS
 - [ ] Classify dormant repos (archive or seek maintainer)
+- [x] Create comprehensive label governance reference (done: LABELS_README.md v2.0)
 - [ ] Consolidate and reduce label set
+- [ ] Resolve label conflicts identified in Section 5.6
 
 ### Phase 5: Community & Growth (Month 2-3)
 - [ ] Establish Discord (or remove references)
@@ -405,9 +450,10 @@ This audit was conducted by:
 
 **Next Steps**: Review these recommendations with the core team, prioritize based on available capacity, and create GitHub issues for each accepted item using the existing issue templates.
 
-**Document Version**: 1.2
+**Document Version**: 1.3
 **Last Updated**: February 6, 2026
 **Changelog**:
+- v1.3 - Added label governance reference (LABELS_README.md v2.0), label conflict analysis, enforcement integration for label/auto-labeling doc updates
 - v1.2 - Added document governance protocol, classification policy, enforcement workflows, trade secret remediation plan, PR template update, PROJECT_BOARD_GUIDE fixes
 - v1.1 - Added branch audit across all 13 public repos, private repo coverage gap, cleanup procedures
 - v1.0 - Initial audit of 21 public repositories and 1 project board

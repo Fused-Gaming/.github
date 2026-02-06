@@ -187,6 +187,8 @@ Defines all organization-wide labels with:
 
 **To modify**: Edit `labels.yml` and sync will run automatically
 
+**Full reference**: See [LABELS_README.md](../../LABELS_README.md) for complete label-to-rule mappings, downstream workflow effects, and known conflicts
+
 ---
 
 ## Permissions Required
