@@ -7,6 +7,8 @@
 **Classification**: PUBLIC
 **Related**: DOCUMENT_CLASSIFICATION_POLICY.md, GOVERNANCE_PROTOCOL.md Protocol 9.3
 
+> **⚠️ COMPLIANCE NOTICE**: This document is a strategic framework and contains HYPOTHETICAL EXAMPLES with placeholder values (e.g., [REDACTED], [AMOUNT]) to illustrate concepts. All specific financial figures, investor names, and partnership details have been redacted per DOCUMENT_CLASSIFICATION_POLICY.md. This document does NOT contain actual confidential business information.
+
 ---
 
 ## Executive Summary
@@ -339,14 +341,14 @@ External Secure Storage (Google Drive/Notion)
 
 **✅ DETAILED (Internal Dashboard - Private Repo)**:
 ```markdown
-**Current Status**: Pre-revenue, targeting $500K-$1M seed round
-**Cash Position**: $50K runway (3 months at current burn)
-**Burn Rate**: ~$15K/month (mostly contractors and infrastructure)
+**Current Status**: Pre-revenue, targeting [SEED_ROUND_AMOUNT] seed round
+**Cash Position**: [CURRENT_CASH] runway ([X] months at current burn)
+**Burn Rate**: ~[MONTHLY_BURN]/month (mostly contractors and infrastructure)
 **Fundraising Target**: Close by Q2 2026
 **Investor Pipeline**:
   - 5 intro calls completed
   - 2 second meetings scheduled
-  - 1 term sheet in negotiation (Investor A, $250K SAFE)
+  - 1 term sheet in negotiation (Investor [REDACTED], [AMOUNT] SAFE)
 **Pitch Deck Status**: v2.3 complete, financials updated Jan 2026
 ```
 
@@ -356,9 +358,9 @@ External Secure Storage (Google Drive/Notion)
 
 **❌ WRONG (Publicly exposing NDA details)**:
 ```markdown
-We're in discussions with Discord Inc. for potential API partnership
-Terms: Revenue share 70/30, 2-year exclusive
-Expected value: $200K ARR
+We're in discussions with [Company Name] for potential API partnership
+Terms: Revenue share [X]/[Y], [N]-year exclusive
+Expected value: [ANNUAL_VALUE] ARR
 ```
 
 **✅ CORRECT (Public Dashboard)**:
@@ -373,7 +375,7 @@ Expected value: $200K ARR
 **Active Partnership Pipeline**:
 
 1. **Partner A (Gaming Platform)** - Stage: Term sheet review
-   - Value: $150-200K ARR
+   - Value: [PARTNERSHIP_VALUE] ARR
    - Timeline: Q2 2026 launch
    - Status: Legal review of rev share terms
    - Blocker: Awaiting their Q1 budget approval
@@ -509,7 +511,7 @@ This involves business details we keep private to protect competitive positionin
 and respect our investors' confidentiality preferences.
 
 For business inquiries, please reach out to:
-- 📧 Email: business@fusedgaming.org
+- 📧 Email: [business-contact]
 - 💬 Telegram: @fusedgg (DM for sensitive topics)
 - 🔗 LinkedIn: [link]
 

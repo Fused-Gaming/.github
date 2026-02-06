@@ -6,6 +6,8 @@
 **Status**: Recommended Approach
 **Classification**: PUBLIC
 
+> **⚠️ COMPLIANCE NOTICE**: This document is a strategic framework with HYPOTHETICAL EXAMPLES. All specific amounts, investor names, and confidential details use placeholders (e.g., [AMOUNT], [NAME], [REDACTED]) per DOCUMENT_CLASSIFICATION_POLICY.md. This document does NOT contain actual confidential business information.
+
 ---
 
 ## The Problem
@@ -194,7 +196,7 @@ Hi @username,
 Thanks for your interest! This topic involves confidential business information that we handle privately to protect competitive positioning and investor preferences.
 
 **For private business inquiries:**
-- 📧 Email: business@fusedgaming.org *(if available)*
+- 📧 Email: [business-contact] *(if available)*
 - 💬 Telegram: [@fusedgg](https://t.me/fusedgg) - Send a DM
 - 🔗 LinkedIn: [Fused Gaming Company Page](https://www.linkedin.com/company/fusedgg/)
 
@@ -297,7 +299,7 @@ Maintainers will review and respond appropriately.
 |---------------|---------------|---------|
 | **General strategy** | Answer publicly | "Our fundraising strategy focuses on strategic investors in gaming/blockchain" |
 | **Specific funding** | Redirect to DM | "For funding details, please DM on Telegram" |
-| **Investor intro** | Thank + redirect | "Thanks! Please email intro to business@fusedgaming.org" |
+| **Investor intro** | Thank + redirect | "Thanks! Please email intro to [business-contact]" |
 | **Partnership proposal** | Thank + redirect | "Appreciate the interest! DM on Telegram to discuss" |
 | **Metrics question** | Answer with ranges | "We have 200-500 community members across platforms" |
 | **Progress update** | Refer to latest post | "See our latest update here: [link to discussion]" |
@@ -361,10 +363,10 @@ Before posting ANY update, check:
 - ✅ "On track to meet milestones"
 
 **Unsafe phrases**:
-- ❌ "Raising $500K at $5M valuation"
-- ❌ "Investor John Smith committed $100K"
-- ❌ "Burn rate is $15K/month"
-- ❌ "Term sheet with Investor A for $250K"
+- ❌ "Raising [SPECIFIC_AMOUNT] at [VALUATION]"
+- ❌ "Investor [NAME] committed [AMOUNT]"
+- ❌ "Burn rate is [AMOUNT]/month"
+- ❌ "Term sheet with Investor [X] for [AMOUNT]"
 
 ---
 

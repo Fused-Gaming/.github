@@ -5,6 +5,9 @@
 **Planning Period**: 2026 Q1-Q4
 **Organization**: Fused Gaming
 **Status**: Pre-revenue, Early-Stage Growth Phase
+**Classification**: PUBLIC - Planning Document
+
+> **📋 PLANNING NOTICE**: This document contains market-rate compensation estimates for contractor planning purposes. Budget figures are based on 2026 US market rates and do not represent committed spending or actual organizational financials. Actual hiring decisions depend on priorities and funding availability.
 
 ---
 
@@ -363,7 +366,7 @@ This document outlines potential contracting opportunities for milestone-based S
 ### Contract Requirements
 - Independent contractor agreement
 - Intellectual property assignment to Fused Gaming
-- Non-disclosure agreement (NDA)
+- Confidentiality agreement (standard contractor terms)
 - Code ownership transfer upon full payment
 - 90-day bug fix warranty for development work
 
@@ -564,7 +567,7 @@ Before hiring can begin:
 - Rates may vary based on location, experience, and negotiation
 - Part-time and fractional engagements available for some roles
 - Multiple smaller contractors may fulfill large projects
-- Equity/token compensation may be considered for long-term engagements
+- Alternative compensation structures may be considered for long-term engagements
 - Opportunities to transition to core team for exceptional contributors
 
 ---
