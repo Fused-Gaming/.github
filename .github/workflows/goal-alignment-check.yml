@@ -32,11 +32,21 @@ jobs:
 
             // Try to fetch GOALS.md from .github repository
             try {
-              const response = await github.rest.repos.getContent({
-                owner: 'Fused-Gaming',
-                repo: '.github',
-                path: 'GOALS.md'
-              });
+              let response;
+              try {
+                response = await github.rest.repos.getContent({
+                  owner: 'Fused-Gaming',
+                  repo: '.github',
+                  path: 'docs/planning/GOALS.md'
+                });
+              } catch (e) {
+                // Fallback to legacy root path during transition
+                response = await github.rest.repos.getContent({
+                  owner: 'Fused-Gaming',
+                  repo: '.github',
+                  path: 'GOALS.md'
+                });
+              }
 
               const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
 
