@@ -319,7 +319,7 @@ Three separate label definition sources (`labels.json`, `.github/labels.yml`, `a
 
 ### What Was Implemented
 
-1. **[LABELS_README.md](LABELS_README.md)** - Comprehensive label governance reference (v2.0) that:
+1. **[LABELS_README.md](../operations/LABELS_README.md)** - Comprehensive label governance reference (v2.0) that:
    - Maps all 83+ labels to their definition source, auto-labeling rules, and trigger keywords
    - Distinguishes auto-applied (30 labels) vs manual-only (53 labels)
    - Documents downstream effects per label (milestone assignment, goal alignment, OKR tracking)
@@ -362,7 +362,7 @@ Living documents (PROJECT_BOARD_GUIDE.md, GOALS.md, MILESTONES_OVERVIEW.md, etc.
 
 ### What Was Implemented
 
-1. **[DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md)** - Establishes PUBLIC/INTERNAL/CONFIDENTIAL tiers, update triggers per document, ownership matrix, and enforcement mechanisms
+1. **[DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md)** - Establishes PUBLIC/INTERNAL/CONFIDENTIAL tiers, update triggers per document, ownership matrix, and enforcement mechanisms
 
 2. **doc-freshness-check.yml** (workflow) - PR merge gate that:
    - Flags stale docs (>90 days = error, >60 days = warning)

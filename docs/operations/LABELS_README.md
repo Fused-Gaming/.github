@@ -176,7 +176,7 @@ All auto-applied based on body content or body length.
 
 ### Milestone Labels (Roadmap Tracking)
 
-Maps to the organizational milestones defined in [MILESTONES_OVERVIEW.md](MILESTONES_OVERVIEW.md). Auto-applied by `milestone-task-enforcement.yml` when title/body contains milestone references.
+Maps to the organizational milestones defined in [MILESTONES_OVERVIEW.md](../planning/MILESTONES_OVERVIEW.md). Auto-applied by `milestone-task-enforcement.yml` when title/body contains milestone references.
 
 | Label | Color | Auto-Applied | Trigger Keywords | Downstream Effects |
 |---|---|---|---|---|
@@ -558,7 +558,7 @@ gh workflow run sync-labels.yml --repo Fused-Gaming/.github
 - [`.github/workflows/goal-alignment-check.yml`](.github/workflows/goal-alignment-check.yml) - Goal alignment
 - [`.github/workflows/quarterly-okr-tracker.yml`](.github/workflows/quarterly-okr-tracker.yml) - OKR tracking
 - [`.github/workflows/README.md`](.github/workflows/README.md) - Workflow documentation
-- [`DOCUMENT_CLASSIFICATION_POLICY.md`](DOCUMENT_CLASSIFICATION_POLICY.md) - Document governance
+- [`DOCUMENT_CLASSIFICATION_POLICY.md`](../governance/DOCUMENT_CLASSIFICATION_POLICY.md) - Document governance
 
 ---
 

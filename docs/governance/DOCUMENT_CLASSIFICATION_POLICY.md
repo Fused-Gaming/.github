@@ -194,9 +194,9 @@ Every living document MUST have a designated owner responsible for freshness.
 ## Related Documents
 
 - [GOVERNANCE_PROTOCOL.md](GOVERNANCE_PROTOCOL.md) - Protocol 9.3 (Transparency Exceptions)
-- [SECURITY.md](SECURITY.md) - Security reporting and handling
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution process
-- [ORG_AUDIT_RECOMMENDATIONS.md](ORG_AUDIT_RECOMMENDATIONS.md) - Current audit findings
+- [SECURITY.md](../../SECURITY.md) - Security reporting and handling
+- [CONTRIBUTING.md](../../CONTRIBUTING.md) - Contribution process
+- [ORG_AUDIT_RECOMMENDATIONS.md](../audit/ORG_AUDIT_RECOMMENDATIONS.md) - Current audit findings
 
 ---
 

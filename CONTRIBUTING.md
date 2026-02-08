@@ -38,8 +38,8 @@ Report violations to the core team via our [security contact](SECURITY.md).
 ### 1. Explore the Organization
 
 - Review our [README](README.md) to understand our mission
-- Read the [GOVERNANCE](GOVERNANCE.md) to understand how we operate
-- Check out [GOALS.md](GOALS.md) to see our strategic objectives
+- Read the [GOVERNANCE](docs/governance/GOVERNANCE.md) to understand how we operate
+- Check out [GOALS.md](docs/planning/GOALS.md) to see our strategic objectives
 - Browse existing projects and repositories
 
 ### 2. Join the Community
@@ -429,10 +429,10 @@ Instead:
 ## Resources
 
 ### Documentation
-- [GOVERNANCE.md](GOVERNANCE.md) - How we make decisions
-- [GOALS.md](GOALS.md) - What we're working toward
+- [GOVERNANCE.md](docs/governance/GOVERNANCE.md) - How we make decisions
+- [GOALS.md](docs/planning/GOALS.md) - What we're working toward
 - [SECURITY.md](SECURITY.md) - Security policies
-- [PROJECT_BOARD_GUIDE.md](PROJECT_BOARD_GUIDE.md) - Project tracking
+- [PROJECT_BOARD_GUIDE.md](docs/operations/PROJECT_BOARD_GUIDE.md) - Project tracking
 
 ### Tools
 - [GitHub Desktop](https://desktop.github.com/) - Git GUI

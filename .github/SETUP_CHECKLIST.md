@@ -178,7 +178,7 @@ After completing setup, verify:
 - [Label Definitions](/.github/labels.yml) - All 83 organization labels
 - [Sync Setup Guide](/.github/workflows/SYNC_LABELS_SETUP.md) - Detailed token setup
 - [Workflow README](/.github/workflows/README.md) - All workflow documentation
-- [Workspace Guide](/WORKSPACE_GUIDE.md) - VS Code configuration
+- [Workspace Guide](/docs/operations/WORKSPACE_GUIDE.md) - VS Code configuration
 - [Fix Summary](/.github/LABEL_SYNC_FIX.md) - What was changed and why
 
 ## 🎯 Next Steps After Setup

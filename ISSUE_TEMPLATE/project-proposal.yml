@@ -11,7 +11,7 @@ body:
         ## Propose a New Project
         Thank you for proposing a new project! New projects help expand our gaming ecosystem and community impact.
 
-        Review [GOVERNANCE.md](../GOVERNANCE.md) for the project approval process.
+        Review [GOVERNANCE.md](../docs/governance/GOVERNANCE.md) for the project approval process.
 
   - type: input
     id: project-name

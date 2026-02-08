@@ -281,7 +281,7 @@ Edit the sync step:
 4. Verify in a test repository first
 
 ### Questions about label strategy?
-- Review [../LABELS_README.md](../LABELS_README.md)
+- Review [LABELS_README.md](../../docs/operations/LABELS_README.md)
 - Check [../LABEL_SYNC_FIX.md](../LABEL_SYNC_FIX.md) for context
 
 ---

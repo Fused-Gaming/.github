@@ -602,9 +602,9 @@ Track effectiveness of this strategy:
 
 ## Related Documents
 
-- [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md) - Classification levels
-- [GOVERNANCE_PROTOCOL.md](GOVERNANCE_PROTOCOL.md) - Protocol 9.3 (Transparency Exceptions)
-- [MILESTONES_OVERVIEW.md](MILESTONES_OVERVIEW.md) - M0: Investor Readiness
+- [DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md) - Classification levels
+- [GOVERNANCE_PROTOCOL.md](../governance/GOVERNANCE_PROTOCOL.md) - Protocol 9.3 (Transparency Exceptions)
+- [MILESTONES_OVERVIEW.md](../planning/MILESTONES_OVERVIEW.md) - M0: Investor Readiness
 - [SECURITY.md](SECURITY.md) - Security and privacy practices
 - [JOB_OPPORTUNITIES_SUMMARY.md](JOB_OPPORTUNITIES_SUMMARY.md) - Budget context
 
