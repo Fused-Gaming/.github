@@ -6,7 +6,171 @@ This guide explains how Fused Gaming uses GitHub Projects to track goals, initia
 
 **Active Project Boards**:
 - [V.I.S.E. VLN-Certifications](https://github.com/orgs/Fused-Gaming/projects/5) - Currently active
-- Fused Gaming Goals & Initiatives - Planned (see [ORG_AUDIT_RECOMMENDATIONS.md](ORG_AUDIT_RECOMMENDATIONS.md) Section 4.1)
+- [Fused Gaming Goals & Initiatives](https://github.com/orgs/Fused-Gaming/projects/10) - Primary strategic tracking board
+
+---
+
+## Project #10 Setup & Configuration
+
+### Status: ✅ Verified Setup Required
+
+As of the latest verification (see Issue #21), **Project #10 "Fused Gaming Goals & Initiatives"** requires proper setup with the standardized column structure and automation rules documented below.
+
+### Quick Setup Checklist
+
+Use this checklist to set up or verify Project #10:
+
+- [ ] **Create Project Board** (if not exists): Navigate to https://github.com/orgs/Fused-Gaming/projects and create new project
+- [ ] **Set Project Name**: "Fused Gaming Goals & Initiatives"
+- [ ] **Set Project Description**: "Strategic goals, quarterly OKRs, and organizational initiatives tracking"
+- [ ] **Create 5 Columns** (in order, left to right):
+  - [ ] 📋 Backlog
+  - [ ] 🎯 Planned
+  - [ ] 🚧 In Progress
+  - [ ] 👀 Review
+  - [ ] ✅ Done
+- [ ] **Configure Automation Rules** (see detailed section below)
+- [ ] **Test Workflow** (create test issue, verify automation)
+- [ ] **Archive Test Items** (clean up after verification)
+- [ ] **Update This Document** (mark setup as complete, add project URL)
+
+### Detailed Column Configuration
+
+Each column should be configured with specific automation rules:
+
+#### 📋 Backlog
+**Purpose**: Newly proposed items awaiting triage
+
+**Automation Rules**:
+- ✅ Auto-add: New issues with label `type: goal-proposal`
+- ✅ Auto-add: New issues with label `type: project-proposal`
+- ✅ Auto-add: New issues with label `status: needs-triage`
+- ✅ Auto-add: All newly created issues (optional - can be disabled if too noisy)
+
+**Manual Workflow**:
+- Weekly triage review by core team
+- Add priority and size labels during triage
+- Move approved items to "Planned"
+
+#### 🎯 Planned
+**Purpose**: Approved work scheduled for current or upcoming quarter
+
+**Automation Rules**:
+- ✅ Auto-move: Issues labeled `priority: critical`
+- ✅ Auto-move: Issues labeled `status: approved`
+- ✅ Auto-move: Issues assigned to current milestone
+- ✅ Auto-move: Issues labeled `quarter: current` (if using quarter labels)
+
+**Manual Workflow**:
+- Sprint planning: Select items to work on
+- Assign target dates and milestones
+- Ensure resources are allocated
+
+#### 🚧 In Progress
+**Purpose**: Work actively being done right now
+
+**Automation Rules**:
+- ✅ Auto-move: Issues assigned to a user (from Planned or Backlog)
+- ✅ Auto-move: Issues labeled `status: in-progress`
+- ✅ Auto-move: Issues with linked draft PR opened
+
+**Manual Workflow**:
+- Developers self-assign and move to this column
+- Regular progress updates via comments
+- Move to Review when PR is ready
+
+#### 👀 Review
+**Purpose**: Code review, testing, or approval stage
+
+**Automation Rules**:
+- ✅ Auto-move: PR opened and marked "Ready for Review"
+- ✅ Auto-move: Issues labeled `status: in-review`
+- ✅ Auto-move: Issues with linked PR requesting review
+
+**Manual Workflow**:
+- Reviewers provide feedback
+- Authors address review comments
+- Approved PRs ready for merge
+
+**View Settings**:
+- Sort by: Oldest first (items waiting longest get priority)
+- Highlight: Items with no reviews after 48 hours
+
+#### ✅ Done
+**Purpose**: Completed and shipped work
+
+**Automation Rules**:
+- ✅ Auto-move: Linked PR merged to default branch
+- ✅ Auto-move: Issue closed with label `resolution: completed`
+- ✅ Auto-move: Issue closed (without `resolution: wontfix` or `resolution: duplicate`)
+- ✅ Auto-archive: Items in Done for 30+ days (keeps board clean)
+
+**Manual Workflow**:
+- Verify deployment/completion
+- Update related documentation (GOALS.md, etc.)
+- Celebrate wins! 🎉
+
+### Setting Up Automation Rules
+
+To configure automation in GitHub Projects:
+
+1. **Navigate to Project Settings**:
+   - Go to https://github.com/orgs/Fused-Gaming/projects/10
+   - Click the "⋯" menu → "Settings"
+
+2. **Enable Built-in Automations**:
+   - Go to "Workflows" tab
+   - Enable "Auto-add to project" workflows
+   - Enable "Auto-move" workflows per column
+
+3. **Configure Label-Based Rules**:
+   ```
+   When: Issue labeled "type: goal-proposal"
+   Then: Add to project → Move to "📋 Backlog"
+
+   When: Issue labeled "priority: critical"
+   Then: Move to "🎯 Planned"
+
+   When: Issue assigned
+   Then: Move to "🚧 In Progress"
+
+   When: Pull request opened
+   Then: Move to "👀 Review"
+
+   When: Pull request merged
+   Then: Move to "✅ Done"
+
+   When: Issue closed
+   Then: Move to "✅ Done"
+   ```
+
+4. **Configure Auto-Archive**:
+   - In "✅ Done" column settings
+   - Enable "Auto-archive items"
+   - Set threshold: 30 days
+
+### Testing Your Setup
+
+After configuration, test the automation:
+
+1. **Create Test Issue**:
+   ```
+   Title: [TEST] Verify Project Board Automation
+   Labels: type: goal-proposal, status: needs-triage
+   ```
+
+2. **Verify Auto-Add**: Issue should appear in "📋 Backlog"
+
+3. **Test Label Triggers**:
+   - Add `priority: critical` → Should move to "🎯 Planned"
+   - Assign to yourself → Should move to "🚧 In Progress"
+
+4. **Test PR Workflow**:
+   - Create draft PR linked to issue
+   - Mark PR ready for review → Issue moves to "👀 Review"
+   - Merge PR → Issue moves to "✅ Done"
+
+5. **Clean Up**: Close and archive test issue
 
 ---
 
@@ -195,18 +359,45 @@ Shows all items across all statuses
 
 ## Automation
 
-### Automatic Behaviors
-- New issues → Added to board (Backlog)
-- Issue labeled `priority: critical` → Moved to Planned
-- PR opened → Linked items move to Review
-- PR merged → Linked items move to Done
-- Issue closed → Moved to Done
+**See [Project #10 Setup & Configuration](#project-10-setup--configuration) above for detailed automation rules and configuration steps.**
+
+### Automatic Behaviors (Summary)
+
+| Trigger | Action | Destination Column |
+|---------|--------|-------------------|
+| New issue with `type: goal-proposal` | Auto-add to project | 📋 Backlog |
+| New issue with `type: project-proposal` | Auto-add to project | 📋 Backlog |
+| Issue labeled `priority: critical` | Auto-move | 🎯 Planned |
+| Issue labeled `status: approved` | Auto-move | 🎯 Planned |
+| Issue assigned to user | Auto-move | 🚧 In Progress |
+| Issue labeled `status: in-progress` | Auto-move | 🚧 In Progress |
+| Pull request opened (linked issue) | Auto-move | 👀 Review |
+| Issue labeled `status: in-review` | Auto-move | 👀 Review |
+| Pull request merged | Auto-move | ✅ Done |
+| Issue closed (completed) | Auto-move | ✅ Done |
+| Item in Done for 30+ days | Auto-archive | (Archived) |
 
 ### Manual Workflows
-- Triage (weekly)
-- Sprint planning (as needed)
-- Quarterly review
-- Annual planning
+- **Weekly**: Backlog triage and prioritization
+- **Sprint Planning**: Move Planned items to In Progress
+- **Daily/As-Needed**: Update item status, move cards manually when automation doesn't trigger
+- **Monthly**: Progress review on strategic goals
+- **Quarterly**: OKR review and planning
+- **Annual**: Strategic goal setting and retrospective
+
+### Manual Card Movement
+
+While automation handles most transitions, you may need to manually move cards when:
+
+1. **Reprioritizing Work**: Drag items between Backlog and Planned based on changing priorities
+2. **Blocking Issues**: Move item back from In Progress to Planned if blocked
+3. **Skipping Stages**: Move item directly to Done if completed without formal review (e.g., documentation fixes)
+4. **Reverting Automation**: If automation moves an item incorrectly, drag it to the correct column
+5. **Batch Operations**: During planning sessions, manually organize multiple items at once
+
+**To manually move a card**:
+- Simply drag and drop the card to the desired column
+- Or click the "⋯" menu on the card → "Move to" → Select column
 
 ---
 
@@ -337,6 +528,9 @@ This document is classified **PUBLIC** per [DOCUMENT_CLASSIFICATION_POLICY.md](D
 - Workflow automation affecting the board is changed
 - New project boards are created or retired
 
+**Recent Updates**:
+- **Feb 8, 2026**: Added comprehensive Project #10 setup documentation per Issue #21, including detailed automation rules, column configuration, and testing workflow
+
 ---
 
 ## Continuous Improvement
@@ -351,7 +545,8 @@ This project board system is iterative:
 
 ---
 
-**Last Updated**: February 6, 2026
+**Last Updated**: February 8, 2026
 **Next Review**: May 2026
+**Related Issues**: [#21 - Verify and Document Project Board Column Setup](https://github.com/Fused-Gaming/.github/issues/21)
 
 Questions? Open a discussion or ask in our [Telegram channel](https://t.me/fusedgg)!
