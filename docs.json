@@ -122,6 +122,14 @@
           "owner": "Core Team"
         },
         {
+          "file": "docs/operations/PROJECT_BOARD_VERIFICATION.md",
+          "title": "Project Board #10 Verification Report",
+          "classification": "PUBLIC",
+          "updateCadence": "Per audit cycle",
+          "owner": "Core Team",
+          "relatedIssue": "#21"
+        },
+        {
           "file": "docs/operations/WORKSPACE_GUIDE.md",
           "title": "VS Code Workspace Guide",
           "classification": "PUBLIC",
