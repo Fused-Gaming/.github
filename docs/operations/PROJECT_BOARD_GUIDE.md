@@ -317,8 +317,8 @@ Generated from project board data:
 - [GOALS.md](../planning/GOALS.md) - Current strategic goals
 
 ### Templates
-- [Issue Templates](.github/ISSUE_TEMPLATE/)
-- [PR Template](.github/PULL_REQUEST_TEMPLATE.md)
+- [Issue Templates](../../ISSUE_TEMPLATE/)
+- [PR Template](../../PULL_REQUEST_TEMPLATE.md)
 
 ### Support
 - **GitHub Discussions**: Ask questions
@@ -351,7 +351,7 @@ This project board system is iterative:
 
 ---
 
-**Last Updated**: February 6, 2026
+**Last Updated**: February 8, 2026
 **Next Review**: May 2026
 
 Questions? Open a discussion or ask in our [Telegram channel](https://t.me/fusedgg)!
