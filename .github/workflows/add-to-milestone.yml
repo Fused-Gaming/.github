@@ -42,7 +42,7 @@ jobs:
             // Find "Strategic Backlog" milestone
             const milestones = await github.rest.issues.listMilestones({
               owner: context.repo.owner,
-              repo: context.repo.repo,
+              repo: context.repo.name,
               state: 'open'
             });
 
@@ -52,7 +52,7 @@ jobs:
             if (!backlog) {
               const created = await github.rest.issues.createMilestone({
                 owner: context.repo.owner,
-                repo: context.repo.repo,
+                repo: context.repo.name,
                 title: 'Strategic Backlog',
                 description: 'Strategic items awaiting triage and planning'
               });
@@ -63,7 +63,7 @@ jobs:
             // Assign to milestone
             await github.rest.issues.update({
               owner: context.repo.owner,
-              repo: context.repo.repo,
+              repo: context.repo.name,
               issue_number: itemNumber,
               milestone: backlog.number
             });
@@ -93,7 +93,7 @@ jobs:
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
-                repo: context.repo.repo,
+                repo: context.repo.name,
                 issue_number: issue.number,
                 body: `👋 Thank you for your contribution!
 
