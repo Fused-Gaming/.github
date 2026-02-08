@@ -751,8 +751,8 @@ See individual repository README files for contribution guidelines.
 
 ## Related Documentation
 
-- [Strategic Goals](GOALS.md) - Our 2026 strategic objectives
-- [Milestones Overview](MILESTONES_OVERVIEW.md) - Detailed milestone tracking
+- [Strategic Goals](../planning/GOALS.md) - Our 2026 strategic objectives
+- [Milestones Overview](../planning/MILESTONES_OVERVIEW.md) - Detailed milestone tracking
 - [Project Portfolio](../projects/PORTFOLIO.md) - Complete project descriptions
 - [Governance](../governance/GOVERNANCE.md) - Decision-making framework
 

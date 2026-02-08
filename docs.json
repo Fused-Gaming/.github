@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Fused Gaming Documentation Index",
+  "description": "Central index of all organizational documentation for Fused Gaming. Updated per DOCUMENT_CLASSIFICATION_POLICY.md.",
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-08",
+  "maintainer": "Core Team",
+  "updatePolicy": {
+    "cadence": "On every PR that adds, moves, or removes documentation",
+    "enforcedBy": "doc-freshness-check.yml",
+    "policyRef": "docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md"
+  },
+  "categories": [
+    {
+      "id": "root",
+      "name": "Root Files",
+      "description": "Standard files required at the repository root per GitHub conventions",
+      "path": "/",
+      "documents": [
+        {
+          "file": "README.md",
+          "title": "Organization README",
+          "classification": "PUBLIC",
+          "updateCadence": "Quarterly or on major org changes",
+          "owner": "Core Team"
+        },
+        {
+          "file": "CONTRIBUTING.md",
+          "title": "Contributing Guide",
+          "classification": "PUBLIC",
+          "updateCadence": "On process changes",
+          "owner": "Any Maintainer"
+        },
+        {
+          "file": "SECURITY.md",
+          "title": "Security Policy",
+          "classification": "PUBLIC",
+          "updateCadence": "Semi-annually or on incident",
+          "owner": "Security Lead"
+        },
+        {
+          "file": "LICENSE",
+          "title": "MIT License",
+          "classification": "PUBLIC",
+          "updateCadence": "As needed",
+          "owner": "Core Team"
+        },
+        {
+          "file": "PULL_REQUEST_TEMPLATE.md",
+          "title": "Pull Request Template",
+          "classification": "PUBLIC",
+          "updateCadence": "On process changes",
+          "owner": "Core Team"
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "name": "Governance",
+      "description": "Decision-making frameworks, protocols, and document classification policy",
+      "path": "docs/governance/",
+      "documents": [
+        {
+          "file": "docs/governance/GOVERNANCE.md",
+          "title": "Governance Framework",
+          "classification": "PUBLIC",
+          "updateCadence": "On governance votes",
+          "owner": "Core Team (collective)"
+        },
+        {
+          "file": "docs/governance/GOVERNANCE_PROTOCOL.md",
+          "title": "Governance Protocols",
+          "classification": "PUBLIC",
+          "updateCadence": "On governance votes",
+          "owner": "Core Team (collective)"
+        },
+        {
+          "file": "docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md",
+          "title": "Document Classification & Continuous Update Policy",
+          "classification": "PUBLIC",
+          "updateCadence": "Quarterly review",
+          "owner": "Core Team",
+          "nextReview": "2026-05-06"
+        }
+      ]
+    },
+    {
+      "id": "planning",
+      "name": "Planning",
+      "description": "Strategic goals, milestones, OKRs, and roadmaps",
+      "path": "docs/planning/",
+      "documents": [
+        {
+          "file": "docs/planning/GOALS.md",
+          "title": "Strategic Goals & OKRs",
+          "classification": "PUBLIC",
+          "updateCadence": "Monthly progress update, quarterly revision",
+          "owner": "Core Team Lead",
+          "currentPeriod": "2026 Q1"
+        },
+        {
+          "file": "docs/planning/MILESTONES_OVERVIEW.md",
+          "title": "Milestones Overview",
+          "classification": "PUBLIC",
+          "updateCadence": "Monthly",
+          "owner": "Core Team Lead",
+          "note": "Review for INTERNAL/CONFIDENTIAL content per classification policy"
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "description": "Day-to-day operational processes, project tracking, and development environment guides",
+      "path": "docs/operations/",
+      "documents": [
+        {
+          "file": "docs/operations/PROJECT_BOARD_GUIDE.md",
+          "title": "Project Board Guide",
+          "classification": "PUBLIC",
+          "updateCadence": "On board changes + quarterly",
+          "owner": "Core Team"
+        },
+        {
+          "file": "docs/operations/WORKSPACE_GUIDE.md",
+          "title": "VS Code Workspace Guide",
+          "classification": "PUBLIC",
+          "updateCadence": "On tooling changes",
+          "owner": "Core Team"
+        },
+        {
+          "file": "docs/operations/LABELS_README.md",
+          "title": "Label System Documentation",
+          "classification": "PUBLIC",
+          "updateCadence": "On label or workflow changes",
+          "owner": "Core Team / DevOps Lead"
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "description": "Investor relations, communications strategy, and job opportunities",
+      "path": "docs/business/",
+      "documents": [
+        {
+          "file": "docs/business/INVESTOR_DASHBOARD_PUBLIC.md",
+          "title": "Investor Dashboard (Public)",
+          "classification": "PUBLIC",
+          "updateCadence": "Monthly",
+          "owner": "Core Team"
+        },
+        {
+          "file": "docs/business/INVESTOR_COMMUNICATIONS_STRATEGY.md",
+          "title": "Investor Communications Strategy",
+          "classification": "PUBLIC",
+          "updateCadence": "Quarterly",
+          "owner": "Core Team"
+        },
+        {
+          "file": "docs/business/SIMPLIFIED_INVESTOR_SOLUTION.md",
+          "title": "Simplified Investor Solution",
+          "classification": "PUBLIC",
+          "updateCadence": "As needed",
+          "owner": "Core Team"
+        },
+        {
+          "file": "docs/business/JOB_OPPORTUNITIES_SUMMARY.md",
+          "title": "Job Opportunities Summary",
+          "classification": "PUBLIC",
+          "updateCadence": "On role changes",
+          "owner": "Core Team"
+        }
+      ]
+    },
+    {
+      "id": "automation",
+      "name": "Automation",
+      "description": "Cross-repository automation and CI/CD documentation",
+      "path": "docs/automation/",
+      "documents": [
+        {
+          "file": "docs/automation/CROSS_REPO_ROADMAP_AUTOMATION.md",
+          "title": "Cross-Repository Roadmap Automation",
+          "classification": "PUBLIC",
+          "updateCadence": "On workflow changes",
+          "owner": "DevOps Lead"
+        }
+      ]
+    },
+    {
+      "id": "audit",
+      "name": "Audit",
+      "description": "Organization audit reports and recommendations",
+      "path": "docs/audit/",
+      "documents": [
+        {
+          "file": "docs/audit/ORG_AUDIT_RECOMMENDATIONS.md",
+          "title": "Organization Audit Recommendations",
+          "classification": "PUBLIC",
+          "updateCadence": "Per audit cycle",
+          "owner": "Core Team"
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "description": "Architecture, APIs, security guidelines, and deployment documentation",
+      "path": "docs/technical/",
+      "documents": [],
+      "planned": [
+        "ARCHITECTURE.md",
+        "API_DESIGN.md",
+        "SECURITY_GUIDELINES.md",
+        "TESTING_STRATEGY.md",
+        "DEPLOYMENT.md"
+      ]
+    },
+    {
+      "id": "community",
+      "name": "Community",
+      "description": "Community engagement, onboarding, and recognition",
+      "path": "docs/community/",
+      "documents": [],
+      "planned": [
+        "ONBOARDING.md",
+        "RECOGNITION.md",
+        "EVENTS.md",
+        "FAQ.md"
+      ]
+    },
+    {
+      "id": "projects",
+      "name": "Projects",
+      "description": "Individual project documentation and portfolio",
+      "path": "docs/projects/",
+      "documents": [],
+      "planned": [
+        "PORTFOLIO.md",
+        "drift/",
+        "gamba-rewards/",
+        "gamba-reload/",
+        "leaderboards/",
+        "vln/"
+      ]
+    },
+    {
+      "id": "templates",
+      "name": "Templates",
+      "description": "Document templates for consistency",
+      "path": "docs/templates/",
+      "documents": [],
+      "planned": [
+        "PROJECT_README_TEMPLATE.md",
+        "PROPOSAL_TEMPLATE.md",
+        "RFC_TEMPLATE.md"
+      ]
+    },
+    {
+      "id": "archive",
+      "name": "Archive",
+      "description": "Deprecated and historical documents",
+      "path": "docs/archive/",
+      "documents": [
+        {
+          "file": "docs/archive/DOCS_STRUCTURE_PROPOSAL.md",
+          "title": "Documentation Structure Proposal",
+          "classification": "PUBLIC",
+          "updateCadence": "Archived - no updates",
+          "owner": "Core Team",
+          "note": "Original proposal that guided this docs reorganization"
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "file": ".github/workflows/sync-labels.yml",
+      "description": "Synchronize labels across org repositories"
+    },
+    {
+      "file": ".github/workflows/auto-label-issues.yml",
+      "description": "Auto-label issues and PRs based on content"
+    },
+    {
+      "file": ".github/workflows/add-to-milestone.yml",
+      "description": "Auto-add issues/PRs to milestones"
+    },
+    {
+      "file": ".github/workflows/goal-alignment-check.yml",
+      "description": "Validate issue/PR alignment with strategic goals"
+    },
+    {
+      "file": ".github/workflows/quarterly-okr-tracker.yml",
+      "description": "Track OKR progress and generate reports"
+    },
+    {
+      "file": ".github/workflows/doc-freshness-check.yml",
+      "description": "PR merge gate enforcing doc updates"
+    },
+    {
+      "file": ".github/workflows/doc-staleness-audit.yml",
+      "description": "Weekly scheduled audit for stale documentation"
+    },
+    {
+      "file": ".github/workflows/milestone-task-enforcement.yml",
+      "description": "Enforce milestone labels on tasks"
+    },
+    {
+      "file": ".github/workflows/cross-repo-milestone-sync.yml",
+      "description": "Cross-repo milestone synchronization"
+    },
+    {
+      "file": ".github/workflows/play_tictactoe.yml",
+      "description": "Interactive tic-tac-toe game on org profile"
+    }
+  ],
+  "scripts": [
+    {
+      "file": "scripts/apply-labels.sh",
+      "description": "Label sync using GitHub API token"
+    },
+    {
+      "file": "scripts/apply-labels-gh.sh",
+      "description": "Label sync using GitHub CLI"
+    },
+    {
+      "file": "scripts/script.sh",
+      "description": "Utility script"
+    },
+    {
+      "file": "scripts/tictactoe.py",
+      "description": "Tic-tac-toe game implementation"
+    },
+    {
+      "file": "scripts/labels.json",
+      "description": "Legacy label definitions (migrating to .github/labels.yml)"
+    }
+  ]
+}

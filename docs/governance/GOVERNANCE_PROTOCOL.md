@@ -1217,7 +1217,7 @@ This governance protocol complies with:
 ## Related Documents
 
 - [GOVERNANCE.md](GOVERNANCE.md) - Governance framework
-- [GOALS.md](GOALS.md) - Strategic goals and OKRs
+- [GOALS.md](../planning/GOALS.md) - Strategic goals and OKRs
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
 - [SECURITY.md](SECURITY.md) - Security policy
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - Community standards (to be created)

@@ -178,8 +178,8 @@ jobs:
 
             report += `\n---\n\n`;
             report += `View detailed progress:\n`;
-            report += `- [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/GOALS.md)\n`;
-            report += `- [MILESTONES_OVERVIEW.md](https://github.com/Fused-Gaming/.github/blob/main/MILESTONES_OVERVIEW.md)\n`;
+            report += `- [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/docs/planning/GOALS.md)\n`;
+            report += `- [MILESTONES_OVERVIEW.md](https://github.com/Fused-Gaming/.github/blob/main/docs/planning/MILESTONES_OVERVIEW.md)\n`;
             report += `- [Organization Projects](https://github.com/orgs/Fused-Gaming/projects)\n`;
 
             core.summary.addRaw(report).write();

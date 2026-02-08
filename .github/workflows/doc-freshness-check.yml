@@ -114,7 +114,7 @@ jobs:
             }
             if (missingUpdates.length > 0) {
               body += '### Missing Documentation Updates\n\n';
-              body += 'Per [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md), the following docs should be updated in this PR:\n\n';
+              body += 'Per [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md), the following docs should be updated in this PR:\n\n';
               body += missingUpdates.join('\n') + '\n\n';
             }
             if (warnings.length > 0) {
@@ -124,7 +124,7 @@ jobs:
 
             if (body) {
               body = '## Documentation Freshness Check\n\n' + body;
-              body += '\n---\n*This check is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.1*';
+              body += '\n---\n*This check is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.1*';
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -194,7 +194,7 @@ jobs:
 
               if (errors.length > 0) {
                 body += '### Blocked - Potential Confidential Content\n\n';
-                body += 'The following additions may contain confidential information per [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md):\n\n';
+                body += 'The following additions may contain confidential information per [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md):\n\n';
                 for (const e of errors) {
                   body += `- **${e.file}**: ${e.label} detected\n  \`${e.preview}\`\n`;
                 }
@@ -208,7 +208,7 @@ jobs:
                 }
               }
 
-              body += '\n---\n*This scan is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.3*';
+              body += '\n---\n*This scan is enforced by [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md) Section 2.3*';
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,

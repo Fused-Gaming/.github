@@ -624,8 +624,8 @@ If you already have documents created:
 
 **Related Documents**:
 - [INVESTOR_COMMUNICATIONS_STRATEGY.md](INVESTOR_COMMUNICATIONS_STRATEGY.md) - Full strategy (if you want the complex version)
-- [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md) - Privacy framework
-- [GOVERNANCE.md](GOVERNANCE.md) - Organizational governance
+- [DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md) - Privacy framework
+- [GOVERNANCE.md](../governance/GOVERNANCE.md) - Organizational governance
 
 ---
 

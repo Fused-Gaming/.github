@@ -148,7 +148,7 @@ This directory contains automated workflows that help maintain Fused Gaming's or
 
 **Enforcement**: Strategic items (priority: critical/high, goal-proposal, project-proposal, governance) receive a comment requesting milestone labeling if none is present.
 
-**Reference**: See [LABELS_README.md](../../LABELS_README.md) for complete milestone-to-deliverable mapping and [MILESTONES_OVERVIEW.md](../../MILESTONES_OVERVIEW.md) for milestone details.
+**Reference**: See [LABELS_README.md](../../docs/operations/LABELS_README.md) for complete milestone-to-deliverable mapping and [MILESTONES_OVERVIEW.md](../../docs/planning/MILESTONES_OVERVIEW.md) for milestone details.
 
 ---
 
@@ -187,7 +187,7 @@ This directory contains automated workflows that help maintain Fused Gaming's or
 - Scans PR diffs for sensitive content (emails, phone numbers, financial data, API keys, investor references)
 - Comments findings on the PR for review
 
-**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md)
+**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md)
 
 ---
 
@@ -204,7 +204,7 @@ This directory contains automated workflows that help maintain Fused Gaming's or
 - Creates GitHub issues for stale documents (with deduplication)
 - Generates audit summary report
 
-**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../DOCUMENT_CLASSIFICATION_POLICY.md)
+**Configuration**: Managed by [DOCUMENT_CLASSIFICATION_POLICY.md](../../docs/governance/DOCUMENT_CLASSIFICATION_POLICY.md)
 
 ---
 
@@ -231,7 +231,7 @@ Defines all organization-wide labels with:
 
 **To modify**: Edit `labels.yml` and sync will run automatically
 
-**Full reference**: See [LABELS_README.md](../../LABELS_README.md) for complete label-to-rule mappings, downstream workflow effects, and known conflicts
+**Full reference**: See [LABELS_README.md](../../docs/operations/LABELS_README.md) for complete label-to-rule mappings, downstream workflow effects, and known conflicts
 
 ---
 
@@ -357,9 +357,9 @@ When updating workflows:
 
 ## Resources
 
-- [GOVERNANCE.md](../GOVERNANCE.md) - Decision-making framework
-- [GOALS.md](../GOALS.md) - Current strategic goals
-- [PROJECT_BOARD_GUIDE.md](../PROJECT_BOARD_GUIDE.md) - Board usage guide
+- [GOVERNANCE.md](../../docs/governance/GOVERNANCE.md) - Decision-making framework
+- [GOALS.md](../../docs/planning/GOALS.md) - Current strategic goals
+- [PROJECT_BOARD_GUIDE.md](../../docs/operations/PROJECT_BOARD_GUIDE.md) - Board usage guide
 - [CONTRIBUTING.md](../CONTRIBUTING.md) - Contribution guidelines
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 

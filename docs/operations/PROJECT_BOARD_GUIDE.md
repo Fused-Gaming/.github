@@ -6,7 +6,7 @@ This guide explains how Fused Gaming uses GitHub Projects to track goals, initia
 
 **Active Project Boards**:
 - [V.I.S.E. VLN-Certifications](https://github.com/orgs/Fused-Gaming/projects/5) - Currently active
-- Fused Gaming Goals & Initiatives - Planned (see [ORG_AUDIT_RECOMMENDATIONS.md](ORG_AUDIT_RECOMMENDATIONS.md) Section 4.1)
+- Fused Gaming Goals & Initiatives - Planned (see [ORG_AUDIT_RECOMMENDATIONS.md](../audit/ORG_AUDIT_RECOMMENDATIONS.md) Section 4.1)
 
 ---
 
@@ -313,8 +313,8 @@ Generated from project board data:
 
 ### Documentation
 - [GitHub Projects Docs](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
-- [GOVERNANCE.md](GOVERNANCE.md) - Decision-making process
-- [GOALS.md](GOALS.md) - Current strategic goals
+- [GOVERNANCE.md](../governance/GOVERNANCE.md) - Decision-making process
+- [GOALS.md](../planning/GOALS.md) - Current strategic goals
 
 ### Templates
 - [Issue Templates](.github/ISSUE_TEMPLATE/)
@@ -329,7 +329,7 @@ Generated from project board data:
 
 ## Document Classification
 
-This document is classified **PUBLIC** per [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md).
+This document is classified **PUBLIC** per [DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md).
 
 **Update triggers**: This document MUST be updated when:
 - Project board structure changes (columns, views, fields)
