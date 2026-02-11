@@ -11,7 +11,7 @@ body:
         ## Propose a New Goal
         Thank you for proposing a new goal for Fused Gaming! Strategic goals help align our organization and guide our efforts.
 
-        Please review [GOALS.md](../GOALS.md) and [GOVERNANCE.md](../GOVERNANCE.md) before submitting.
+        Please review [GOALS.md](../docs/planning/GOALS.md) and [GOVERNANCE.md](../docs/governance/GOVERNANCE.md) before submitting.
 
   - type: input
     id: goal-title

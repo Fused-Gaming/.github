@@ -225,6 +225,6 @@ jobs:
             summary += `### Label Definitions\n`;
             summary += `Labels are synced from \`.github/labels.yml\` via \`sync-labels.yml\`.\n`;
             summary += `Enforcement rules are defined in \`milestone-task-enforcement.yml\` and \`cross-repo-milestone-sync.yml\`.\n`;
-            summary += `See [LABELS_README.md](https://github.com/Fused-Gaming/.github/blob/main/LABELS_README.md) for full reference.\n`;
+            summary += `See [LABELS_README.md](https://github.com/Fused-Gaming/.github/blob/main/docs/operations/LABELS_README.md) for full reference.\n`;
 
             core.summary.addRaw(summary).write();

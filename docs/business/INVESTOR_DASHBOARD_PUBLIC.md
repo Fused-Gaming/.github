@@ -445,8 +445,8 @@ See [JOB_OPPORTUNITIES_SUMMARY.md](JOB_OPPORTUNITIES_SUMMARY.md) for detailed co
 
 **Learn More**:
 - Review this dashboard monthly for updates
-- Read our governance framework: [GOVERNANCE.md](GOVERNANCE.md)
-- See our strategic goals: [GOALS.md](GOALS.md)
+- Read our governance framework: [GOVERNANCE.md](../governance/GOVERNANCE.md)
+- See our strategic goals: [GOALS.md](../planning/GOALS.md)
 - Understand our approach: [INVESTOR_COMMUNICATIONS_STRATEGY.md](INVESTOR_COMMUNICATIONS_STRATEGY.md)
 
 **Get in Touch**:
@@ -487,11 +487,11 @@ See our milestone overview above. Key products planned for Q2-Q3 2026 developmen
 
 ### How do you make decisions?
 
-See [GOVERNANCE.md](GOVERNANCE.md) for our complete decision-making framework, from routine changes to strategic decisions.
+See [GOVERNANCE.md](../governance/GOVERNANCE.md) for our complete decision-making framework, from routine changes to strategic decisions.
 
 ### How is privacy handled?
 
-See [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md) for our approach to public transparency vs. private business information.
+See [DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md) for our approach to public transparency vs. private business information.
 
 ---
 
@@ -505,12 +505,12 @@ See [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md) for o
 **Next Review**: May 6, 2026
 
 **Related Documents**:
-- [GOVERNANCE.md](GOVERNANCE.md) - Organizational governance
-- [GOALS.md](GOALS.md) - Strategic goals and OKRs
-- [MILESTONES_OVERVIEW.md](MILESTONES_OVERVIEW.md) - Detailed milestone tracking
+- [GOVERNANCE.md](../governance/GOVERNANCE.md) - Organizational governance
+- [GOALS.md](../planning/GOALS.md) - Strategic goals and OKRs
+- [MILESTONES_OVERVIEW.md](../planning/MILESTONES_OVERVIEW.md) - Detailed milestone tracking
 - [INVESTOR_COMMUNICATIONS_STRATEGY.md](INVESTOR_COMMUNICATIONS_STRATEGY.md) - Communications approach
 - [JOB_OPPORTUNITIES_SUMMARY.md](JOB_OPPORTUNITIES_SUMMARY.md) - Contractor opportunities
-- [DOCUMENT_CLASSIFICATION_POLICY.md](DOCUMENT_CLASSIFICATION_POLICY.md) - Information classification
+- [DOCUMENT_CLASSIFICATION_POLICY.md](../governance/DOCUMENT_CLASSIFICATION_POLICY.md) - Information classification
 
 ---
 

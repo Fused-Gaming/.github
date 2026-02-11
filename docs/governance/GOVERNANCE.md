@@ -240,7 +240,7 @@ Our strategic planning aligns with this governance structure:
 - Reviewed quarterly
 - Progress reported to community
 
-See [GOALS.md](GOALS.md) for current organizational objectives.
+See [GOALS.md](../planning/GOALS.md) for current organizational objectives.
 
 ---
 
@@ -314,7 +314,7 @@ Standard labels across repositories:
 
 ### Related Documents
 - [SECURITY.md](SECURITY.md) - Security policy and reporting
-- [GOALS.md](GOALS.md) - Current organizational goals
+- [GOALS.md](../planning/GOALS.md) - Current organizational goals
 - [README.md](README.md) - Organization overview
 - Individual repository CONTRIBUTING.md files
 

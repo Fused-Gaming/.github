@@ -11,7 +11,7 @@ body:
         ## Propose Governance Changes
         Thank you for helping improve Fused Gaming's governance! Changes to governance require community input and core team approval.
 
-        Please review [GOVERNANCE.md](../GOVERNANCE.md) for the change process.
+        Please review [GOVERNANCE.md](../docs/governance/GOVERNANCE.md) for the change process.
 
   - type: dropdown
     id: change-type

@@ -234,9 +234,9 @@ Based on Issue #21 requirements:
 
 ### Related Documents
 - [PROJECT_BOARD_GUIDE.md](PROJECT_BOARD_GUIDE.md) - Complete project board usage guide
-- [ORG_AUDIT_RECOMMENDATIONS.md](ORG_AUDIT_RECOMMENDATIONS.md) - Section 4.1: Create Strategic Goals Project Board
-- [GOALS.md](GOALS.md) - Strategic goals tracking
-- [GOVERNANCE.md](GOVERNANCE.md) - Decision-making and process framework
+- [ORG_AUDIT_RECOMMENDATIONS.md](../audit/ORG_AUDIT_RECOMMENDATIONS.md) - Section 4.1: Create Strategic Goals Project Board
+- [GOALS.md](../planning/GOALS.md) - Strategic goals tracking
+- [GOVERNANCE.md](../governance/GOVERNANCE.md) - Decision-making and process framework
 
 ### Related Issues
 - [Issue #21: Verify and Document Project Board Column Setup](https://github.com/Fused-Gaming/.github/issues/21)

@@ -32,11 +32,21 @@ jobs:
 
             // Try to fetch GOALS.md from .github repository
             try {
-              const response = await github.rest.repos.getContent({
-                owner: 'Fused-Gaming',
-                repo: '.github',
-                path: 'GOALS.md'
-              });
+              let response;
+              try {
+                response = await github.rest.repos.getContent({
+                  owner: 'Fused-Gaming',
+                  repo: '.github',
+                  path: 'docs/planning/GOALS.md'
+                });
+              } catch (e) {
+                // Fallback to legacy root path during transition
+                response = await github.rest.repos.getContent({
+                  owner: 'Fused-Gaming',
+                  repo: '.github',
+                  path: 'GOALS.md'
+                });
+              }
 
               const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
 
@@ -104,7 +114,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: item.number,
-                body: `## 🎯 Goal Alignment Check\n\nThis ${isIssue ? 'issue' : 'PR'} is marked as strategic but doesn't explicitly mention alignment with current organizational goals.\n\n**Current Goals for ${currentQuarter}:**\n${goalsList}\n\n**Consider:**\n- Does this align with one of our strategic goals?\n- If yes, please reference the goal in the description\n- If not, should it be a strategic item?\n\nSee [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/GOALS.md) for details.\n\n*This is an automated check to ensure organizational alignment.*`
+                body: `## 🎯 Goal Alignment Check\n\nThis ${isIssue ? 'issue' : 'PR'} is marked as strategic but doesn't explicitly mention alignment with current organizational goals.\n\n**Current Goals for ${currentQuarter}:**\n${goalsList}\n\n**Consider:**\n- Does this align with one of our strategic goals?\n- If yes, please reference the goal in the description\n- If not, should it be a strategic item?\n\nSee [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/docs/planning/GOALS.md) for details.\n\n*This is an automated check to ensure organizational alignment.*`
               });
             } else if (mentionedGoals.length > 0) {
               console.log(`✅ Aligned with goals: ${mentionedGoals.join(', ')}`);
@@ -166,7 +176,7 @@ jobs:
             }
 
             summary += `\n---\n`;
-            summary += `View full goals: [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/GOALS.md)\n`;
+            summary += `View full goals: [GOALS.md](https://github.com/Fused-Gaming/.github/blob/main/docs/planning/GOALS.md)\n`;
             summary += `Track progress: [Project Board](https://github.com/orgs/Fused-Gaming/projects/10)\n`;
 
             core.summary.addRaw(summary).write();

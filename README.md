@@ -38,3 +38,24 @@ Our community spans across multiple platforms and games 🎮, bringing together 
 We believe in the power of technology to transform gaming 🔮, and we're constantly exploring new ways to innovate and improve the gaming experience. From Discord bots 🤖 and web applications 🌐 to game modifications and community tools 🔨, our projects are designed to bring gamers together and enhance their gameplay.
 
 Join our growing community and be part of the future of gaming! Connect with us on our social platforms 📱, contribute to our open-source projects 💻, or simply follow along as we continue to build amazing gaming experiences. Let's level up together! 🎊
+
+---
+
+## Documentation
+
+All detailed documentation is organized in the [`docs/`](docs/) directory:
+
+- **[Governance](docs/governance/)** - Decision-making framework, protocols, and classification policy
+- **[Planning](docs/planning/)** - Strategic goals, milestones, and OKRs
+- **[Operations](docs/operations/)** - Project board guide, workspace setup, label system
+- **[Business](docs/business/)** - Investor relations, communications, job opportunities
+- **[Automation](docs/automation/)** - Cross-repository roadmap and CI/CD automation
+- **[Audit](docs/audit/)** - Organization audit reports and recommendations
+- **[Technical](docs/technical/)** - Architecture and deployment docs (coming soon)
+- **[Community](docs/community/)** - Onboarding and engagement (coming soon)
+
+### Quick Links
+
+- [Contributing Guide](CONTRIBUTING.md) | [Security Policy](SECURITY.md) | [License](LICENSE)
+- [Strategic Goals](docs/planning/GOALS.md) | [Governance](docs/governance/GOVERNANCE.md)
+- [Documentation Index](docs/README.md) | [docs.json](docs.json)
