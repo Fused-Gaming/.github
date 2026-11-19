@@ -1,127 +1,63 @@
-<div align="center">
+# Fused Gaming LLC
 
-# 🎮 FUSED GAMING
+**Contract software engineering, systems integration, AI workflow tools, and application security.**
 
-### *Where Innovation Meets Gaming Excellence*
+Fused Gaming LLC is a California software engineering company with a place of business in Oakland, California. We design and deliver web applications, developer tooling, cloud systems, data workflows, and interactive digital products. We support scoped prime and subcontract engagements, subject to solicitation requirements and capacity.
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/fuseddotgg?style=social)](https://x.com/fuseddotgg)
-[![Telegram](https://img.shields.io/badge/Telegram-Join%20Us-blue?logo=telegram)](https://t.me/fusedgg)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?logo=linkedin)](https://www.linkedin.com/company/fusedgg/)
+## Contracting capabilities
 
----
+- Custom software development, modernization, and support
+- Systems architecture, API design, data modeling, and integration
+- AI-enabled workflows, Model Context Protocol (MCP) services, and reusable developer tools
+- Application security engineering and smart-contract research
+- Cloud delivery, CI/CD, containerized services, and release automation
+- Interactive, real-time applications, dashboards, and accessible user experiences
+- Data visualization and investigation workflow tooling
 
-### 🚀 Building The Future of Gaming Technology
+## Company-reported certifications and vendor representations
 
-*Crafting innovative tools, experiences, and communities that empower gamers worldwide*
+- **California Cal eProcure / DGS:** Small Business (SB), Microbusiness (MB), and Disabled Veteran Business Enterprise (DVBE)
+- **SAM.gov:** Small Business, Veteran-Owned, and Service-Disabled Veteran-Owned socioeconomic representations
+- **Place of business:** Oakland, California
 
-</div>
+These statuses are company-reported and should be checked against the active public vendor records before reliance. SAM.gov representations are distinct from SBA VetCert certification; we will identify SBA-certified SDVOSB status only if the active VetCert record confirms it. The California DGS directory supports searches for SB, microbusiness, and DVBE certifications: [DGS certified-firm search](https://www.dgs.ca.gov/PD/Services/Page-Content/Procurement-Division-Services-List-Folder/Search-For-State-Certified-Small-And-Diverse-Businesses). See [SBA VetCert](https://www.sba.gov/veterans/).
 
-<br>
+## Suggested NAICS codes
 
-## 🎯 What We Do
+| Code | Classification | Typical fit |
+|---|---|---|
+| 541511 | Custom Computer Programming Services | Customer-specific software design, development, modification, and support |
+| 541512 | Computer Systems Design Services | Integrated systems architecture and design |
+| 541519 | Other Computer Related Services | Eligible computer-related services outside more specific categories |
+| 513210 | Software Publishers | Software publishing/licensing when that is the principal activity |
 
-```plaintext
-┌─────────────────────────────────────────────────────────────┐
-│  🛠️  Game Development Tools    │  Innovative gaming solutions │
-│  🤖  Community Bots & Apps      │  Discord, web applications   │
-│  🏆  Esports Infrastructure     │  Competitive gaming platforms│
-│  🌐  Open Source Projects       │  Community-driven development│
-└─────────────────────────────────────────────────────────────┘
-```
+NAICS selection depends on the solicitation and the company’s actual business activity. Verify the size standard and primary code for each opportunity.
 
-<div align="center">
+## Selected portfolio
 
-## 🎲 Interactive Challenge: Tic-Tac-Toe
+- **Gambull.us** — Multi-game interactive platform, React interfaces, account and role workflows, APIs, ledger/round tracking, Cloudflare delivery, and browser-based capture automation. Company product work, not represented as government past performance.
+- **Clippercard** — Transit-card interoperability research, data workflows, validation tooling, and NFC reader feasibility, scoped to authorized testing and public information.
+- **Fused Gaming MCP and SyncPulse** — TypeScript MCP server and agent-workflow tooling, reusable skills, npm publishing, documentation, CI, and release automation.
+- **Campaign Graph** — Relationship-network modeling and data visualization for research workflows.
+- **VLN** — Smart-contract vulnerability research tooling; no accreditation or third-party audit claim.
+- **Plug** — Location-aware public power-source discovery concept.
 
-**Think you can beat the community?** Click a tile to cast your vote!
-*The most popular move is played every hour via GitHub Actions*
+## Open-source software
 
-### Current Turn: <img src="https://github.com/Fused-Gaming/.github/blob/main/profile/assets/True.png" alt="X" width="28"/>
+Published npm examples under the **@h4shed** scope include [`@h4shed/mcp-core`](https://www.npmjs.com/package/@h4shed/mcp-core), [`@h4shed/mcp-cli`](https://www.npmjs.com/package/@h4shed/mcp-cli), [`@h4shed/skill-creator`](https://www.npmjs.com/package/@h4shed/skill-creator), [`@h4shed/skill-ascii-mockup`](https://www.npmjs.com/package/@h4shed/skill-ascii-mockup), [`@h4shed/skill-canvas-design`](https://www.npmjs.com/package/@h4shed/skill-canvas-design), [`@h4shed/skill-frontend-design`](https://www.npmjs.com/package/@h4shed/skill-frontend-design), and [`@h4shed/skill-mcp-builder`](https://www.npmjs.com/package/@h4shed/skill-mcp-builder). Verify package versions, license, and publication status on npm before including them in a procurement response.
 
-| | | |
-|:---:|:---:|:---:|
-| [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t1) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t2) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t3) |
-| [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t4) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t5) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t6) |
-| [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t7) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t8) | [![](https://github.com/Fused-Gaming/.github/blob/main/profile/assets/None.png)](https://tinyurl.com/Fused-t9) |
+## Contributors
 
-<details>
-<summary>📖 How does this work?</summary>
+- **Jesse David Lucus** — [@jlucus](https://github.com/jlucus) — Founder, Managing Member, and lead software architect/engineer. Named human contributor in the selected public repository histories.
 
-<br>
+Other GitHub author labels in project history include automation and AI-assisted tooling accounts; they are not listed as employees or company officers. Additional contributor positions are not publicly confirmed.
 
-Each tile is a tracked hyperlink that counts community votes. Our automated system tallies votes and plays the most popular move every hour using GitHub Actions. It's democracy meets gaming—and it's all powered by open source!
+## Contact and registration details
 
-</details>
+- Website and portfolio: [vln.gg](https://vln.gg) · [jlucus.dev](https://jlucus.dev)
+- LinkedIn: [Fused Gaming LLC](https://www.linkedin.com/company/fusedgg/)
+- GitHub: [Fused-Gaming](https://github.com/Fused-Gaming)
+- Contracting email and phone: add monitored business contact details
+- UEI / CAGE: add after verification in SAM.gov
 
-</div>
-
----
-
-## 💡 Our Mission
-
-At **Fused Gaming**, we're more than just a gaming organization—we're a movement. We bridge the gap between cutting-edge technology and immersive gaming experiences, creating tools and platforms that enhance how people play, compete, and connect.
-
-### What Drives Us
-
-- **🔧 Innovation First**: Leveraging modern tech to solve real gaming challenges
-- **👥 Community Focused**: Building for gamers, by gamers
-- **🌍 Globally Connected**: Uniting players across platforms and borders
-- **💻 Open Source Champions**: Contributing to and maintaining public projects
-- **🎓 Knowledge Sharing**: Educating and empowering the next generation of game developers
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
-</div>
-
----
-
-## 🤝 Get Involved
-
-<div align="center">
-
-### Ready to Join the Gaming Revolution?
-
-| For Players | For Developers | For Partners |
-|:---:|:---:|:---:|
-| 🎮 **Play & Compete** | 💻 **Contribute Code** | 🤝 **Collaborate** |
-| Join our community | Check out our repos | Reach out on LinkedIn |
-| [Join Discord](#) | [Browse Projects](https://github.com/Fused-Gaming) | [Contact Us](https://www.linkedin.com/company/fusedgg/) |
-
-</div>
-
----
-
-## 📊 Organization Stats
-
-<div align="center">
-
-![GitHub Stats](https://img.shields.io/badge/Active_Projects-Growing-success?style=flat-square)
-![Community](https://img.shields.io/badge/Community-Worldwide-blue?style=flat-square)
-![Open Source](https://img.shields.io/badge/Open_Source-100%25-orange?style=flat-square)
-
-</div>
-
----
-
-<div align="center">
-
-### 🌟 Let's Build Something Amazing Together
-
-**Follow our journey** | **Star our projects** | **Join our community**
-
-<sub>Built with ❤️ by the Fused Gaming team</sub>
-
-[![Website](https://img.shields.io/badge/Visit-Our_Projects-181717?style=for-the-badge&logo=github)](https://github.com/Fused-Gaming)
-
-</div>
+For the detailed capability profile, see [the contracting profile](profile/contracting-capability.md). Contact us to discuss a scoped software engineering or systems integration requirement.
