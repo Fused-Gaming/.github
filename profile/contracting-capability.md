@@ -9,15 +9,19 @@ Fused Gaming LLC is a California software engineering company that designs and b
 **Legal name:** Fused Gaming LLC  
 **Jurisdiction:** California, United States (state entity record should be checked before use)  
 **Business focus:** Software engineering, web application development, AI workflow tools, game and interactive systems  
-**Website / portfolio:** [vln.gg](https://vln.gg) · [jlucus.dev](https://jlucus.dev)  
+**Oakland place of business:** Oakland, California (company-provided; confirm exact principal-office or mailing address required by procurement)  
+**Website / portfolio:** [vln.gg](https://vln.gg) · [jlucus.dev](https://jlucus.dev) · [Fused Gaming LinkedIn](https://www.linkedin.com/company/fusedgg/)  
 **Public engineering portfolio:** [github.com/Fused-Gaming](https://github.com/Fused-Gaming)  
-**Business contact:** [add monitored contracting email] · [add phone]  
-**Primary contact:** Jesse David Lucus, Managing Member [verify title for solicitation]
+**Business contact:** Add monitored contracting email and phone  
+**Primary contact:** Jesse David Lucus, Founder and Managing Member
 
 ### Contracting identifiers and status
 **UEI:** Not provided  · **CAGE:** Not provided  · **SAM.gov:** Not confirmed  
-**California supplier number / local vendor IDs:** Not provided  · **Business address:** Confirm preferred public mailing address  
-**Certifications / socioeconomic designations:** No certifications asserted; verify eligibility and registration before claiming any status.
+**Cal eProcure / California DGS (company-reported):** Small Business (SB), Microbusiness (MB), and Disabled Veteran Business Enterprise (DVBE). Confirm active public profile, certification ID, and expiration before quoting.  
+**SAM.gov (company-reported):** Small Business, Veteran-Owned, and Service-Disabled Veteran-Owned socioeconomic representations. Confirm active registration and UEI. These representations do not by themselves establish SBA VetCert certification; confirm active VetCert status separately before describing the company as SBA-certified SDVOSB or pursuing an SDVOSB set-aside.
+
+## Company contributors
+- **Jesse David Lucus** — [@jlucus](https://github.com/jlucus) — Founder, Managing Member, and lead software architect/engineer. Public project histories reviewed for selected repositories identify @jlucus as the named human contributor. Other contributors’ company positions are not publicly confirmed.
 
 ## Core capabilities
 - Custom software and full-stack web application design, implementation, modernization, and support.
@@ -78,7 +82,7 @@ The Fused Gaming engineering portfolio publishes modular npm packages under the 
 Package scope, publication status, version, license, maintainership, and dependency provenance should be rechecked on npm before being quoted in a bid or supply-chain questionnaire. Open-source licensing does not itself grant rights to third-party dependencies or customer deliverables.
 
 ## Procurement readiness checklist
-Before submitting this profile with a response, fill in and verify: UEI; CAGE; active SAM.gov registration and representations; primary NAICS and size standard; contracting email and telephone; approved public mailing address; insurance limits; business size and ownership certifications (only if eligible); relevant references and customer permissions; staff availability and delivery capacity; and any required security, privacy, accessibility, or supply-chain attestations.
+Before submitting this profile with a response, verify current Cal eProcure SB/MB/DVBE records and IDs; confirm active SAM.gov registration, UEI, CAGE, and socioeconomic representations; confirm SBA VetCert status if claiming federal SDVOSB certification; validate the Oakland place-of-business details against solicitation requirements; choose the primary NAICS code and size standard; add contracting email and phone; confirm insurance limits, customer references and permissions, staff availability and delivery capacity; and complete required security, privacy, accessibility, or supply-chain attestations.
 
 ## Public references
 - U.S. Census Bureau, 2022 NAICS Manual and search: https://www.census.gov/naics/
@@ -87,5 +91,7 @@ Before submitting this profile with a response, fill in and verify: UEI; CAGE; a
 - npm organization scope: https://www.npmjs.com/org/h4shed
 - Personal technical portfolio: https://jlucus.dev/
 - VLN website: https://vln.gg/
+- California DGS certified firm search: https://www.dgs.ca.gov/PD/Services/Page-Content/Procurement-Division-Services-List-Folder/Search-For-State-Certified-Small-And-Diverse-Businesses
+- SBA Veteran Small Business Certification (VetCert): https://www.sba.gov/veterans/
 
-**Use note:** This is a capability-profile draft, not a certification of SAM.gov status, size, past performance, licenses, security controls, or legal eligibility. Tailor the NAICS and capability claims to each procurement and verify all identifiers before submission.
+**Use note:** Certification designations and location above are company-reported pending validation against active vendor records. This profile is not a certification of SAM.gov status, size, past performance, licenses, security controls, or legal eligibility. Tailor claims to each procurement and verify identifiers before submission.
